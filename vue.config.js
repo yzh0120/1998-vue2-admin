@@ -12,10 +12,22 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
+//静态资源目录
+function fnStatic() {
+  if (process.env.ENV === 'test') {
+    return "/test/"
+  } else if (process.env.ENV === 'build') {
+    return "/build/"
+  } else {
+    return "/"
+  }
+}
+
 module.exports = {
   // transpileDependencies: ["*"] ,
   transpileDependencies: ["crypto-js", 'resize-detector',"@vant","vue-puzzle-verification","vue-socket.io"],
-  publicPath: process.env.ENV === 'test' ? '/ele/' : '/',
+  // publicPath: process.env.ENV === 'test' ? '/ele/' : '/',
+  publicPath: fnStatic(),
   productionSourceMap: false,
   configureWebpack: {
     resolve: {
