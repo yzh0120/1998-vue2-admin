@@ -23,34 +23,35 @@ service.interceptors.response.use(
   response => {
     if (response.status === 200) { // 如果状态码是200  会执行.then的第一个函数
 
-      // 未设置状态码则默认成功状态
-      const code = response.data.code;
-      if (code == 200) {
-        return Promise.resolve(response.data)
-      }
-      //token失效
-      else if (code == 401) {
-        if (!store.state.config.alert401) {
-          store.state.config.alert401 = true;
-          MessageBox.alert("未授权，请重新登录", "提示", {
-            confirmButtonText: '确定',
-            callback: action => {
-              cookieFn.removeCookie(process.env.VUE_APP_TOKEN);
-              router.push({
-                path: '/login'
-              });
+      // // 未设置状态码则默认成功状态
+      // const code = response.data.code;
+      // if (code == 200) {
+      //   return Promise.resolve(response.data)
+      // }
+      // //token失效
+      // else if (code == 401) {
+      //   if (!store.state.config.alert401) {
+      //     store.state.config.alert401 = true;
+      //     MessageBox.alert("未授权，请重新登录", "提示", {
+      //       confirmButtonText: '确定',
+      //       callback: action => {
+      //         cookieFn.removeCookie(process.env.VUE_APP_TOKEN);
+      //         router.push({
+      //           path: '/login'
+      //         });
 
-            }
-          })
-        }
-      }
-      //其他自定义code
-      else {
-        Notification.error({
-          title: response.data.info
-        })
-        return Promise.reject(response)
-      }
+      //       }
+      //     })
+      //   }
+      // }
+      // //其他自定义code
+      // else {
+      //   Notification.error({
+      //     title: response.data.info
+      //   })
+      //   return Promise.reject(response)
+      // }
+      return Promise.resolve(response.data)
     } else { //除了200 在2xx的范围 会执行.then的第二个函数  Promise.reject(res)  1
       return Promise.reject(response)
     }
