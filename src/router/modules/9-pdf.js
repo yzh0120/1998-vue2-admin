@@ -17,5 +17,14 @@ export default {
       title: 'pdfShowAll',
       icon: "shezhi1",
     }
+  },
+  {
+    path: 'pdfPage',
+    name: 'pdfPage',
+    component: () => import( /* webpackChunkName: "socket-base" */ "@/views/9-pdf/2-pdfPage.vue"),
+    meta: {
+      title: 'pdfPage',
+      icon: "shezhi1",
+    }
   }]
 }

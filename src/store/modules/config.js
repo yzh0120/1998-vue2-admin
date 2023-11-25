@@ -6,6 +6,7 @@ function clientHeight() {
 export default {
   namespaced: true,
   state: {
+    al:false,
     isCollapse: false,
     alert401: false,
     dataItem: [],//数据字典

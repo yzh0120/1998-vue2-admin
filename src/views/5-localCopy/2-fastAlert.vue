@@ -52,7 +52,9 @@ export default {
     alertConfirm() {
       if (this.$refs.formAlert.check()) {
         let url = this.formAlert.data.id ? "update" : "save";
+        this.$store.state.config.al =  true
         testApi[url](this.addApplyForm.data).then((res) => {
+          this.$store.state.config.al =  false
           if (res.code == 200) {
             this.$message.success(res.info);
             this.getData();

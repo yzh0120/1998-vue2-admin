@@ -1,15 +1,13 @@
 <template>
   <div>
-    <pdfShowAll></pdfShowAll>
+    <pdfPage></pdfPage>
   </div>
 </template>
 
 <script>
   export default {
-  methods: {
     
-  },
-    }
+  }
 </script>
 
 <style lang="scss" scoped>
