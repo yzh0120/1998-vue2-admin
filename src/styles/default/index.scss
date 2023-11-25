@@ -1,0 +1,74 @@
+
+@import "../var.scss";
+@import "./left.scss";
+
+//default组件的el-container
+.default_1_el-container{
+  
+  /******************************************************
+    侧边栏
+  */
+  .el-aside{
+    
+    // transition: all 0.2s;
+    .default_2_div{
+      background-color: $menuBg;
+      transition: width 0.28s;
+      width: 210px ;//控制整体高度
+      height: 100%;
+      overflow: hidden;
+
+      
+      //滚动条
+      .default_left_2_shu_el-scrollbar.el-scrollbar{
+        .el-scrollbar__wrap{
+          overflow-x: hidden !important;
+          height: 100% !important;
+          .el-scrollbar__view{
+
+            
+          
+          }
+        }
+        .el-scrollbar__bar.is-horizontal{
+          // overflow-x: hidden !important;
+        display: none;
+        }
+        .el-scrollbar__bar.is-vertical{
+
+        }
+      }
+    }
+  }
+  .el-container.default_1_head_main{
+    /******************************************************
+    头部
+  */
+    .el-header.default_header_2_el-header{
+      padding: 0px !important;
+    }
+    /*****************************************************
+    主体
+  */
+    .el-main.default_2_el-main{
+      // 滚动条
+      .default_main_2_shu_el-scrollbar.el-scrollbar{
+        .el-scrollbar__wrap{
+          .el-scrollbar__view{
+            //重要
+            #app_main{
+
+            }
+          }
+        }
+        .el-scrollbar__bar.is-horizontal{
+
+        }
+        .el-scrollbar__bar.is-vertical{
+
+        }
+      }
+    }
+  }
+  
+}

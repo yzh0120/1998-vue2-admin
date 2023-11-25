@@ -1,0 +1,96 @@
+
+
+//left 的elmenu样式无法放到 .el-scrollbar__view去 因为elmenu的悬浮效果是挂在body 上的
+            /***主题样式**************************************************************************/
+            .el-menu{
+              background-color: $menuBg !important; //背景颜色
+            }
+            //样式权重最低的子叶菜单样式  会被非一级的某行菜单栏(.el-submenu .el-menu-item)的样式覆盖
+            .el-menu-item {
+              background-color: $menuBg !important; //背景颜色
+              color: $textcolor !important; // 默认字体颜色
+            
+              &:hover {
+                color: $hoverColor !important; //字体颜色
+                i {
+                  color: $hoverColor !important; //字体颜色
+                }
+              }
+            }
+            //样式权重最低的母目录样式
+            .el-submenu__title {
+              background-color: $menuBg !important; //背景颜色
+              color: $textcolor !important;; // 默认字体颜色
+            
+              &:hover {
+                color: $hoverColor !important; //字体颜色
+                i {
+                  color: $hoverColor !important; //字体颜色
+                }
+              }
+            }
+            //非一级的子叶菜单栏样式
+            .el-submenu .el-menu-item {
+              
+              background-color: $submenuBg !important; //背景色
+            
+              &:hover {
+                color: $hoverColor !important; //字体颜色
+                i {
+                  color: $hoverColor !important; //字体颜色
+                }
+              }
+            }
+              // 某行激活的子叶菜单栏样式            多选择器是为了权重
+            .el-menu li.is-active.el-menu-item {
+            
+              color: $activeTextColor !important; // 字体激活颜色
+              background-color: $activeBgColor !important; // 背景激活颜色
+              &:hover {
+                i {
+                  color: $activeTextColor !important; //字体颜色
+                }
+              }
+            }
+            //当点击了子叶菜单时的母展开菜单样式
+            .is-active > .el-submenu__title {
+              color: $activeTextColor !important; //的文本颜色
+              i {
+                color: $activeTextColor !important;
+              }
+            }
+             /***主题样式**************************************************************************/
+
+
+               /***功能样式**************************************************************************/
+            //导航栏折叠时候 隐藏标题
+            .el-menu--collapse.el-menu{
+              border: 0px;
+              background-color: white;
+
+              .el-submenu {
+                &>.el-submenu__title {
+                  &>span, &>i {
+                    margin: 0;
+                    padding: 0;
+                    height: 0;
+                    width: 0;
+                    overflow: hidden;
+                    visibility: hidden;
+                    display: inline-block;
+                  }
+                }
+              }
+            }
+            // title左边的图标的margin
+            .titile-left-icon {
+              margin-left: -4px;
+              font-size: 16px;
+              margin-right: 10px;
+              vertical-align: middle;
+              width: 18px;
+              height: 18px;
+              line-height: 18px;
+              text-align: center;
+            }
+            /***功能样式**************************************************************************/
