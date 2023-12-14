@@ -53,6 +53,24 @@ export default {
         title: 'localCopy-move',
         icon: "shezhi1",
       }
+    },
+    {
+      path: 'copy',
+      name: 'localCopy-copy',
+      component: () => import( /* webpackChunkName: "localCopy-move" */ "@/views/5-localCopy/6-copy.vue"),
+      meta: {
+        title: 'localCopy-copy',
+        icon: "shezhi1",
+      }
+    },
+    {
+      path: 'banner',
+      name: 'localCopy-banner',
+      component: () => import( /* webpackChunkName: "localCopy-move" */ "@/views/5-localCopy/7-banner.vue"),
+      meta: {
+        title: 'localCopy-banner',
+        icon: "shezhi1",
+      }
     }
   ]
 }

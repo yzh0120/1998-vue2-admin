@@ -26,3 +26,113 @@ body,
 
 
 } 
+
+
+/*
+<1> :nth-child和:nth-of-type
+
+.a:nth-child(4){
+    background:green;
+  }
+1.找到.a元素父元素下所有的子元素
+2.找到第4个元素,
+3.再去匹配class选择器.a,如果匹配到了,就赋予样式,{background-color:green}
+
+
+.a:nth-of-type(4){
+    background:green;
+  }
+然后是.a:nth-of-type(4)
+1.找到.a元素父元素下所有的子元素
+2.找到其中满足class选择器.a的元素,并归类得到几种tagname,div,label,p(这就是nth-of-type中type的含义)
+3.对body下所有的元素按以上的tagname分组
+https://blog.csdn.net/JokerSoulClub/article/details/123105302
+*/ 
+
+
+/*
+a: first-child {color：yellow;}
+p: last-child {background: pink;}
+
+first-child和last-child修饰的是它俩冒号之前的那个元素，实现对它们的样式的控制。
+不过能否真的去改变样式，还要看它俩之前的那个元素是否是其父元素的真正的第一个子元素和最后一个子元素。
+如果在它们之前或之后还有别的元素，那它们就不满足条件，不会被进行修改。
+*/ 
+
+
+/* css选择器
+三、关系选择器
+1.后代选择器
+.box p{
+
+}
+2.子代选择器
+ 
+   .box > p{
+
+   }
+
+3.相邻兄弟选择器
+   邻兄弟,会选择到box后面紧挨着的p,那么就是内容为111的p标签
+    .box + p{
+
+    }
+
+4.通用兄弟选择器
+用兄弟选择器,会选择到.box后面所有的兄弟p,那么就是除了内容为'44444'以外的所有p
+.box ~ p{
+
+}
+
+
+ 四、属性选择器
+属性选择器一共有7种写法
+看 https://blog.csdn.net/weixin_48649246/article/details/127939139
+a[title]{
+				background: yellow;
+			}
+a[class$="t"]{
+				background-color: yellow;
+			}
+1.某某[属性]   选择到a标签且有title属性的变
+
+2.某某[属性=属性值] 选择到有某某标签有指定属性且属性值必须一摸一样的也有的多一个空格都不行
+
+3.某某[属性^=属性值]  a标签有class属性且属性值是li开头的
+
+4.某某[属性$=属性值] a标签有class属性且属性值结尾是t的变
+
+5.某某[属性*=属性值] 选择到a标签且有href属性且只要有字母b就可以
+
+6.某某[属性~=属性值] 选择到的是a标签且有class属性,且属性值有完整的itme词的变
+
+7.某某[属性|=属性值] 这个是选择到有a标签,且有属性title,且属性值只有1个是link的或者属性值有多个但是得是link-开头的变
+*/ 
+/* 外边距、内边距全局样式
+------------------------------- */
+// @for $i from 5 through 35 {
+//   .mt#{$i} {
+//     margin-top: #{$i}px !important;
+//   }
+//   .mr#{$i} {
+//     margin-right: #{$i}px !important;
+//   }
+//   .mb#{$i} {
+//     margin-bottom: #{$i}px !important;
+//   }
+//   .ml#{$i} {
+//     margin-left: #{$i}px !important;
+//   }
+//   .pt#{$i} {
+//     padding-top: #{$i}px !important;
+//   }
+//   .pr#{$i} {
+//     padding-right: #{$i}px !important;
+//   }
+//   .pb#{$i} {
+//     padding-bottom: #{$i}px !important;
+//   }
+//   .pl#{$i} {
+//     padding-left: #{$i}px !important;
+//   }
+// }
