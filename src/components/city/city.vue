@@ -26,7 +26,7 @@
       <el-col :span="row.c" v-if="!onlyTwo">
         <el-form-item :prop="areas" :rules="issz" label-width="0px"
           class="city_slot">
-          <el-select v-model.trim="item[areas]" placeholder="选择区" @change="areaChange" :loading="loading" clearable>
+          <el-select v-model.trim="item[areas]" placeholder="选择区" @change="areaChange" :loading="loading" clearable :disabled="disabled">
             <!-- <el-option v-for="key in areaArr" :value="key.value" :key="key.value" :label="key.text"></el-option> -->
             <el-option v-for="key in areaArr" :value="key.areaCode" :key="key.areaCode" :label="key.areaName"></el-option>
           </el-select>
@@ -66,22 +66,22 @@ export default {
       type: Object,
       default: () => { },
     },
-    //省
+    //省  字段
     province: {
       type: String,
       default: "",
     },
-    //市
+    //市  字段
     city: {
       type: String,
       default: "",
     },
-    //区
+    //区  字段
     areas: {
       type: String,
       default: "",
     },
-    //地址
+    //地址  字段
     adress: {
       type: String,
       default: "",
