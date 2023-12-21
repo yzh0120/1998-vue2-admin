@@ -156,7 +156,7 @@ export default {
           {
             type: "year", field: "_year", title: "年选择器"
           },
-          { type: "month", field: "_month", title: "月选择器" },
+          // { type: "month", field: "_month", title: "月选择器" },
           {
             type: "date", field: "_date", title: "年月日选择器加限制范围", pickerOpt: {
               disabledDate: (time) => {
@@ -174,7 +174,7 @@ export default {
             title: "年月日_时间范围选择器",
           },
           { type: "daterange", field: "_daterange", title: "年月日范围选择器" },
-          { type: "monthrange", field: "_monthrange", title: "月范围选择器" },
+          // { type: "monthrange", field: "_monthrange", title: "月范围选择器" },
           { type: "time", field: "_time", title: "时间范围选择器" },
           ////////////////////////////////////////////////////////////////////////
           {
