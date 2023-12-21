@@ -10,24 +10,45 @@
  value:'bbb'                                opt对应的value
 -->
 <template>
-  <el-checkbox-group v-model="xxx" @change="change">
-    <el-checkbox
-      :label="childItem[value]"
-      v-for="(childItem, childIndex) in item.opt"
-      :key="childIndex"
-      >{{ childItem[text] }}</el-checkbox
-    >
-  </el-checkbox-group>
+  <div>
+    <template v-if="item.checkAll">
+      <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+      <div style="margin: 15px 0;"></div>
+    </template>
+    <el-checkbox-group v-model="xxx" @change="change">
+      <el-checkbox :label="childItem[value]" v-for="(childItem, childIndex) in item.opt" :key="childIndex">{{
+        childItem[text] }}</el-checkbox>
+    </el-checkbox-group>
+  </div>
 </template>
 
 <script>
 export default {
   props: ["data", "item"],
   data() {
-    return {};
+    return {
+      checkAll: false,//控制是否全选的组件时候显示全选
+      isIndeterminate: true//不确定状态
+    };
   },
   methods: {
+    handleCheckAllChange(val) {
+      if (val) {
+        //需要全选
+        let arr = this.item.opt.map((e) => {
+          return e[this.value]
+        })
+        this.xxx = arr
+      } else { 
+        this.xxx = []
+      }
+      this.isIndeterminate = false;
+    },
     change(e) {
+      let checkedCount = e.length;//是否全部选择
+      this.checkAll = checkedCount === this.item.opt.length;
+      this.isIndeterminate = checkedCount > 0 && checkedCount < this.item.opt.length;//不确定状态
+      ///////////////////////////
       this.$emit("baseFormEvent", { name: "change", value: e });
       //兼容以前
       this.$emit("baseFormEvent", { name: "checkbox", value: e });

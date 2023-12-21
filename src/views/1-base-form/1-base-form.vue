@@ -210,6 +210,18 @@ export default {
             text: "text1",
             value: "value1",
           },
+          {
+            type: "checkbox",
+            field: "_checkboxAll",
+            title: "全选的多选框",
+            checkAll:true,
+            opt: [
+              { text1: "多选一", value1: 1 },
+              { text1: "多选二", value1: 2 },
+            ],
+            text: "text1",
+            value: "value1",
+          },
           ////////////////////////////////////////////////////////////////////////
           {
             type: "auto",
