@@ -41,8 +41,8 @@ export default {
       //表格
       gridOptions: {
         loading: false,
-        border: true,
-        showOverflow: true,
+        // border: true,
+        // showOverflow: true,
         height: self.$store.state.config.tableheight,
         align: "center",
         columns: [

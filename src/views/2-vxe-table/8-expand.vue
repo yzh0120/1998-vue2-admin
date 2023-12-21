@@ -2,7 +2,7 @@
   <page>
 
     <!-- 表格 -->
-    <vxe-grid v-bind="gridOptions" auto-resize :footer-method="footerMethod" show-footer>
+    <vxe-grid v-bind="gridOptions" auto-resize>
       <template #num_default="{ rowIndex }">
         <span>{{ (pagerData.pageNo - 1) * pagerData.pageSize + rowIndex + 1 }}</span>
       </template>
@@ -40,6 +40,9 @@ export default {
       },
       //表格
       gridOptions: {
+        expandConfig: {
+          toggleMethod: self.toggleMethod,
+        },
         loading: false,
         // border: true,
         // showOverflow: true,
@@ -87,7 +90,7 @@ export default {
         ],
         data: {},
       },
-      //弹窗字段
+      //弹窗
       alertData: {
         alert: false
       },
@@ -97,50 +100,25 @@ export default {
     this.getData();
   },
   methods: {
-    footerMethod(param) {
-      //重点
-      //columns 是 某一个列 其中  property 就是 列的字段
-      //data 是 后端返回的数组
-
-      const { columns, data } = param;
-      console.log(data, "columns, data")
-      const sums = [];
-      columns.forEach((column, index) => {
-        if (index === 0) {
-          //第一列一般是合计
-          sums[index] = "合计";
-          return;
-        }
-        // if (index === 1) {
-        //   //设置某一列是 固定
-        //   sums[index] = "";
-        //   return;
-        // }
-        const values = data.map(item => {//value就是整列的数据
-          if ((column.property == "projectNo" || column.property == "paidAmount") && item[column.property]) {//特殊操作
-            return Number(item[column.property])
-          }
-          else {
-            return NaN
-          }
-        });
-        //列里面有一个数据不是数字则显示N/A
-        //开始合计
-        if (values.every((value) => isNaN(value))) {
-          sums[index] = "";
-        } else {
-          sums[index] = values.reduce((prev, curr) => {
-            const value = Number(curr);
-            if (!isNaN(value)) {
-              return prev + curr; //prev + curr;
-            } else {
-              return prev;
-            }
-          }, 0);
-          sums[index] = sums[index].toFixed(2);
-        }
+    async toggleMethod({ expanded, row, rowIndex }) { 
+      //关闭状态
+      if (expanded == false) {
+        return;
+      }
+      /*
+      let res = await api.getListByCreateUserId({
+        curPage: 1,
+        pageSize: 0,
+        riskId: row.id,
       });
-      return [sums];
+
+      if (res.code == 200) {
+        this.gridOptions.data[rowIndex].gridOptions2.data = res.data.contents;
+        return true;
+      } else {
+        this.$message.error(res.info);
+      }
+      */
     },
     //获取数据
     getData() {
@@ -186,6 +164,7 @@ export default {
     // 弹窗取消
     alertCancel() {
       this.formAlert.data = {};
+      this.formAlert.data = {}
       this.alertData.alert = false;
     },
     // 弹窗确认

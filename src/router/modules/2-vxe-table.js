@@ -80,6 +80,15 @@ export default {
     },
 
     {
+      path: 'expand',
+      name: 'vxeTable-expand',
+      component: () => import( /* webpackChunkName: "vxeTable-table" */ "@/views/2-vxe-table/8-expand.vue"),
+      meta: {
+        title: 'expand表格',
+        icon: "shezhi1",
+      }
+    },
+    {
       path: 'table',
       name: 'vxeTable-table',
       component: () => import( /* webpackChunkName: "vxeTable-table" */ "@/views/2-vxe-table/999-table.vue"),

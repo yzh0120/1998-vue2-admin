@@ -33,6 +33,16 @@
           </div>
         </template>
       </vxe-grid>
+      <vxe-grid class="reverse-table" v-bind="gridOptions2" style="width:50%;" :auto-resize="true">
+        <template #demo="{ row, columnIndex }">
+          <div>
+            <span v-if="row.col0 == '科目'">{{ eval(row, columnIndex) }}</span>
+            <span v-else>{{ eval(row, columnIndex) }}</span>
+            <!-- <el-button type="text" v-if="row.col0 == '科目'" @click="edit(row, columnIndex)">编辑</el-button>
+            <el-button type="text" v-if="row.col0 == '科目'" @click="del(row, columnIndex)">删除</el-button> -->
+          </div>
+        </template>
+      </vxe-grid>
     </div>
     <!-- 弹窗 -->
     <alert :data="alertData" @cancel="alertCancel" @close="alertCancel" @confirm="alertConfirm">
@@ -59,6 +69,7 @@ export default {
         // height: "800px",
         title: "基础弹窗",
       },
+      //列表1
       gridOptions1: {
         border: false,
         showOverflow: false,
@@ -67,6 +78,7 @@ export default {
         columns: [],
         data: [],
       },
+      //列表2
       gridOptions2: {
         border: false,
         showOverflow: false,
@@ -75,15 +87,16 @@ export default {
         columns: [],
         data: [],
       },
-      //这个是给reverseTable使用的  table的字段
+      //这个是给reverseTable使用的  gridOptions1的字段
       columnsList: [
         { field: "statDate", title: "科目" },
         { field: "moneyFunds", title: "货币资金1" },
       ],
+      //这个是给reverseTable使用的  gridOptions2的字段
       columnsList2: [
         { field: "moneyFunds2", title: "货币资金2" },
       ],
-      mytableDataList: [], //这个是给reverseTable使用的  table的数据
+      mytableDataList: [], //这个是给reverseTable使用的  所有table的数据
     };
   },
   created() {
@@ -109,7 +122,7 @@ export default {
     //删除某行
     del(row, columnIndex) {
       this.mytableDataList.splice(columnIndex - 1, 1)
-      this.gridOptionsHead.data = this.$fn.deepClone(this.mytableDataList)
+      // this.gridOptionsHead.data = this.$fn.deepClone(this.mytableDataList) // 这是普通表格
       this.getData()
     },
     // 弹窗取消
@@ -167,6 +180,8 @@ export default {
         });
       });
       console.log(buildData, "buildData", buildColumns);
+      this[`gridOptions${num}`].data = buildData;
+      this[`gridOptions${num}`].columns = buildColumns;
       /*
       在没有数据的情况下
         buildData :[
@@ -230,8 +245,7 @@ export default {
       // this.gridOptions.data = buildData;
       // this.gridOptions.columns = buildColumns;
 
-      this[`gridOptions${num}`].data = buildData;
-      this[`gridOptions${num}`].columns = buildColumns;
+      
 
     },
   },
