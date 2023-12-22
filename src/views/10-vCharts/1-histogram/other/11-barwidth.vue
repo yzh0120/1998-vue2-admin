@@ -39,9 +39,13 @@ export default {
   },
   methods: {
     afterConfig(options) {
+      console.log(options,"options")
 
       // barwidth
-      options.series[0].barWidth = 10
+      // options.series[0].barWidth = 10
+      options.series.forEach((e) => { 
+        e.barWidth = 10
+      })
 
       return options;
 
