@@ -174,9 +174,24 @@ Vue._watchers = Vue.prototype._watchers = [];
 
 
 
+import bus from '@/utils/bus.js'
+Vue.prototype.$bus = bus
 
+/*发射
+this.$bus.$emit('busEvent', 0)
+*/ 
 
+/*接收
+this.$bus.$on('busEvent', val => {
+  this.updateJs()
+})
+*/ 
 
+/*销毁
+beforeDestroy() {
+    this.$root.$off('busEvent')
+  },
+*/ 
 
 
 //////////////////////////////////////////////////////////////////////////////////////
