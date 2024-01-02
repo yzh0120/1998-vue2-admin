@@ -92,7 +92,11 @@ export default {
     // this.getFiles(); //获取历史文件///////////////////切换
     if (this.noGetApi) {
 
-    } else {
+    }
+    else if (this.mode == "getFileById") {
+      this.getById()
+    }
+    else {
       this.getFiles(); //获取历史文件///////////////////切换
     }
 
@@ -107,6 +111,16 @@ export default {
     },
   },
   methods: {
+    //通过文件id获取单个文件
+    getById() {
+      eleFileApi.getById({id: this.fileId}).then((res) => {
+        if (res.code == 0) {
+          this.uploadObj.detail = [res.data]
+        } else { 
+          this.$message.error(res.msg);
+        }
+       })
+     },
     ///////////////////切换
     //获取文件
     getFiles() {
@@ -279,7 +293,7 @@ export default {
         })
       }
       //如果只有taskName并且 mode == "onlyOne"
-      else if (this.uploadObj.taskName || this.mode == "onlyOne") {
+      else if (this.uploadObj.taskName || this.mode == "onlyOne" || this.mode == "getFileById") {
         console.log(data, "data")
         this.uploadObj.detail = [data];//data是单个文件
         console.log(data.onlinePreviewUrl, 'onlinePreviewUrlonlinePreviewUrlonlinePreviewUrl');

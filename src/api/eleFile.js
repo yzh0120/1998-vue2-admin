@@ -156,6 +156,14 @@ export function removeByIds(data) {
     params: data
   })
 }
+//通过id获取文件
+export function getById(data) {
+  return oarequest({
+    url:"/infra/file/get",
+    method: "get",
+    params: data
+  })
+}
 
 //folderId获取文件列表
 export function queryList(data) {
