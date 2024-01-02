@@ -152,6 +152,7 @@ import basePassword from "./base-password.vue";
 import baseTextarea from "./base-textarea.vue";
 import baseSelect from "./base-select.vue";
 import baseSelectF from "./base-select-f.vue";
+import baseSelectD from "./base-select-d.vue";
 import baseTimeSelect from "./base-time-select.vue"; //时间选择器
 import baseDatePicker from "./base-date-picker.vue"; //日期选择器
 import baseSwitch from "./base-switch.vue"; //开关
@@ -165,6 +166,7 @@ export default {
     baseInput,
     baseSelect,
     baseSelectF,
+    baseSelectD,
     baseTimeSelect,
     // baseDateTimePicker,
     baseDatePicker,
@@ -480,7 +482,9 @@ export default {
         return "baseSelect";
       } else if (componentType == "selectf") {
         return "baseSelectF";
-      } else if (componentType == "time") {
+      }  else if (componentType == "selectd") {
+        return "baseSelectD";
+      }else if (componentType == "time") {
         return "baseTimeSelect";
       } else if (
         // componentType == "date" ||

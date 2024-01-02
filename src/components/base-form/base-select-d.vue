@@ -7,6 +7,7 @@
                         field: "channel_id",
                         labelField:["channel_name"],
                         type: "selectf",
+                        optmini:[],
                         opt: [],
                         text: "name",
                         value: "id",
@@ -16,27 +17,11 @@
                             { required: true, message: "请填写", trigger: ["blur"] },
                         ],
                     }
-
-
-            select_remote(query) {
-                console.log(query, "query");
-                if (query.length >= 4) {
-                    mxhApi.getChannelList({ channel_name: query }).then((res) => {
-                        if (res.code == 200) {
-                            this._setList(this.formInfo4, "channel_id", {
-                                opt: res.data,
-                            });
-                        } else {
-                            this.$message.error(res.info);
-                        }
-                    });
-                }
-            },
  -->
-<template>
+ <template>
   <el-select v-if="showTick" style="width: 100%" v-model="mvalue" :disabled="item.disabled" clearable
     :placeholder="_getPlaceholder(item)" @change="change" @clear="setValueNull" :multiple="mult || item.create"
-    :allow-create="item.create" filterable :filter-method="item.filterFn" :remote="remote" :remote-method="item.remote">
+    :allow-create="item.create" filterable :filter-method="item.filterFn" :remote="true" :remote-method="remoteFFFFFF">
     <el-option v-for="(childItem, childIndex) in item.opt" :key="childIndex" :label="childItem[text]"
       :value="childItem[value]" />
   </el-select>
@@ -61,6 +46,15 @@ export default {
     };
   },
   methods: {
+    remoteFFFFFF(query) {
+      // console.log(query,"query",this.item.opt)
+      if (query.length >= 2) {
+        this.item.optmini = this.item.opt.filter((e) => {
+          console.log(e,query,this.text,e[this.text])
+          return e[this.text].startsWith(query)
+        })
+      }
+    },
     change(nowValue) {
       this.$emit("baseFormEvent", {
         name: "change",
@@ -80,17 +74,27 @@ export default {
     },
   },
   computed: {
+    //将id转成文字
+    ttt() { 
+      let obj = this.item.opt.find((e) => {
+            return e[this.value] == this.data[this.item.field]
+      })
+      
+      if (obj) { 
+        // console.log(obj,this.item.opt,this.data[this.item.field],"obj==========================================================")
+        return obj[this.text]
+      }
+    },
     mvalue: {
       get() {
-        // console.log(!this.item.opt.length , !this.item.remote)
-        if (!this.item.opt.length && this.item.remote) {
-          return this.data[this.item.labelField]
+        if (!this.item.optmini.length) {
+          return this.ttt
         } else {
           return this.data[this.item.field]
         }
       },
       set(v) {
-        //this.data[this.item.field] = v
+
         this.showTick = false
         setTimeout(() => {
           this.showTick = true
