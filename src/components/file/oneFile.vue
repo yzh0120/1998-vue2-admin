@@ -6,6 +6,8 @@
 
 新增弹窗的文件
 <oneFile :uploadObj="uploadObj" :projectId="oneFormAlert.data.id" mode="onlyOne"  :fileId="oneFormAlert.data.currentFileId"></oneFile>
+
+<oneFile :uploadObj="uploadObj"  mode="getFileById"  :fileId="oneFormAlert.data.currentFileId"></oneFile>
    -->
   <span>
     <el-progress :percentage="percentage" :text-inside="true" :stroke-width="15" v-if="percentage"></el-progress>
