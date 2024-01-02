@@ -115,13 +115,16 @@ export default {
   methods: {
     //通过文件id获取单个文件
     getById() {
-      eleFileApi.getById({id: this.fileId}).then((res) => {
+      if (this.fileId) { 
+        eleFileApi.getById({id: this.fileId}).then((res) => {
         if (res.code == 0) {
           this.uploadObj.detail = [res.data]
         } else { 
           this.$message.error(res.msg);
         }
        })
+      }
+      
      },
     ///////////////////切换
     //获取文件
@@ -181,6 +184,10 @@ export default {
         url = this.pathUrl
         fd.append('file', file.file)// 传文件
       } else {
+        if (!this.beforeUpload(file.file, this.uploadObj)) {
+          return
+        }
+        
         fd.append('file', file.file)// 传文件
         fd.append('folderId', this.folderId)
         fd.append('taskName', this.uploadObj.taskName)//selfClass
