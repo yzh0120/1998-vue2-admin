@@ -5,14 +5,12 @@
      {
                         title: "渠道名称",
                         field: "channel_id",
-                        labelField:["channel_name"],
-                        type: "selectf",
+                        type: "selectd",
                         optmini:[],
                         opt: [],
                         text: "name",
                         value: "id",
                         span: 12,
-                        remote: self.select_remote,
                         rules: [
                             { required: true, message: "请填写", trigger: ["blur"] },
                         ],
