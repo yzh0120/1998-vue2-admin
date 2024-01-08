@@ -73,6 +73,7 @@ export default {
       });
     },
     setValueNull(nowValue) {
+      this.data[this.item.labelField] = ""//配合点击x但是清空不了的问题
       this.$emit("baseFormEvent", {
         name: "clear",
         value: nowValue,
@@ -95,6 +96,9 @@ export default {
         setTimeout(() => {
           this.showTick = true
           this.data[this.item.field] = v
+          if (v === "") { //配合点击x但是清空不了的问题
+            this.setValueNull()
+          }
         }, 0)
       },
 
