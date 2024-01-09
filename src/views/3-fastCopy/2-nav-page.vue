@@ -144,8 +144,15 @@ export default {
       testApi.pageList(data).then((res) => {
         this.gridOptions.loading = false
         if (res.code == 200) {
-          this.gridOptions.data = res.data.contents;
-          this.pagerData.total = res.data.total;
+          if (res.data.list.length == 0 && this.pagerData.pageNo != 1) {
+            this.pagerData.pageNo--
+            this.getData()
+          } else {
+            this.gridOptions.data = res.data.contents;
+            this.pagerData.total = res.data.total;
+          }
+          // this.gridOptions.data = res.data.contents;
+          // this.pagerData.total = res.data.total;
         } else {
           this.$message.error(res.info);
         }
