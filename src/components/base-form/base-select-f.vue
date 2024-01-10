@@ -62,13 +62,21 @@ export default {
   },
   methods: {
     change(nowValue) {
+      let activeOptObj = {}
+      this.item.opt.forEach((e) => { 
+        if (e[this.value] === nowValue) { 
+          activeOptObj = e
+        }
+      })
       this.$emit("baseFormEvent", {
         name: "change",
+        activeOptObj:activeOptObj,
         value: nowValue,
       });
       //兼容以前
       this.$emit("baseFormEvent", {
         name: "select",
+        activeOptObj:activeOptObj,
         value: nowValue,
       });
     },
