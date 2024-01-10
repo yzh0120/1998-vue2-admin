@@ -1,5 +1,100 @@
+// import * as menu from "@/api/menu";
 export default {
+  data() { 
+    return {
+      btnArr: [],
+    }
+  },
+  mounted() {
+    //如果需要按钮权限 
+    if (this.btnPower) {
+      // this.getAuthorizeButtonColumnList()
+    }
+  },
+  methods: {
+    getAuthorizeButtonColumnList() {
+      let params = {
+        enCode: this.$route.name
+      }
+      menu.getAuthorizeButtonColumnList(params).then((res) => {
+        if (res.code == 200) {
+          this.btnArr = res.data.moduleButtons
+          /*
+          
+          <el-button type="text" @click="look(row)" v-btn:detail="btnArr" v-if="type == `waitDo`">审核</el-button>
+
+          [这个是moduleButtons的格式
+            {     
+              actionAddress: null
+              enCode: "detail"
+              fullName: "查看"
+              icon: null
+              moduleButtonId: "1476864088440242179"
+              moduleId: "1463792099794251777"
+              parentId: "0"
+              sortCode: 1
+            }
+          ]
+          */
+
+          // if (res.data.moduleEntity?.isPermVerification) {
+          //   console.log(this.gridOptions,"this.gridOptions")
+          //   this.gridOptions.columns.forEach((item) => {
+
+          //     res.data.moduleColumns.forEach((item2) => {
+          //       if (item.type == "seq") {
+          //         this.tableArr.push(item)
+          //       }
+          //       if (item.field == item2.enCode) {
+          //         this.tableArr.push(item)
+          //       }
+          //     })
+          //   })
+          //   this.gridOptions.columns = this.tableArr
+          // }
+
+
+        } else {
+          this.$message.error(res.info)
+        }
+      })
+    },
+  },
   directives: {
+        // 注册一个局部的自定义指令 v-focus
+        btn: {
+          // 统一全部隐藏
+      bind: function (el) {
+            //如果指令绑定的是button则禁用
+            if (el.tagName == "BUTTON") {
+              el.setAttribute("disabled", "disabled")
+              el.classList.add("is-disabled")
+            } else {
+              //如果是其他标签则隐藏
+              el.style.display = "none"
+            }
+          },
+      update: function (el, binding, vnode) {
+            //如果指令绑定的值(btnArr)是一个对象(包括数组)
+        if (typeof binding.value == 'object') {
+              //循环数组
+          for (let i = 0; i < binding.value.length; i++) {
+                //如果数组中的对象有一个的enCode等于 自定义指令绑定的参数 (v-btn:detail="btnArr" 的detail)
+            if (binding.value[i].enCode == binding.arg) {
+                  //按钮恢复点击
+                  if (el.tagName == "BUTTON") {
+                    el.removeAttribute("disabled")
+                    el.classList.remove("is-disabled")
+                  } else {
+                    el.style.display = "inline-block"
+                  }
+                }
+              }
+            }
+    
+          }
+        },
+    //元素拖动
 		drag: {
       bind: function (el, binding) {
         let oDiv = el; //当前元素
