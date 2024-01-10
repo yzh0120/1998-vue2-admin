@@ -7,7 +7,7 @@
                         field: "channel_id",
                         type: "selectd",
                         optmini:[],
-                        opt: [],
+                        opt: [],               //重点需要一开始把所有数据请求出来
                         text: "name",
                         value: "id",
                         span: 12,
@@ -46,7 +46,8 @@ export default {
   methods: {
     remoteFFFFFF(query) {
       // console.log(query,"query",this.item.opt)
-      if (query.length >= 2) {
+      // if (query.length >= 2) {
+      if(query.length >= this.miniLength){
         this.item.optmini = this.item.opt.filter((e) => {
           console.log(e,query,this.text,e[this.text])
           return e[this.text].startsWith(query)
@@ -82,6 +83,9 @@ export default {
         // console.log(obj,this.item.opt,this.data[this.item.field],"obj==========================================================")
         return obj[this.text]
       }
+    },
+    miniLength() { 
+      return this.item.miniLength ? this.item.miniLength : 2 
     },
     mvalue: {
       get() {
