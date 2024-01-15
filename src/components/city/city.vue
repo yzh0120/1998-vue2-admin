@@ -244,7 +244,10 @@ export default {
 </style>
 
 
-<style lang="scss"> #app {
+<style lang="scss"> 
+// 插槽里如果使用了<el-form-item  必须加上city_slot类
+// <el-form-item prop="templateTypeId" class="city_slot" >
+#app {
    .city_slot.el-form-item {
      margin-bottom: 0px !important;
    }
