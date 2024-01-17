@@ -89,6 +89,15 @@ export default {
       }
     },
     {
+      path: 'sortMethod',
+      name: 'vxeTable-sortMethod',
+      component: () => import( /* webpackChunkName: "vxeTable-table-sortMethod" */ "@/views/2-vxe-table/9-sortMethod.vue"),
+      meta: {
+        title: 'sortMethod表格',
+        icon: "shezhi1",
+      }
+    },
+    {
       path: 'table',
       name: 'vxeTable-table',
       component: () => import( /* webpackChunkName: "vxeTable-table" */ "@/views/2-vxe-table/999-table.vue"),
