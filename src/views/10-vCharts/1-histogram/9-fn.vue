@@ -1,26 +1,30 @@
 <template>
   <page>
-      <ve-histogram :data="chartData" :before-config="beforeConfig" :after-config="afterConfig" :after-set-option="afterSetOption"></ve-histogram>
+    <ve-histogram :data="chartData" :before-config="beforeConfig" :after-config="afterConfig"
+      :after-set-option="afterSetOption"></ve-histogram>
+
+    <ve-histogram :data="chartData" :before-config="beforeConfig" :after-config="afterConfig2"
+      :after-set-option="afterSetOption"></ve-histogram>
   </page>
 </template>
 <script>
-  export default {
-    data () {
-      return {
-        chartData: {
-          columns: ['日期', '访问用户', '下单用户', '下单率'],
-          rows: [
-            { '日期': '1/1', '访问用户': 1393, '下单用户': 1093, '下单率': 0.32 },
-            { '日期': '1/2', '访问用户': 3530, '下单用户': 3230, '下单率': 0.26 },
-            { '日期': '1/3', '访问用户': 2923, '下单用户': 2623, '下单率': 0.76 },
-            { '日期': '1/4', '访问用户': 1723, '下单用户': 1423, '下单率': 0.49 },
-            { '日期': '1/5', '访问用户': 3792, '下单用户': 3492, '下单率': 0.323 },
-            { '日期': '1/6', '访问用户': 4593, '下单用户': 4293, '下单率': 0.78 }
-          ]
-        }
+export default {
+  data() {
+    return {
+      chartData: {
+        columns: ['日期', '访问用户', '下单用户', '下单率'],
+        rows: [
+          { '日期': '111111', '访问用户': 1393, '下单用户': 1093, '下单率': 0.32 },
+          { '日期': '222222', '访问用户': 3530, '下单用户': 3230, '下单率': 0.26 },
+          { '日期': '333333', '访问用户': 2923, '下单用户': 2623, '下单率': 0.76 },
+          { '日期': '444444', '访问用户': 1723, '下单用户': 1423, '下单率': 0.49 },
+          { '日期': '555555', '访问用户': 3792, '下单用户': 3492, '下单率': 0.323 },
+          { '日期': '666666', '访问用户': 4593, '下单用户': 4293, '下单率': 0.78 }
+        ]
       }
-    },
-    methods: {
+    }
+  },
+  methods: {
     beforeConfig(data) {
       /*
       对数据提前进行额外的处理，在数据转化为配置项开始前触发
@@ -36,20 +40,30 @@
       */
       console.log("afterConfig", options);
       options.xAxis[0].axisLabel = { interval: 0, rotate: 45 };
-	  // options.backgroundColor= 'rgb(255,111,111)';
+      // options.backgroundColor= 'rgb(255,111,111)';
       return options;
       /*
       interval:0  解决横轴自动隐藏
       rotate:45  横轴45度显示
       */
     },
+    afterConfig2(options) {
+      options.xAxis[0].axisLabel["formatter"] = function (value) {
+        if (value.length > 4) {
+          return `${value.slice(0, 4)}..`
+        }
+        return value
+      }
+
+      return options;
+    },
     afterSetOption(e) {
       /*
-      	生成图之后获取echarts实例
+        生成图之后获取echarts实例
         参数为echarts实例
       */
       console.log("afterSetOption", e);
     },
   },
-  }
+}
 </script>

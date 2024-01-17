@@ -102,7 +102,7 @@ export default {
 					path: 'fn',
 					name: "VCharts-histogram-fn",
 					meta: {
-						title: '图表生命钩子函数',
+						title: '解决x轴过长',
 						icon: "shezhi1",
 					},
 					component: () => import( /* webpackChunkName: "VCharts-histogram-fn" */ "@/views/10-vCharts/1-histogram/9-fn.vue"),
