@@ -10,10 +10,12 @@
 <oneFile :uploadObj="uploadObj"  mode="getFileById"  :fileId="oneFormAlert.data.currentFileId"></oneFile>
    -->
   <span>
-    <el-progress :percentage="percentage" :text-inside="true" :stroke-width="15" v-if="percentage"></el-progress>
+    <span style="font-size: 14px; color:red" v-if="!percentage && btnDisabled">服务器正在处理中,请稍后</span>
 
+    <el-progress :percentage="percentage" :text-inside="true" :stroke-width="15" v-if="percentage"></el-progress>
+    <!-- :on-progress="progress" 自定义的上次 on-progress失效 -->
     <el-upload :disabled="btnDisabled" class="i-upload" :action="uploaduUrl" :http-request="changeFile"
-      :show-file-list="false" multiple :on-change="handleChange" :on-progress="progress">
+      :show-file-list="false" multiple :on-change="handleChange" >
       <el-button :disabled="btnDisabled" :size="btnSize" :type="btnType">{{ btnText }}
       </el-button>
     </el-upload>
