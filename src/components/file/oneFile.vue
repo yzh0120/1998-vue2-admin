@@ -33,10 +33,12 @@ import axios from 'axios';
 import * as cookieFn from '@/utils/cookie.js';
 export default {
   props: {
+    //如果是true  这个组件不需要调用接口
     noGetApi: {
       type: Boolean,
       default: false
     },
+    //
     selfClass: {
       type: String,
       default: true,

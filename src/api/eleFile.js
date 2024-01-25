@@ -61,12 +61,13 @@ export function download(params = {}, downloadUrl, method = "get") {
     // 'Authorization': "Bearer " + getToken(),
     'Authorization': "Bearer " + cookieFn.getCookie(process.env.VUE_APP_TOKEN),
   }
-  let finallyUrl
+  let finallyUrl  = "/system/file_annexes/download"
   if (downloadUrl) {
-    finallyUrl = type
-  } else {
-    finallyUrl = "/system/file_annexes/download"
+    finallyUrl = downloadUrl//type
   }
+  // else {
+  //   finallyUrl = "/system/file_annexes/download"
+  // }
 
   return new Promise((resolve, reject) => {
     axios({
