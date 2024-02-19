@@ -36,12 +36,12 @@ export function uploadFile(formData, pathUrl) {
 
 
 
-//下載文件流 get 导出
+//下載文件流 默认get 导出
 export function download(params = {}, downloadUrl, method = "get") {
   if (downloadUrl == "pre") {
     if (/.xls|.xlsx|.doc|.docx|.ppt|.pptx/g.test(params.fileUrl)) {
       var ele = `
-                   <iframe src='https://view.officeapps.live.com/op/view.aspx?src=${params.fileUrl}' width='100%' height='100%' frameborder='1'>
+                   <iframe src='https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(params.fileUrl)}' width='100%' height='100%' frameborder='1'>
                    </iframe>
                `;
       var newwindow = window.open(params.fileUrl, "_blank", '');
