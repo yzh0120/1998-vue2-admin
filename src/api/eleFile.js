@@ -129,14 +129,14 @@ export function download(params = {}, downloadUrl, method = "get") {
 }
 
 //url下载文件流
-export async function download_url(urll) {
+export async function download_url(url) {
 
   let type = url.split("/").pop()
   const x = new window.XMLHttpRequest();
   x.open('GET', url, true);
   x.responseType = 'blob';
   x.onload = () => {
-    let time = new Date().toLocaleDateString();
+    // let time = new Date().toLocaleDateString();
     const url = window.URL.createObjectURL(x.response);
     const a = document.createElement('a');
     a.href = url;
