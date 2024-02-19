@@ -1,4 +1,15 @@
 <template>
+  <!-- 
+
+解决vuepdf不显示章印问题
+找到 node_modules/pdfjs-dist/es5/build/pdf.worker.js 这个目录
+if (data.fieldType === "Sig") {
+      data.fieldValue = null;
+        //pdf预览不显示红章问题
+      // _this3.setFlags(_util.AnnotationFlag.HIDDEN);//将这一行注释掉
+}
+
+   -->
   <div class="pdfBox">
     <pdf ref="morePDF" :src="pdfSrc" :page="i" v-for="i in numPages" :key="i"></pdf>
   </div>
