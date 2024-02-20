@@ -40,16 +40,16 @@ export function uploadFile(formData, pathUrl) {
 export function download(params = {}, downloadUrl, method = "get") {
   if (downloadUrl == "pre") {
     if (/.xls|.xlsx|.doc|.docx|.ppt|.pptx/g.test(params.fileUrl)) {
-      var ele = `
-                   <iframe src='https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(params.fileUrl)}' width='100%' height='100%' frameborder='1'>
-                   </iframe>
-               `;
-      var newwindow = window.open(params.fileUrl, "_blank", '');
-      newwindow.document.write(ele);
+      // var ele = `
+      //              <iframe src='https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(params.fileUrl)}' width='100%' height='100%' frameborder='1'>
+      //              </iframe>
+      //          `;
+      // var newwindow = window.open(params.fileUrl, "_blank", '');
+      // newwindow.document.write(ele);
+      window.open(`https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(params.fileUrl)}`)
     } else {
       window.open(params.fileUrl)
     }
-
     return;
   }
   let msg = Message({
