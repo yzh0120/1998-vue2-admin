@@ -208,9 +208,6 @@ export default {
         setTimeout(() => {
           this.clearValidate()
         }, 0);
-        // console.log("data.data")
-        // this.slotCheckAll()
-        // this.slotSelectAll()
       },
       immediate: true,
       deep: true, // 深度监听
@@ -251,7 +248,6 @@ export default {
       } else {
         return "160px"
       }
-      // return this.data.titleWidth ? this.data.titleWidth : "160px";
     },
     span() {
       return this.data.span;
@@ -283,48 +279,6 @@ export default {
         });
       }
       return this.data.isRow;
-
-      // if (this.data.isRow) {
-      //   let obj = {};
-      //   if (item.xs || item.sm || item.md || item.lg || item.xl) {
-      //     obj = {
-      //       xs: null, //<768px
-      //       sm: null, //≥768px
-      //       md: null, //≥992px
-      //       lg: null, //≥1200px
-      //       xl: null, //≥1920px
-      //     };
-      //     this.data.list.forEach((item) => {
-      //       item = Object.assign(item, obj, this.$fn.deepClone(item));
-      //     });
-      //   } else {
-      //     this.data.list.forEach((item) => {
-      //       obj = {
-      //         xs: 24, //<768px
-      //         sm: 12, //≥768px
-      //         md: 12, //≥992px
-      //         lg: 8, //≥1200px
-      //         xl: 8, //≥1920px
-      //       };
-      //       item = Object.assign(item, obj, this.$fn.deepClone(item));
-      //     });
-      //   }
-      // }
-      // return this.data.isRow;
-
-      // if (this.data.isRow) {
-      //   let obj = {
-      //     xs: 24, //<768px
-      //     sm: 12, //≥768px
-      //     md: 12, //≥992px
-      //     lg: 8, //≥1200px
-      //     xl: 8, //≥1920px
-      //   };
-      //   this.data.list.forEach((item) => {
-      //     item = Object.assign(item, obj, this.$fn.deepClone(item));
-      //   });
-      // }
-      // return this.data.isRow;
     },
     inline() {
       if (this.data.isRow || this.data.span) {
@@ -342,10 +296,12 @@ export default {
     },
   },
   methods: {
+    //简单下拉和复选的集合方法
     checkAndSelect() {
       this.slotCheckAll()
       this.slotSelectAll()
     },
+    //简单复选
     slotCheckAll() {
       this.for_List.forEach((item) => {
         if (item.slotCheck) {
@@ -353,6 +309,7 @@ export default {
         }
       })
     },
+    //简单复选的change事件
     checkboxChange(e, item_f, noEmit) {
       if (e === item_f.trueLabel && item_f.show !== false) {
         item_f.checkArr.forEach((item) => {
@@ -375,6 +332,7 @@ export default {
         this.$emit("event", obj);
       }
     },
+    //简单下拉
     slotSelectAll() {
       this.for_List.forEach((item) => {
         if (item.slotSelect) {
@@ -382,6 +340,7 @@ export default {
         }
       })
     },
+     //简单下拉的change事件
     selectChange(e, item_f, noEmit) {
       if (e === item_f.trueLabel && item_f.show !== false) {
         item_f.checkArr.forEach((item) => {
@@ -425,15 +384,18 @@ export default {
         }
       });
     },
+    //显示隐藏
     sync() {
       this.againShow = false;
       this.$nextTick(() => {
         this.againShow = true;
       });
     },
+    //清空校验
     clearValidate() {
       this.$refs.form?.clearValidate()
     },
+    //数据重置
     reset() {
       // this.$refs.form.resetFields();
       let obj = {}
@@ -442,6 +404,7 @@ export default {
       }
       this.data.data = obj
     },
+    //表单校验
     check() {
       let res = undefined;
       this.$refs.form.validate((valid) => {
@@ -456,9 +419,11 @@ export default {
     // show(show) {
     //   return show === false ? false : true;
     // },
+    //表单的refs
     back() {
       this.data.dom = this.$refs.form; // 将form实例返回到父级
     },
+    //组件
     currentComponent(componentType) {
       if (componentType == "auto") {
         return "baseAuto";
@@ -506,6 +471,7 @@ export default {
         return "baseInputrange";
       }
     },
+    //事件
     event(e, item) {
       Object.assign(e, {
         item: item,
