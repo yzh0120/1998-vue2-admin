@@ -14,9 +14,9 @@ function resolve(dir) {
 
 //静态资源目录
 function fnStatic() {
-  if (process.env.ENV === 'test') {
+  if (process.env.VUE_APP_ENV === 'test') {
     return "/test/"
-  } else if (process.env.ENV === 'build') {
+  } else if (process.env.VUE_APP_ENV === 'build') {
     return "/build/"
   } else {
     return "/"
@@ -26,7 +26,7 @@ function fnStatic() {
 module.exports = {
   // transpileDependencies: ["*"] ,
   transpileDependencies: ["crypto-js", 'resize-detector',"@vant","vue-puzzle-verification","vue-socket.io"],
-  // publicPath: process.env.ENV === 'test' ? '/ele/' : '/',
+  // publicPath: process.env.VUE_APP_ENV === 'test' ? '/ele/' : '/',
   publicPath: fnStatic(),
   productionSourceMap: false,
   configureWebpack: {
