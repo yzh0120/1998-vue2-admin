@@ -317,6 +317,7 @@ export default {
       }
     },
     go() {
+      console.log(this.form.data)
       this.$refs.form.check();
     },
   },
