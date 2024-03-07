@@ -1,4 +1,3 @@
-
 <!-- 日期选择器
  type:'date '                               控件类型
  field:xxx                                  控件对应的字段      
@@ -10,35 +9,25 @@
  年     月(包括年) 日期    多个日期   星期几   日期时间   日期时间范围    日期范围      月份范围(包括年)
  year  /month     /date   /dates   / week  /  datetime  /datetimerange/ daterange  /  monthrange
  -->
+
 <template>
-  <el-date-picker
-    style="width: 100%"
-    v-model="data[item.field]"
-    :type="item.type"
-    :value-format="valueFormat"
-    clearable
-    :disabled="item.disabled"
-    :placeholder="_getPlaceholder(item)"
-    @change="change"
-    @input="$forceUpdate()"
-    start-placeholder="开始日期"
-    range-separator="至"
-    end-placeholder="结束日期"
-    :picker-options="item.pickerOpt"
-  />
+  <el-date-picker style="width: 100%" v-model="xxx" :type="item.type" :value-format="valueFormat" clearable
+    :disabled="item.disabled" :placeholder="_getPlaceholder(item)" @change="change" @input="$forceUpdate()"
+    start-placeholder="开始日期" range-separator="至" end-placeholder="结束日期" :picker-options="item.pickerOpt" />
   <!-- <div>
 		<template v-if="item.type!='daterange'">
 			<el-date-picker style="width: 100%;" v-model="data[item.field]" :type="item.type" :value-format="valueFormat"
 				:picker-opt="item.opt" clearable :disabled="item.disabled" :placeholder="_getPlaceholder(item)"
 				@change="change" />
 		</template>
-		<template v-else-if="item.type=='daterange'">
+
+<template v-else-if="item.type=='daterange'">
 			<el-date-picker v-model="data[item.field]" type="daterange" range-separator="至" start-placeholder="开始日期"
 				end-placeholder="结束日期" :value-format="valueFormat" :picker-opt="item.opt" :disabled="item.disabled"
 				:placeholder="_getPlaceholder(item)" @change="change">
 			</el-date-picker>
 		</template>
-	</div> -->
+</div> -->
 </template>
 
 <script>
@@ -47,11 +36,11 @@ export default {
   props: {
     data: {
       type: Object,
-      default: () => {},
+      default: () => { },
     },
     item: {
       type: Object,
-      default: () => {},
+      default: () => { },
     },
   },
   data() {
@@ -72,36 +61,51 @@ export default {
     },
   },
   computed: {
-    valueFormat() {
-      if (this.item.valueFormat) {
-        return this.item.valueFormat;
-      } else {
-        if (this.item.type == "datetime" || this.item.type == "datetimerange") {
-          return "yyyy-MM-dd HH:mm:ss";
-        } else if (
-          this.item.type == "date" ||
-          this.item.type == "dates" ||
-          this.item.type == "daterange"
-        ) {
-          return "yyyy-MM-dd";
-        } else if (this.item.type == "year" || this.item.type == "yearMonth" ||
-          this.item.type == "yearMonthrange") {
-          return "yyyy-MM";
+    xxx: {
+      get() {
+        if (this.item.type == "datetimerange" || this.item.type == "daterange" || this.item.type == "yearMonthrange") {
+          if (this.$fn.type(this.data[this.item.field]) != "arr") {
+            this.$set(this.data, this.item.field, []);
+          }
+          return this.data[this.item.field];
+        }else{
+          return this.data[this.item.field];
         }
-        // else if (
-        //   this.item.type == "month" ||
-        //   this.item.type == "monthrange"
-        // ) {
-        //   return "MM";
-        // }
-        // else if (this.item.type == "week") {
-        //   return "WW";
-        // }
-      }
+
+    },
+    set(val) {
+      this.$set(this.data, this.item.field, val);
     },
   },
+  valueFormat() {
+    if (this.item.valueFormat) {
+      return this.item.valueFormat;
+    } else {
+      if (this.item.type == "datetime" || this.item.type == "datetimerange") {
+        return "yyyy-MM-dd HH:mm:ss";
+      } else if (
+        this.item.type == "date" ||
+        this.item.type == "dates" ||
+        this.item.type == "daterange"
+      ) {
+        return "yyyy-MM-dd";
+      } else if (this.item.type == "year" || this.item.type == "yearMonth" ||
+        this.item.type == "yearMonthrange") {
+        return "yyyy-MM";
+      }
+      // else if (
+      //   this.item.type == "month" ||
+      //   this.item.type == "monthrange"
+      // ) {
+      //   return "MM";
+      // }
+      // else if (this.item.type == "week") {
+      //   return "WW";
+      // }
+    }
+  },
+},
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
