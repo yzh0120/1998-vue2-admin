@@ -1,5 +1,5 @@
 <template>
-  <div class="pager">
+  <div :class="[`pager`,fixed?`fixed`:``]">
           <el-pagination
           background
       @current-change="handleCurrentChange"
@@ -32,7 +32,21 @@
    -->
   <script> 
   export default {
-      props:['data'],
+    // props:['data'],
+    props: {
+      data: {
+        type: Object,
+        default: () => { 
+          return {
+
+          }
+        }
+      },
+      fixed: {
+        type: Boolean,
+        default:false,
+      },
+    },
       methods:{
       //当前页
           handleCurrentChange(val){
@@ -50,4 +64,13 @@
   </script>
   
   <style lang="scss" scoped>
+    .pager{
+    background-color: white !important;
+  }
+  .fixed{
+    position: fixed;
+    bottom: -20px;
+    right: 0;
+    z-index: 99999999999999999;
+  }
   </style>
