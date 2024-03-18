@@ -38,6 +38,25 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => { 
+  ////外链登录
+  // if (to.query.workCode) {
+  //   let data = {
+  //     workCode: to.query.workCode,
+  //     name: to.query.name,
+  //     enName: to.query.enName,
+  //     idCard: to.query.idCard,
+  //   }
+  //   await userApi.singerlogin(data).then((res) => {
+  //     if (res.code == 200) {
+  //       setCookie(
+  //         "token",
+  //         res.data.token,
+  //         new Date(res.data.expireTime)
+  //       );
+  //       next("/")
+  //     }
+  //   })
+  // }
   console.log(cookieFn.getCookie(process.env.VUE_APP_TOKEN),"cookieFn.getCookie(process.env.VUE_APP_TOKEN)")
   if (cookieFn.getCookie(process.env.VUE_APP_TOKEN)) { //如果浏览器有token
 
