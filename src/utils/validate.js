@@ -21,9 +21,6 @@ export function positivenumberpoint(rule, value, callback) {
 /**
  * { validator: self.$validator.positivenumber, trigger: "blur" },
  * 正数 
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
  */
 export function positivenumber(rule, value, callback) {
   if (value) {
@@ -41,9 +38,6 @@ export function positivenumber(rule, value, callback) {
 /**
  * { validator: self.$validator.creditCode, trigger: "blur" },
  * 统一社会信用代码
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
  */
 export function creditCode(rule, value, callback) {
   if (value) {
@@ -62,9 +56,6 @@ export function creditCode(rule, value, callback) {
 /**
  * { validator: self.$validator.IDcard, trigger: "blur" },
  * 身份证正则（大陆，香港，新加坡）
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
  */
 export function IDcard(rule, value, callback) {
   if (value) {
@@ -80,12 +71,7 @@ export function IDcard(rule, value, callback) {
   }
 }
 
-/**
- * 手机号正则
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//手机号正则
 export function mobile(rule, value, callback) {
   if (value) {
     var reg = /^1[3,4,5,6,7,8,9][0-9]\d{8}$/;
@@ -105,12 +91,7 @@ export function mobile(rule, value, callback) {
 
 
 
-/**
- * 手机号和座机正则
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//手机号和座机正则
 export function mobileOrphone(rule, value, callback) {
   if (value) {
     var reg = /^1[3,4,5,6,7,8,9][0-9]\d{8}$/;
@@ -125,12 +106,7 @@ export function mobileOrphone(rule, value, callback) {
   }
 }
 
-/**
- * 最大允许12位整数内以及6位小数
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//最大允许12位整数内以及6位小数
 export function numLimit18_6(rule, value, callback) {
   if (value) {
     var reg = /^[1-9]\d{0,11}(\.\d{1,6})?$|^0(\.\d{1,6})?$/;
@@ -148,12 +124,7 @@ export function isExternal(path) {
   return /^(https?:|mailto:|tel:)/.test(path)
 }
 
-/**
- * 企业名称正则
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//企业名称正则
 export function isCompany(rule, value, callback) {
   if (value) {
     var reg = /^[\u4e00-\u9fa5\(\)（）、\da-zA-Z&]{2,50}$/;
@@ -168,12 +139,7 @@ export function isCompany(rule, value, callback) {
 }
 
 
-/**
- * 只允许中文、括号
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//只允许中文、括号
 export function onlyZH(rule, value, callback) {
   if (value) {
     var reg = /^[\u4e00-\u9fa5\（\）\(\)]+$/;
@@ -187,12 +153,7 @@ export function onlyZH(rule, value, callback) {
   }
 }
 
-/**
- * 只允许中文、括号、数字
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//只允许中文、括号、数字
 export function ZHnumber(rule, value, callback) {
   if (value) {
     var reg = /^[\u4e00-\u9fa5\（\）\(\)\d]+$/;
@@ -206,12 +167,7 @@ export function ZHnumber(rule, value, callback) {
   }
 }
 
-/**
- * 正数、负数和小数
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//正数、负数和小数
 export function numberpoint(rule, value, callback) {
   if (value) {
     var reg = /^(\-|\+)?\d+(\.\d+)?$/;
@@ -227,12 +183,7 @@ export function numberpoint(rule, value, callback) {
 
 
 
-/**
- * 正数和小数 0-100
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//正数和小数 0-100
 export function positivenumberpoint_0_100(rule, value, callback) {
   if (value) {
     var reg = /^\d+(\.\d+)?$/;
@@ -250,12 +201,7 @@ export function positivenumberpoint_0_100(rule, value, callback) {
 
 
 
-/**
- * 有两位小数的正实数
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//最大两位小数的正实数
 export function realnumber2point(rule, value, callback) {
   if (value) {
     var reg = /^[0-9]+(\.[0-9]{1,2})?$/;
@@ -269,12 +215,7 @@ export function realnumber2point(rule, value, callback) {
   }
 }
 
-/**
- * 有六位小数的数字
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//最大六位小数的数字
 export function realnumber6point(rule, value, callback) {
   if (value) {
     var reg = /^[0-9]+(\.[0-9]{1,6})?$/;
@@ -289,12 +230,7 @@ export function realnumber6point(rule, value, callback) {
 }
 
 
-/**
- * 邮编
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//邮编
 export function ems(rule, value, callback) {
   if (value) {
     var reg = /^\d{6}$/;
@@ -308,12 +244,7 @@ export function ems(rule, value, callback) {
   }
 }
 
-/**
- * 有两位小数的正数、负数
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//有两位小数的正数、负数
 export function realnegativenumber2point(rule, value, callback) {
   if (value) {
     var reg = /^(\-|\+)?\d+(\.\d{1,2})?$/;
@@ -328,12 +259,7 @@ export function realnegativenumber2point(rule, value, callback) {
 }
 
 
-/**
- * 有两位小数的正实数
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//有两位小数的正实数
 export function realnumber2pointBFS(rule, value, callback) {
   if (value) {
     var reg = /^[0-9]+(\.[0-9]{2})?$/;
@@ -350,12 +276,7 @@ export function realnumber2pointBFS(rule, value, callback) {
 }
 
 
-/**
- * 最大允许12位整数内以及6位小数
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//最大允许12位整数内以及6位小数
 export function numAndABC(rule, value, callback) {
   if (value) {
     var reg = /^[0-9a-zA-Z]{1,}$/;
@@ -369,12 +290,7 @@ export function numAndABC(rule, value, callback) {
   }
 }
 ///////////////////////////////////////////
-/**
- * 护照
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//护照
 export function passport(rule, value, callback) {
   if (value) {
     var reg = /^[a-zA-Z0-9]{5,17}$/;
@@ -388,12 +304,7 @@ export function passport(rule, value, callback) {
   }
 }
 
-/**
- * 港澳通行证
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//港澳通行证
 export function hongkongpass(rule, value, callback) {
   if (value) {
     var reg = /^[a-zA-Z0-9]{6,10}$/;
@@ -407,12 +318,7 @@ export function hongkongpass(rule, value, callback) {
   }
 }
 
-/**
- * 台胞证
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//台胞证
 export function taiwanpass(rule, value, callback) {
   if (value) {
     var reg = /^([0-9]{8}|[0-9]{10})$/;
@@ -428,12 +334,7 @@ export function taiwanpass(rule, value, callback) {
 
 
 
-/**
- * 大陆身份证正则
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//大陆身份证正则
 export function IDcardChina(rule, value, callback) {
   if (value) {
     var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
@@ -448,12 +349,7 @@ export function IDcardChina(rule, value, callback) {
 }
 
 
-/**
- * 工商注册号
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//工商注册号
 export function gsNum(rule, value, callback) {
   if (value) {
     var reg = /^[1-7]\d{14}$/;
@@ -468,12 +364,7 @@ export function gsNum(rule, value, callback) {
 }
 
 
-/**
- * 非空格
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+// 非空格
 export function notSpace(rule, value, callback) {
   if (value) {
     var reg = /^[^\s]*$/;
@@ -487,12 +378,7 @@ export function notSpace(rule, value, callback) {
   }
 }
 
-/**
- * 匹配中文，英文字母和数字及_
- * @param {*} rule 
- * @param {*} value 
- * @param {*} callback 
- */
+//匹配中文，英文字母和数字及_
 export function zhNUmEng(rule, value, callback) {
   if (value) {
     var reg = /^[a-zA-Z0-9\u4e00-\u9fa5\.\(\)\（\）\&\[\]\{\}\、\_\-\,\，]+$/;
@@ -507,3 +393,17 @@ export function zhNUmEng(rule, value, callback) {
     callback();
   }
 }
+
+//空格
+// export function KongGe(rule, value, callback) {
+//   if (value) {
+//     var reg = /^\S*$/;
+//     if (reg.test(value) == false) {
+//       callback(new Error("不允许空格"));
+//     } else {
+//       callback();
+//     }
+//   } else {
+//     callback();
+//   }
+// }

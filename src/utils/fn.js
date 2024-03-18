@@ -3,6 +3,7 @@ import XEUtils, {
   toNumber
 } from "xe-utils";
 import store from '@/store/index' //vuex
+//https://vxetable.cn/xe-utils/#/
 /************************************************************************************************************/
 /**
  * 格式化金额
