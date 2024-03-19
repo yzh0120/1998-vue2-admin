@@ -24,17 +24,19 @@ export default {
   mounted() {
     const _this = this;
     const erd = elementResizeDetectorMaker()
-    //监听top
+    //监听top  只是为了在窗口变化的时候 改变 _this.height 然后触发
     erd.listenTo(_this.$refs.top, (element) => {
-      console.log(element.offsetHeight, "top.offsetHeight")
+      console.log(_this.$refs.boottom.offsetHeight, "top.offsetHeight")
       _this.height = 0 + 'px'
-      this.tableChange = true
+      //this.tableChange = true
     })
-    //监听Bottom
+    //监听bottom
     erd.listenTo(_this.$refs.boottom, (element) => {
-      console.log(element.offsetHeight, "element.offsetHeight")
-      _this.height = element.offsetHeight + 'px'
-      this.tableChange = true
+      setTimeout(() => {
+        console.log(element.offsetHeight, "bottom.offsetHeight")
+        _this.height = element.offsetHeight + 'px'
+        this.tableChange = true
+      }, 100)
     })
   },
 }
