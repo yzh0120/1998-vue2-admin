@@ -1,8 +1,9 @@
 // import * as menu from "@/api/menu";
 export default {
-  data() { 
+  data() {
     return {
       btnArr: [],
+      loading:false,
     }
   },
   mounted() {
@@ -61,41 +62,41 @@ export default {
     },
   },
   directives: {
-        // 注册一个局部的自定义指令 v-focus
-        btn: {
-          // 统一全部隐藏
+    // 注册一个局部的自定义指令 v-focus
+    btn: {
+      // 统一全部隐藏
       bind: function (el) {
-            //如果指令绑定的是button则禁用
-            if (el.tagName == "BUTTON") {
-              el.setAttribute("disabled", "disabled")
-              el.classList.add("is-disabled")
-            } else {
-              //如果是其他标签则隐藏
-              el.style.display = "none"
-            }
-          },
+        //如果指令绑定的是button则禁用
+        if (el.tagName == "BUTTON") {
+          el.setAttribute("disabled", "disabled")
+          el.classList.add("is-disabled")
+        } else {
+          //如果是其他标签则隐藏
+          el.style.display = "none"
+        }
+      },
       update: function (el, binding, vnode) {
-            //如果指令绑定的值(btnArr)是一个对象(包括数组)
+        //如果指令绑定的值(btnArr)是一个对象(包括数组)
         if (typeof binding.value == 'object') {
-              //循环数组
+          //循环数组
           for (let i = 0; i < binding.value.length; i++) {
-                //如果数组中的对象有一个的enCode等于 自定义指令绑定的参数 (v-btn:detail="btnArr" 的detail)
+            //如果数组中的对象有一个的enCode等于 自定义指令绑定的参数 (v-btn:detail="btnArr" 的detail)
             if (binding.value[i].enCode == binding.arg) {
-                  //按钮恢复点击
-                  if (el.tagName == "BUTTON") {
-                    el.removeAttribute("disabled")
-                    el.classList.remove("is-disabled")
-                  } else {
-                    el.style.display = "inline-block"
-                  }
-                }
+              //按钮恢复点击
+              if (el.tagName == "BUTTON") {
+                el.removeAttribute("disabled")
+                el.classList.remove("is-disabled")
+              } else {
+                el.style.display = "inline-block"
               }
             }
-    
           }
-        },
+        }
+
+      }
+    },
     //元素拖动
-		drag: {
+    drag: {
       bind: function (el, binding) {
         let oDiv = el; //当前元素
         let self = this; //上下文
@@ -140,5 +141,5 @@ export default {
         };
       },
     }
-	},
+  },
 }
