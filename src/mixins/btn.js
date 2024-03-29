@@ -3,7 +3,7 @@ export default {
   data() {
     return {
       btnArr: [],
-      loading:false,
+      // loading:false,
     }
   },
   mounted() {

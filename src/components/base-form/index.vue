@@ -28,12 +28,12 @@
         <!-- <el-row v-if="isRow"> -->
         <el-row>
           <el-col :xs="item.xs" :sm="item.sm" :md="item.md" :lg="item.lg" :xl="item.xl" v-for="(item, index) in for_List"
-            :key="index + `row`">
+            :key="index + `row`" v-if="item.show === false ? false : true">
             <!-- item.show === false ? false : true -->
-            <el-form-item v-if="item.show === false ? false : true" :prop="item.field" :label="item.title" :class="item.className"
+            <el-form-item  :prop="item.field" :label="item.title" :class="item.className"
               :rules="item.rules" :label-width="item.labelWidth">
 
-              <!--  -->
+              <!-- 插槽 -->
               <template v-if="item.slot">
                 <slot :name="item.slot" />
               </template>
@@ -69,12 +69,12 @@
       <template v-else-if="span">
         <!-- <el-row v-if="isRow"> -->
         <el-row>
-          <el-col :span="item.span ? item.span : 8" v-for="(item, index) in for_List" :key="index + `span`">
+          <el-col :span="item.span ? item.span : 8" v-for="(item, index) in for_List" :key="index + `span`" v-if="item.show === false ? false : true">
             <!-- item.show === false ? false : true -->
-            <el-form-item v-if="item.show === false ? false : true" :prop="item.field" :label="item.title" :class="item.className"
+            <el-form-item  :prop="item.field" :label="item.title" :class="item.className"
               :rules="item.rules" :label-width="item.labelWidth">
 
-              <!--  -->
+              <!-- 插槽 -->
               <template v-if="item.slot">
                 <slot :name="item.slot" />
               </template>
