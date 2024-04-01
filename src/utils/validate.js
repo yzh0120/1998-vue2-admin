@@ -262,7 +262,8 @@ export function realnegativenumber2point(rule, value, callback) {
 //有两位小数的正实数
 export function realnumber2pointBFS(rule, value, callback) {
   if (value) {
-    var reg = /^[0-9]+(\.[0-9]{2})?$/;
+    // var reg = /^[0-9]+(\.[0-9]{2})?$/;
+    var reg = /^[0-9]+(\.[0-9]{1,2})?$/;
     if (reg.test(value) == false) {
       callback("请输入两位小数的正实数");
     } else if (value < 0 || value > 100) {
@@ -276,7 +277,7 @@ export function realnumber2pointBFS(rule, value, callback) {
 }
 
 
-//最大允许12位整数内以及6位小数
+//数字和英文
 export function numAndABC(rule, value, callback) {
   if (value) {
     var reg = /^[0-9a-zA-Z]{1,}$/;
