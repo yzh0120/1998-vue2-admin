@@ -153,29 +153,29 @@ export default {
             create: true,
           },
           ////////////////////////////////////////////////////////////////////////
-          {
-            type: "year", field: "_year", title: "年选择器"
-          },
+          // {
+          //   type: "year", field: "_year", title: "年选择器"
+          // },
           // { type: "month", field: "_month", title: "月选择器" },
           {
             type: "date", field: "_date", title: "年月日选择器加限制范围", pickerOpt: {
               disabledDate: (time) => {
-                // console.log(time.getTime(), new Date(self.$fn.date.add(new Date(), -2, "year")).getTime(), "123123")
-                return time.getTime() < new Date(self.$fn.date.add(new Date(), -2, "year")).getTime();
+                //过去两年是禁用的
+                console.log(time.getTime(),self.$date.addDate(-2, "year",new Date()), new Date(self.$date.addDate(-2, "year",new Date())).getTime(), "123123")
+                return time.getTime() < new Date(self.$date.addDate(-2, "year",new Date())).getTime();
               },
             },
           },
-          { type: "dates", field: "_dates", title: "多年月日选择器" },
-          { type: "week", field: "_week", title: "星期选择器" },
-          { type: "datetime", field: "_datetime", title: "年月日_时间选择器" },
-          {
-            type: "datetimerange",
-            field: "_datetimerange",
-            title: "年月日_时间范围选择器",
-          },
-          { type: "daterange", field: "_daterange", title: "年月日范围选择器" },
-          // { type: "monthrange", field: "_monthrange", title: "月范围选择器" },
-          { type: "time", field: "_time", title: "时间范围选择器" },
+          // { type: "dates", field: "_dates", title: "多年月日选择器" },
+          // { type: "week", field: "_week", title: "星期选择器" },
+          // { type: "datetime", field: "_datetime", title: "年月日_时间选择器" },
+          // {
+          //   type: "datetimerange",
+          //   field: "_datetimerange",
+          //   title: "年月日_时间范围选择器",
+          // },
+          // { type: "daterange", field: "_daterange", title: "年月日范围选择器" },
+          // { type: "time", field: "_time", title: "时间范围选择器" },
           ////////////////////////////////////////////////////////////////////////
           {
             type: "switch",

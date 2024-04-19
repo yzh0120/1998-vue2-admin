@@ -75,6 +75,9 @@ Vue.mixin(btn)
 import * as fn from "@/utils/fn.js"
 Vue.prototype.$fn = fn;
 
+import * as date from "@/utils/date.js"
+Vue.prototype.$date = date;
+
 //校验规则
 import * as validator from "@/utils/validate"
 Vue.prototype.$validator = validator;
