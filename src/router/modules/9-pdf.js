@@ -6,7 +6,7 @@ export default {
   name: 'pdf',
   component: layout,
   meta: {
-    title: 'socket后端推送',
+    title: 'pdf',
     icon: "shezhi1",
   },
   children: [{

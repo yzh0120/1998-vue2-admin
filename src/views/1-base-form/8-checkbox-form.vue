@@ -1,6 +1,6 @@
 <template>
   <page>
-    <el-button type="primary" @click="go">主要按钮</el-button>
+    <el-button type="primary" @click="go">此功能 已经被checkif取代了</el-button>
     <base-form :data="form" ref="form" @event="formEvent">
       <template #mySlot>
         <el-checkbox v-model="form.data.checked" @change="change">备选项</el-checkbox>
@@ -54,7 +54,7 @@ export default {
           //   text: "text1",
           //   value: "value1",
           // },
-          { slot: "mySlot", field: "checked", title: "多选框",  span: 24, },
+          { slot: "mySlot", field: "checked", title: "多选框", span: 24, },
           {
             type: "input",
             field: "_input3",
@@ -80,7 +80,7 @@ export default {
           ////////////////////////////////////////////////////////////////////////
 
         ],
-        data: {checked:true},
+        data: { checked: true },
         // titleWidth: "160px",
       },
     };
@@ -98,17 +98,17 @@ export default {
     // this.formEvent({item:{field:"_checkbox"},name:"checkbox"})
   },
   methods: {
-    change(e){
-      console.log(e,"e")
-      this._set(this.form, ["_input4", "_input3"], { show: e ? true : false })
-          this._setData(this.form, ["_input4", "_input3"], null)
+    change(e) {
+      console.log(e, "e")
+      this._setDatas(this.form, ["_input4", "_input3"], { show: e ? true : false })
+      // this._setDatas(this.form, ["_input4", "_input3"], null)
     },
 
     formEvent(e) {
       // if (e.item.field == "_checkbox") {
       //   if ((e.name == "checkbox")) {
       //     this._set(this.form, ["_input4", "_input3"], { show: e.value[0] ? true : false })
-      //     this._setData(this.form, ["_input4", "_input3"], null)
+      //     this._setDatas(this.form, ["_input4", "_input3"], null)
       //   }
       // }
 
@@ -120,6 +120,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
