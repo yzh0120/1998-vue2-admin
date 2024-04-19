@@ -32,11 +32,6 @@ export default {
 						this.$set(formInfo.data, item.field, null)
 					}
 				} 
-				// if (item.slotField && this.$fn.type(item.slotField) === "arr") { //数组 好像作废了
-				// 	for (let key of item.slotField) {
-				// 		this.$set(formInfo.data, key, "")
-				// 	}
-				// }
 				 if (item.labelField && this.$fn.type(item.labelField) === "arr") { //数组 附加的字段 比如city里面的省市区
 					for (let key of item.labelField) {
 						this.$set(formInfo.data, key, "")
