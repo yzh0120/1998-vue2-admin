@@ -4,6 +4,8 @@
     自定义路径
 <oneFile  pathUrl="/face/project/import" style="display: inline-block;margin-left: 20px;"></oneFile>
 
+
+fileId 文件id需要传给后台
 新增弹窗的文件 感觉没啥用了但是有点很明显 可以获取多个文件
 <oneFile :uploadObj="uploadObj" :projectId="oneFormAlert.data.id" mode="onlyOne"  :fileId="oneFormAlert.data.currentFileId"></oneFile>
 现在用这个感觉方便点缺点是只能获取一个文件
