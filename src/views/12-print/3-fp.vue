@@ -2,9 +2,9 @@
   <page>
     <el-card>
       <div slot="header">
-        <el-button type="primary" @click="more">打印多张</el-button>
+        <el-button type="primary" @click="more">打印多张发票类型</el-button>
       </div>
-      <div id="more" style="display: none">
+      <div id="more" style="display: none;width:240mm;height:120mm;">
         <div style="page-break-after: always" v-for="(item, index) in sectionNotice" class="hprinttbNotice2" :key="index">
           <h2 style="text-align: center; padding: 0; margin: 0">付款通知书</h2>
           <p style="display: flex; justify-content: space-between">
@@ -84,10 +84,11 @@ export default {
         );
         wind.document.body.innerHTML = headstr + printData + footstr;
         wind.document.body.style.fontFamily = "仿宋";
+        wind.document.body.style.fontSize = "14px";
         wind.document.body.style.paddingLeft = "100px";
         var list = wind.document.querySelectorAll(".hprinttbNotice2");
         for (let i = 0; i < list.length; i++) {
-          list[i].style.paddingTop = "105px";
+          list[i].style.paddingTop = "130px";
         }
         wind.print();
         wind.close();
