@@ -20,24 +20,19 @@
     </table>
     <br />
     <p>普通</p>
-    <table class="table">
+    <table class="table" >
       <tbody>
         <tr>
-          <td>企业名称</td>
-          <td></td>
-          <td>统一社会信用代码</td>
-          <td colspan="3"></td>
-        
-          <!-- <td></td> -->
+          <td >企业名称</td>
+          <td colspan="5"></td>
         </tr>
         <tr>
-          <td>法人代表姓名</td>
-          <td></td>
-
-          <td>法人代表身份证</td>
-          <td>xxx</td>
-          <td>法人手机</td>
-          <td></td> 
+          <td width="16.6%">法人代表姓名</td>
+          <td width="16.6%"></td>
+          <td width="16.6%">法人代表身份证</td>
+          <td width="16.6%">xxx东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福东方闪电家得福</td>
+          <td width="16.6%">法人手机</td>
+          <td width="16.6%"></td> 
         </tr>
 
         <tr>
@@ -56,9 +51,7 @@
       <tbody>
         <tr>
           <td>企业名称</td>
-          <td></td>
-          <td>统一社会信用代码</td>
-          <td colspan="3"></td>
+          <td colspan="5"></td>
         
           <!-- <td></td> -->
         </tr>
@@ -90,11 +83,7 @@
       <tbody>
         <tr>
           <td>企业名称</td>
-          <td></td>
-          <td>统一社会信用代码</td>
-          <td colspan="3"></td>
-        
-          <!-- <td></td> -->
+          <td colspan="5"></td>
         </tr>
         <tr>
           <td>法人代表姓名</td>

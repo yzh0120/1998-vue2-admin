@@ -6,20 +6,16 @@
 }
 //table表格宽度固定，同时td内容过长也不会被撑开，设置如下css：
 .table{
-	table-layout:fixed;
+	// table-layout:fixed;  均分 但是导致width不生效
 	word-break:break-all;
 	background-color: white;
-}
-
-.table{
 	width: 100%;
 }
+
 .table td{
 	border:0.5px solid #ddd;
 	padding: 8px;
-	// width:1000000px;
-	// text-align: left;
-    font-size: 14px;
+  font-size: 14px;
 	text-align: center;
 }
 
