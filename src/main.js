@@ -28,6 +28,9 @@ Vue.component("page", page)
 import baseForm from '@/components/base-form'
 Vue.component("baseForm", baseForm)
 
+import timeliness from '@/components/base-form/timeliness'
+Vue.component("timeliness", timeliness)
+
 //文件
 import fileList from '@/components/file/fileList'
 Vue.component("fileList", fileList)

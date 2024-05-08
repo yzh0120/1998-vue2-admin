@@ -7,6 +7,10 @@
           <template slot="prepend">Http://</template>
         </el-input>
       </template>
+      <template #timeliness>
+        <timeliness :fvalue="form.data.toTime" :obj="form.data" field="_timeliness"  required @transmit="ggg"
+          p="请选择申请人证件有效期结束日" />
+      </template>
     </base-form>
   </page>
 </template>
@@ -166,6 +170,11 @@ export default {
               },
             },
           },
+          {
+            slot: "timeliness",
+            title: "长期选项",
+            labelField:["_timeliness"],
+          },
           // { type: "dates", field: "_dates", title: "多年月日选择器" },
           // { type: "week", field: "_week", title: "星期选择器" },
           // { type: "datetime", field: "_datetime", title: "年月日_时间选择器" },
@@ -275,6 +284,11 @@ export default {
     this._set(this.form, "__treeselectCreate", { opt: arr });
   },
   methods: {
+    ggg() { 
+      setTimeout(() => { 
+        console.log(this.form.data._timeliness,"_timeliness_timeliness")
+      },100)
+    },
     //下拉框的本地过滤函数  有一点问题  目前建议用 select_remote 代替
     select_filterFn(query, row) {
       console.log(query, row, "query");
