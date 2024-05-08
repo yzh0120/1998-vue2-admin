@@ -1,4 +1,3 @@
-
 <!-- 
   data:{
 	  必写
@@ -20,19 +19,27 @@
  -->
 
 <template>
-  <el-form ref="form" :class="data.className" :model="formData" :label-width="labelWidth" style=""
-    :inline="inline" :size="size" @submit.native.prevent :disabled="disabled">
+  <el-form ref="form" :class="data.className" :model="formData" :label-width="labelWidth" style="" :inline="inline"
+    :size="size" @submit.native.prevent :disabled="disabled">
     <div v-if="againShow">
-      <!-- 是否响应式 -->
+      <!-- 是否响应式 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
       <template v-if="isRow">
         <!-- <el-row v-if="isRow"> -->
         <el-row>
-          <el-col :xs="item.xs" :sm="item.sm" :md="item.md" :lg="item.lg" :xl="item.xl" v-for="(item, index) in for_List"
-            :key="index + `row`" v-if="item.show === false ? false : true">
+          <el-col :xs="item.xs" :sm="item.sm" :md="item.md" :lg="item.lg" :xl="item.xl"
+            v-for="(item, index) in for_List" :key="index + `row`" v-if="item.show === false ? false : true">
             <!-- item.show === false ? false : true -->
-            <el-form-item  :prop="item.field" :label="item.title" :class="item.className"
-              :rules="item.rules" :label-width="item.labelWidth">
-
+            <el-form-item :prop="item.field" :label="item.title" :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
+              :label-width="item.labelWidth">
+              <!-- 问号 -->
+              <template v-if="item.labelTip" #label>
+                <div>
+                  {{ item.title }}
+                  <el-tooltip class="item" effect="dark" :content="item.labelTip" placement="top-start">
+                    <i class="el-icon-question"></i>
+                  </el-tooltip>
+                </div>
+              </template>
               <!-- 插槽 -->
               <template v-if="item.slot">
                 <slot :name="item.slot" />
@@ -53,27 +60,32 @@
               </template>
               <!-- 动态组件 -->
               <component :is="currentComponent(item.type)" :item="item" :bossData="data" @baseFormEvent="(e) => {
-                event(e, item);
-              }
-                " :data="formData" v-else :dis="disabled" />
-              <!--  -->
-
+    event(e, item);
+  }
+    " :data="formData" v-else :dis="disabled" />
             </el-form-item>
           </el-col>
         </el-row>
-        <!-- 比如 搜索页面居中的按钮 -->
-        <!-- <slot /> -->
       </template>
 
-      <!-- 是否span -->
+      <!-- 是否span -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
       <template v-else-if="span">
         <!-- <el-row v-if="isRow"> -->
         <el-row>
-          <el-col :span="item.span ? item.span : 8" v-for="(item, index) in for_List" :key="index + `span`" v-if="item.show === false ? false : true">
+          <el-col :span="item.span ? item.span : 8" v-for="(item, index) in for_List" :key="index + `span`"
+            v-if="item.show === false ? false : true">
             <!-- item.show === false ? false : true -->
-            <el-form-item  :prop="item.field" :label="item.title" :class="item.className"
-              :rules="item.rules" :label-width="item.labelWidth">
-
+            <el-form-item :prop="item.field" :label="item.title" :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
+              :label-width="item.labelWidth">
+              <!-- 问号 -->
+              <template v-if="item.labelTip" #label>
+                <div>
+                  {{ item.title }}
+                  <el-tooltip class="item" effect="dark" :content="item.labelTip" placement="top-start">
+                    <i class="el-icon-question"></i>
+                  </el-tooltip>
+                </div>
+              </template>
               <!-- 插槽 -->
               <template v-if="item.slot">
                 <slot :name="item.slot" />
@@ -94,11 +106,9 @@
               </template>
               <!-- 动态组件 -->
               <component :is="currentComponent(item.type)" :item="item" :bossData="data" @baseFormEvent="(e) => {
-                event(e, item);
-              }
-                " :data="formData" v-else :dis="disabled" />
-              <!--  -->
-
+    event(e, item);
+  }
+    " :data="formData" v-else :dis="disabled" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -106,12 +116,22 @@
         <!-- <slot /> -->
       </template>
 
-      <!-- 不是响应式 -->
+      <!-- 不是响应式 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
       <template v-else>
         <!-- item.show === false ? false : true -->
-        <el-form-item v-for="(item, index) in for_List" v-if="item.show === false ? false : true" :key="index + 'normal'"
-          :prop="item.field" :label="item.title" :rules="item.rules" :label-width="item.labelWidth" :class="item.className">
-          <!--  -->
+        <el-form-item v-for="(item, index) in for_List" v-if="item.show === false ? false : true"
+          :key="index + 'normal'" :prop="item.field" :label="item.title" :rules="item.rules"
+          :label-width="item.labelWidth" :class="[item.labelTip?`labelTipClass`:``,item.className]">
+          <!-- 问号 -->
+          <template v-if="item.labelTip" #label>
+                <div>
+                  {{ item.title }}
+                  <el-tooltip class="item" effect="dark" :content="item.labelTip" placement="top-start">
+                    <i class="el-icon-question"></i>
+                  </el-tooltip>
+                </div>
+              </template>
+          <!-- 插槽 -->
           <template v-if="item.slot">
             <slot :name="item.slot" />
           </template>
@@ -130,13 +150,10 @@
           </template>
           <!-- 动态组件 -->
           <component :is="currentComponent(item.type)" :item="item" @baseFormEvent="(e) => {
-            event(e, item);
-          }
-            " :data="formData" v-else :dis="disabled" :bossData="data" />
-          <!--  -->
+    event(e, item);
+  }
+    " :data="formData" v-else :dis="disabled" :bossData="data" />
         </el-form-item>
-        <!-- 比如 搜索页面居中的按钮 -->
-        <!-- <slot /> -->
       </template>
       <slot />
     </div>
@@ -340,7 +357,7 @@ export default {
         }
       })
     },
-     //简单下拉的change事件
+    //简单下拉的change事件
     selectChange(e, item_f, noEmit) {
       if (e === item_f.trueLabel && item_f.show !== false) {
         item_f.checkArr.forEach((item) => {
@@ -447,9 +464,9 @@ export default {
         return "baseSelect";
       } else if (componentType == "selectf") {
         return "baseSelectF";
-      }  else if (componentType == "selectd") {
+      } else if (componentType == "selectd") {
         return "baseSelectD";
-      }else if (componentType == "time") {
+      } else if (componentType == "time") {
         return "baseTimeSelect";
       } else if (
         // componentType == "date" ||
@@ -486,6 +503,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+::v-deep{
+  .labelTipClass .el-form-item__label{
+    display: flex;
+    justify-content: flex-end;
+  }
+}
 </style>
 <!-- 
 

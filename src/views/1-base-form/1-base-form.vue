@@ -21,7 +21,7 @@ export default {
     let self = this;
     return {
       form: {
-        // className: "className",
+        // span:true,
         list: [
           {
             type: "treeselect",
@@ -65,23 +65,17 @@ export default {
               { validator: self.$validator.numberpoint },
             ],
           },
-          {
-            type: "input",
-            field: "_input_prepend",
-            title: "前缀输入框",
-            prepend: "前缀文字",
-          },
-          {
-            type: "input",
-            field: "_input_append",
-            title: "后缀输入框",
-            append: "后缀文字",
-          },
           // {
           //   type: "input",
-          //   field: "_input_btn",
-          //   title: "按钮输入框",
-          //   btn: "搜索",
+          //   field: "_input_prepend",
+          //   title: "前缀输入框",
+          //   prepend: "前缀文字",
+          // },
+          // {
+          //   type: "input",
+          //   field: "_input_append",
+          //   title: "后缀输入框",
+          //   append: "后缀文字",
           // },
           {
             type: "password",
@@ -250,7 +244,7 @@ export default {
           { slot: "mySlot", field: "xxx", title: "自定义插槽" },
         ],
         data: {},
-        // titleWidth: "160px",
+        titleWidth: "200px",
       },
     };
   },
