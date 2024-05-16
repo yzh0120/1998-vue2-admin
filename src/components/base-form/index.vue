@@ -225,6 +225,7 @@ export default {
         setTimeout(() => {
           this.clearValidate()
         }, 0);
+        this.checkAndSelect()
       },
       immediate: true,
       deep: true, // 深度监听

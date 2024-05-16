@@ -13,7 +13,7 @@
     <base-form :data="form2" ref="form2" @event="formEvent"></base-form>
 
 
-    <div>分割线------------------------------------------------------------------------------</div>
+    <div>分割线--------如果使用了这个 千万不在在mounted赋值的时候用setTimeout----------------------------------------------------------------------</div>
 
     <base-form :data="form3" ref="form3" @event="formEvent"></base-form>
   </page>
@@ -49,7 +49,7 @@ export default {
           {
             type: "input",
             field: "_input222",
-            title: "普通输入框",
+            title: "普通输入框(看这个)",
             span: 12,
             rules: [
               { required: true, message: "请输入" },
@@ -112,7 +112,7 @@ export default {
           {
             type: "input",
             field: "_input222",
-            title: "普通输入框",
+            title: "普通输入框(看这个)",
             span: 12,
             rules: [
               { required: true, message: "请输入" },
@@ -122,7 +122,7 @@ export default {
           {
             type: "input",
             field: "_inpu333",
-            title: "普通输入框",
+            title: "普通输入框(看这个)",
             span: 12,
             rules: [
               { required: true, message: "请输入" },
@@ -142,24 +142,24 @@ export default {
     }, 1000)
   },
   watch: {
-    "form2.data": {
-      handler() {
-        if (this.$refs.form2) {
-          this.$refs.form2.slotCheckAll()
-        }
-      },
-      immediate: true,
-      deep: true
-    },
-    "form3.data": {
-      handler() {
-        if (this.$refs.form3) {
-          this.$refs.form3.slotSelectAll()
-        }
-      },
-      immediate: true,
-      deep: true
-    }
+    // "form2.data": {
+    //   handler() {
+    //     if (this.$refs.form2) {
+    //       this.$refs.form2.slotCheckAll()
+    //     }
+    //   },
+    //   immediate: true,
+    //   deep: true
+    // },
+    // "form3.data": {
+    //   handler() {
+    //     if (this.$refs.form3) {
+    //       this.$refs.form3.slotSelectAll()
+    //     }
+    //   },
+    //   immediate: true,
+    //   deep: true
+    // }
   },
   methods: {
 
