@@ -131,13 +131,37 @@ export default {
     );
     this.$watch(
       function () {
+        return this.item[this.province];
+      },
+      {
+        handler(v) {
+          if (this.item[this.province]) {
+            this.getCitys(this.item[this.province]);
+          }
+        },
+        immediate: true,
+      }
+    );
+    //////////////////////////////////////////////////////////////////////////////////////
+    this.$watch(
+      function () {
         return this.item[this.areas];
       },
       {
         handler(v) {
-          // setTimeout(() => {
-          //   console.log(this.item[this.city], "vvvv");
-          // }, 0)
+          if (this.item[this.city]) {
+            this.getAreas(this.item[this.city]);
+          }
+        },
+        immediate: true,
+      }
+    );
+    this.$watch(
+      function () {
+        return this.item[this.city];
+      },
+      {
+        handler(v) {
           if (this.item[this.city]) {
             this.getAreas(this.item[this.city]);
           }
