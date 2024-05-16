@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-button type="primary" @click="click">校验</el-button>
+    <el-button type="primary" @click="() => {  alertData.alert = true }">再弹一次</el-button>
 
     <!-- 弹窗 -->
     <alert :data="alertData" @cancel="alertCancel" @close="alertCancel" @confirm="alertConfirm" ref="modal">
@@ -40,7 +41,7 @@ export default {
   },
   methods: {
     click() { 
-      console.log(this.$refs.formAlert.check())
+      console.log(this.$refs.formAlert)
     },
 
      // 弹窗取消
