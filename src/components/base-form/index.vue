@@ -18,7 +18,7 @@
   } 
  -->
 
-<template>
+ <template>
   <el-form ref="form" :class="data.className" :model="formData" :label-width="labelWidth" style="" :inline="inline"
     :size="size" @submit.native.prevent :disabled="disabled">
     <div v-if="againShow">
@@ -29,8 +29,7 @@
           <el-col :xs="item.xs" :sm="item.sm" :md="item.md" :lg="item.lg" :xl="item.xl"
             v-for="(item, index) in for_List" :key="index + `row`" v-if="item.show === false ? false : true">
             <!-- item.show === false ? false : true -->
-            <el-form-item :prop="item.field" :label="item.title"
-              :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
+            <el-form-item :prop="item.field" :label="item.title" :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
               :label-width="item.labelWidth">
               <!-- 问号 -->
               <template v-if="item.labelTip" #label>
@@ -44,6 +43,20 @@
               <!-- 插槽 -->
               <template v-if="item.slot">
                 <slot :name="item.slot" />
+              </template>
+              <!-- 是否复选框 -->
+              <template v-if="item.slotCheck">
+                <el-checkbox v-model="formData[item.field]" :true-label="item.trueLabel" :false-label="item.falseLabel"
+                  :disabled="item.disabled" @change="(e) => { checkboxChange(e, item) }">{{ item.slotCheck
+                  }}</el-checkbox>
+              </template>
+              <!-- 是否下拉框 -->
+              <template v-if="item.slotSelect">
+                <el-select v-model="formData[item.field]" placeholder="请选择" style="width:100%" :disabled="item.disabled"
+                  @change="(e) => { selectChange(e, item) }">
+                  <el-option v-for="(childItem, childIndex) in item.opt" :key="childIndex" :label="childItem.text"
+                    :value="childItem.value" />
+                </el-select>
               </template>
               <!-- 动态组件 -->
               <component :is="currentComponent(item.type)" :item="item" :bossData="data" @baseFormEvent="(e) => {
@@ -62,8 +75,7 @@
           <el-col :span="item.span ? item.span : 8" v-for="(item, index) in for_List" :key="index + `span`"
             v-if="item.show === false ? false : true">
             <!-- item.show === false ? false : true -->
-            <el-form-item :prop="item.field" :label="item.title"
-              :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
+            <el-form-item :prop="item.field" :label="item.title" :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
               :label-width="item.labelWidth">
               <!-- 问号 -->
               <template v-if="item.labelTip" #label>
@@ -77,6 +89,20 @@
               <!-- 插槽 -->
               <template v-if="item.slot">
                 <slot :name="item.slot" />
+              </template>
+              <!-- 是否复选框 -->
+              <template v-if="item.slotCheck">
+                <el-checkbox v-model="formData[item.field]" :true-label="item.trueLabel" :false-label="item.falseLabel"
+                  :disabled="item.disabled" @change="(e) => { checkboxChange(e, item) }">{{ item.slotCheck
+                  }}</el-checkbox>
+              </template>
+              <!-- 是否下拉框 -->
+              <template v-if="item.slotSelect">
+                <el-select v-model="formData[item.field]" placeholder="请选择" style="width:100%" :disabled="item.disabled"
+                  @change="(e) => { selectChange(e, item) }">
+                  <el-option v-for="(childItem, childIndex) in item.opt" :key="childIndex" :label="childItem.text"
+                    :value="childItem.value" />
+                </el-select>
               </template>
               <!-- 动态组件 -->
               <component :is="currentComponent(item.type)" :item="item" :bossData="data" @baseFormEvent="(e) => {
@@ -98,16 +124,29 @@
           :label-width="item.labelWidth" :class="[item.labelTip?`labelTipClass`:``,item.className]">
           <!-- 问号 -->
           <template v-if="item.labelTip" #label>
-            <div>
-              {{ item.title }}
-              <el-tooltip class="item" effect="dark" :content="item.labelTip" placement="top-start">
-                <i class="el-icon-question"></i>
-              </el-tooltip>
-            </div>
-          </template>
+                <div>
+                  {{ item.title }}
+                  <el-tooltip class="item" effect="dark" :content="item.labelTip" placement="top-start">
+                    <i class="el-icon-question"></i>
+                  </el-tooltip>
+                </div>
+              </template>
           <!-- 插槽 -->
           <template v-if="item.slot">
             <slot :name="item.slot" />
+          </template>
+          <!-- 是否复选框 -->
+          <template v-if="item.slotCheck">
+            <el-checkbox v-model="formData[item.field]" :true-label="item.trueLabel" :false-label="item.falseLabel"
+              :disabled="item.disabled" @change="(e) => { checkboxChange(e, item) }">{{ item.slotCheck }}</el-checkbox>
+          </template>
+          <!-- 是否下拉框 -->
+          <template v-if="item.slotSelect">
+            <el-select v-model="formData[item.field]" placeholder="请选择" style="width:100%" :disabled="item.disabled"
+              @change="(e) => { selectChange(e, item) }">
+              <el-option v-for="(childItem, childIndex) in item.opt" :key="childIndex" :label="childItem.text"
+                :value="childItem.value" />
+            </el-select>
           </template>
           <!-- 动态组件 -->
           <component :is="currentComponent(item.type)" :item="item" @baseFormEvent="(e) => {
@@ -167,9 +206,6 @@ export default {
   },
   data() {
     return {
-      slotCheckArr: [],
-      slotSelectArr: [],
-      oldData: {},
       againShow: true,
     };
   },
@@ -186,9 +222,9 @@ export default {
     },
     "formData": {
       handler: function () {
-        setTimeout(() => { 
+        setTimeout(() => {
           this.clearValidate()
-        },0)
+        }, 0);
       },
       immediate: true,
       deep: true, // 深度监听
@@ -198,11 +234,15 @@ export default {
   created() {
     this._updatedata(this.data);
     this.autoTrigger();
+
+    this.checkAndSelect()
+
   },
   mounted() {
     //this._addShow(this.data) //增加show 因为只会写在watch(写在data:{}也有效果)  所以不watch 暂时不用
     this._addDis(this.data); //增加disabled    可以直接写在data:{}
     this.back(); // 将form实例返回到父级
+
   },
   computed: {
     disabled() {
@@ -273,6 +313,74 @@ export default {
     },
   },
   methods: {
+    //简单下拉和复选的集合方法
+    checkAndSelect() {
+      this.slotCheckAll()
+      this.slotSelectAll()
+    },
+    //简单复选
+    slotCheckAll() {
+      this.for_List.forEach((item) => {
+        if (item.slotCheck) {
+          this.checkboxChange(this.formData[item.field], item, "不是手动触发的")
+        }
+      })
+    },
+    //简单复选的change事件
+    checkboxChange(e, item_f, noEmit) {
+      if (e === item_f.trueLabel && item_f.show !== false) {
+        item_f.checkArr.forEach((item) => {
+          this._set(this.data, item, { show: true })
+        })
+      } else {
+        item_f.checkArr.forEach((item) => {
+          this._set(this.data, item, { show: false })
+        })
+      }
+      let obj = {
+        item: item_f,
+        name: "slotCheck",
+        event: "slotCheck",
+        value: e
+      }
+      if (noEmit) {
+
+      } else {
+        this.$emit("event", obj);
+      }
+    },
+    //简单下拉
+    slotSelectAll() {
+      this.for_List.forEach((item) => {
+        if (item.slotSelect) {
+          this.selectChange(this.formData[item.field], item, "不是手动触发的")
+        }
+      })
+    },
+    //简单下拉的change事件
+    selectChange(e, item_f, noEmit) {
+      if (e === item_f.trueLabel && item_f.show !== false) {
+        item_f.checkArr.forEach((item) => {
+          this._set(this.data, item, { show: true })
+
+        })
+      } else {
+        item_f.checkArr.forEach((item) => {
+          this._set(this.data, item, { show: false })
+        })
+      }
+      let obj = {
+        item: item_f,
+        name: "slotSelect",
+        event: "slotSelect",
+        value: e
+      }
+      if (noEmit) {
+
+      } else {
+        this.$emit("event", obj);
+      }
+    },
     //将不同的表单控件的rules的trigger设定
     autoTrigger() {
       this.data.list.forEach((item) => {
@@ -395,8 +503,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .labelTipClass .el-form-item__label {
+
+::v-deep{
+  .labelTipClass .el-form-item__label{
     display: flex;
     justify-content: flex-end;
   }
