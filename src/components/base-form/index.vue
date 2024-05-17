@@ -29,7 +29,8 @@
           <el-col :xs="item.xs" :sm="item.sm" :md="item.md" :lg="item.lg" :xl="item.xl"
             v-for="(item, index) in for_List" :key="index + `row`" v-if="item.show === false ? false : true">
             <!-- item.show === false ? false : true -->
-            <el-form-item :prop="item.field" :label="item.title" :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
+            <el-form-item :prop="item.field" :label="item.title"
+              :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
               :label-width="item.labelWidth">
               <!-- 问号 -->
               <template v-if="item.labelTip" #label>
@@ -75,7 +76,8 @@
           <el-col :span="item.span ? item.span : 8" v-for="(item, index) in for_List" :key="index + `span`"
             v-if="item.show === false ? false : true">
             <!-- item.show === false ? false : true -->
-            <el-form-item :prop="item.field" :label="item.title" :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
+            <el-form-item :prop="item.field" :label="item.title"
+              :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
               :label-width="item.labelWidth">
               <!-- 问号 -->
               <template v-if="item.labelTip" #label>
@@ -124,13 +126,13 @@
           :label-width="item.labelWidth" :class="[item.labelTip?`labelTipClass`:``,item.className]">
           <!-- 问号 -->
           <template v-if="item.labelTip" #label>
-                <div>
-                  {{ item.title }}
-                  <el-tooltip class="item" effect="dark" :content="item.labelTip" placement="top-start">
-                    <i class="el-icon-question"></i>
-                  </el-tooltip>
-                </div>
-              </template>
+            <div>
+              {{ item.title }}
+              <el-tooltip class="item" effect="dark" :content="item.labelTip" placement="top-start">
+                <i class="el-icon-question"></i>
+              </el-tooltip>
+            </div>
+          </template>
           <!-- 插槽 -->
           <template v-if="item.slot">
             <slot :name="item.slot" />
@@ -206,6 +208,9 @@ export default {
   },
   data() {
     return {
+      slotCheckArr: [],
+      slotSelectArr: [],
+      oldData: {},
       againShow: true,
     };
   },
@@ -222,14 +227,36 @@ export default {
     },
     "formData": {
       handler: function () {
+        /*
+      1 因为data是自从外部传过来的 所以外部的watch 比内部的watch先执行 
+      2 如果外部的watch控制了show  但是内部watch也会控制show会导致失效 所以 外部watch需要setTimeout
+    */
+        //前后值不一样 则触发事件
+        this.slotCheckArr.forEach((e) => {
+          if (e.field == "public_bidding_stat") {
+            console.log(this.data.data[e.field], this.oldData[e.field], "--132123123123")
+          }
+          if (this.data.data[e.field] !== this.oldData[e.field]) {
+            let obj = {}
+            obj = this.data.list.find((e2) => {
+              return e2.field === e.field
+            })
+            this.checkboxChange(this.formData[e.field], obj, "不是手动触发的")
+          }
+        })
+        this.slotSelectArr.forEach((e) => {
+          if (this.data.data[e.field] !== this.oldData[e.field]) {
+            let obj = {}
+            obj = this.data.list.find((e2) => {
+              return e2.field === e.field
+            })
+            this.selectChange(this.formData[e.field], obj, "不是手动触发的")
+          }
+        })
+        this.oldData = this.$fn.deepClone(this.data.data) ? this.$fn.deepClone(this.data.data) : {}
         setTimeout(() => {
           this.clearValidate()
         }, 0);
-        /*
-        1 因为data是自从外部传过来的 所以外部的watch 比内部的watch先执行 
-        2 如果外部的watch控制了show  但是内部watch也会控制show会导致失效 所以 外部watch需要setTimeout
-      */
-        this.checkAndSelect()
       },
       immediate: true,
       deep: true, // 深度监听
@@ -237,6 +264,18 @@ export default {
 
   },
   created() {
+    //保存为一个集合
+    this.data.list.forEach((item) => {
+      if (item.slotCheck) {
+        this.slotCheckArr.push(this.$fn.deepClone(item))
+      }
+    })
+    this.data.list.forEach((item) => {
+      if (item.slotSelect) {
+        this.slotSelectArr.push(this.$fn.deepClone(item))
+      }
+    })
+    
     this._updatedata(this.data);
     this.autoTrigger();
 
@@ -508,9 +547,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-::v-deep{
-  .labelTipClass .el-form-item__label{
+::v-deep {
+  .labelTipClass .el-form-item__label {
     display: flex;
     justify-content: flex-end;
   }
