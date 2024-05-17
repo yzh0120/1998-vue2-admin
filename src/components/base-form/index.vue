@@ -225,6 +225,10 @@ export default {
         setTimeout(() => {
           this.clearValidate()
         }, 0);
+        /*
+        1 因为data是自从外部传过来的 所以外部的watch 比内部的watch先执行 
+        2 如果外部的watch控制了show  但是内部watch也会控制show会导致失效 所以 外部watch需要setTimeout
+      */
         this.checkAndSelect()
       },
       immediate: true,
