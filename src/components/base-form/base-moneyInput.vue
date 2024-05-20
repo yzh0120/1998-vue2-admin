@@ -93,10 +93,13 @@ export default {
         if (this.focused) {
           return this.data[this.item.field];
         } else {
-          return this.data[this.item.field]?.replace(
-            /(\d)(?=(?:\d{3})+$)/g,
-            "$1,"
-          );
+          let str = this.data[this.item.field] + ""
+          let str1 = this.$num.formatMoney(str)
+          return str1
+          // return this.data[this.item.field]?.replace(
+          //   /(\d)(?=(?:\d{3})+$)/g,
+          //   "$1,"
+          // );
         }
       },
       set(value) {
