@@ -162,7 +162,7 @@ export function dataItem_text(field, value, isNumber) {
 //value
 ///数据字典转化
 export function dataItem_list(field, isNumber) {
-  let arr = store.state.config.dataItem[field]
+  let arr = deepClone(store.state.config.dataItem[field])
   if (arr) {
     if (isNumber) {
       arr.forEach((e) => {
