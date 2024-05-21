@@ -1,4 +1,3 @@
-
 <!-- 输入框
  type:'input '                              控件类型
  field:xxx                                  控件对应的字段      
@@ -10,27 +9,17 @@
  tip:true                                   内容溢出悬浮显示
  disabled:true                              禁用
  -->
- <!--  -->
+<!--  -->
 <template>
-  <el-input
-    v-model="showinput"
-    :type="item.type"
-    :disabled="item.disabled"
-    :placeholder="_getPlaceholder(item)"
-    @clear="setValueNull"
-    @blur="blur(data[item.field])"
-    @focus="focus(data[item.field])"
-    @input="input(data[item.field])"
-    clearable
-    :class="[item.btn ? 'self_btn' : '']"
-    :maxlength="item.max"
-  >
+  <el-input v-model="showinput" :type="item.type" :disabled="item.disabled" :placeholder="_getPlaceholder(item)"
+    @clear="setValueNull" @blur="blur(data[item.field])" @focus="focus(data[item.field])"
+    @input="input(data[item.field])" clearable :class="[item.btn ? 'self_btn' : '']" :maxlength="item.max">
     <template slot="prepend" v-if="item.prepend">{{ item.prepend }}</template>
     <template slot="append" v-if="item.append">{{ item.append }}</template>
     <!-- style="background:#409EFF;color:#fff;" -->
     <el-button @click="search" slot="append" v-if="item.btn">{{
-      item.btn
-    }}</el-button>
+    item.btn
+  }}</el-button>
   </el-input>
   <!--  -->
 </template>
@@ -41,11 +30,11 @@ export default {
   props: {
     data: {
       type: Object,
-      default: () => {},
+      default: () => { },
     },
     item: {
       type: Object,
-      default: () => {},
+      default: () => { },
     },
   },
   data() {
@@ -93,9 +82,14 @@ export default {
         if (this.focused) {
           return this.data[this.item.field];
         } else {
-          let str = this.data[this.item.field] + ""
-          let str1 = this.$num.formatMoney(str)
-          return str1
+          if (this.data[this.item.field] === null || this.data[this.item.field] === "" || this.data[this.item.field] === undefined) {
+            return this.data[this.item.field];
+          } else {
+            let str = this.data[this.item.field] + ""
+            let str1 = this.$num.formatMoney(str)
+            return str1
+          }
+
           // return this.data[this.item.field]?.replace(
           //   /(\d)(?=(?:\d{3})+$)/g,
           //   "$1,"
