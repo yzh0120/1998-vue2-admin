@@ -77,6 +77,13 @@ export default {
     },
   },
   computed: {
+    pointNum() {
+      if (this.item.pointNum) {
+        return this.item.pointNum
+      } else { 
+        return 2
+      }
+    },
     showinput: {
       get() {
         if (this.focused) {
@@ -86,7 +93,7 @@ export default {
             return this.data[this.item.field];
           } else {
             let str = this.data[this.item.field] + ""
-            let str1 = this.$num.formatMoney(str)
+            let str1 = this.$num.formatMoney(str,this.pointNum)
             return str1
           }
 
