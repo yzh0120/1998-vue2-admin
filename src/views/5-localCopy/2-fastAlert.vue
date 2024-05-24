@@ -1,12 +1,21 @@
 <template>
   <div>
     <el-button type="primary" @click="click">校验</el-button>
-    <el-button type="primary" @click="() => {  alertData.alert = true }">再弹一次</el-button>
+    <el-button type="primary" @click="() => {  modal = true }">再弹一次</el-button>
 
     <!-- 弹窗 -->
-    <alert :data="alertData" @cancel="alertCancel" @close="alertCancel" @confirm="alertConfirm" ref="modal">
-      <base-form :data="formAlert" ref="formAlert"></base-form>
-    </alert>
+    <!-- <alert :data="alertData" @cancel="alertCancel" @close="alertCancel" @confirm="alertConfirm" ref="modal">
+      
+    </alert> -->
+    <vxe-modal v-model="modal" title="开函资料" width="90%" height="80%" show-footer show-zoom resize ref="modal">
+        <base-form :data="formAlert" ref="formAlert"></base-form>
+      <template #footer>
+        <div>
+          <el-button >取消</el-button>
+          <el-button type="primary" >保存</el-button>
+        </div>
+      </template>
+    </vxe-modal>
   </div>
 </template>
 
@@ -24,16 +33,14 @@ export default {
         data: {},
       },
       //弹窗字段
-      alertData: {
-        alert: false
-      },
+      modal:false,
     }
   },
   mounted() {
     this.$refs.modal.$el.style.display = "none";
-    this.alertData.alert = true;
+    this.modal = true;
     this.$nextTick(() => {
-      this.alertData.alert = false;
+      this.modal = false;
       setTimeout(() => {
         this.$refs.modal.$el.style.display = "";
       }, 1000);
@@ -44,28 +51,7 @@ export default {
       console.log(this.$refs.formAlert)
     },
 
-     // 弹窗取消
-     alertCancel() {
-      this.formAlert.data = {};
-      this.alertData.alert = false;
-    },
-    // 弹窗确认
-    alertConfirm() {
-      if (this.$refs.formAlert.check()) {
-        let url = this.formAlert.data.id ? "update" : "save";
-        this.$store.state.config.al =  true
-        testApi[url](this.addApplyForm.data).then((res) => {
-          this.$store.state.config.al =  false
-          if (res.code == 200) {
-            this.$message.success(res.info);
-            this.getData();
-            this.alertCancel();
-          } else {
-            this.$message.error(res.info);
-          }
-        });
-      }
-    },
+
   },
 }
 </script>

@@ -9,7 +9,7 @@ data：{
  -->
 <!-- :show-close="false" -->
 <template>
-  <vxe-modal ref="modal" v-model="flag" :width="w" :height="h" showFooter :title="title" @close="cancel"
+  <vxe-modal ref="modal" v-model="flag" :width="w" :height="h" showFooter :title="title" @close="cancel" v-if="flag"
     :show-zoom="true">
     <slot></slot>
 
