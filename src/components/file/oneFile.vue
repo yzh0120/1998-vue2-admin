@@ -138,7 +138,7 @@ export default {
       if (this.noGetApi) {
         this.$emit("getAllFile")
       } else {
-        if (this.folderId) {
+        if (this.folderId || this.selfClass) {
           eleFileApi.queryList(
             {
               companyName: this.selfClass,
