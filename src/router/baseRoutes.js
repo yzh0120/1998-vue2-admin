@@ -13,6 +13,7 @@ import elementUI from "./modules/11-element-ui.js"
 import print from "./modules/12-print.js"
 import tagsView from "./modules/13-tagsView.js"
 import panel from "./modules/14-panel.js"
+import edit from "./modules/15-edit.js"
 
 const routes = [
   {
@@ -78,7 +79,8 @@ const routes = [
   elementUI,
   print,
   tagsView,
-  panel
+  panel,
+  edit 
 ]
 
 export default routes
