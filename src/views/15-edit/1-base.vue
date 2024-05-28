@@ -1,79 +1,78 @@
 <template>
   <div>
-    <el-button type="primary" size="mini" @click="get">获取htmle</el-button>
-
-    <div style="border: 1px solid #ccc;">
-      <Toolbar   style="border-bottom: 1px solid #ccc" :editor="editor" :defaultConfig="toolbarConfig" :mode="mode" />
-      <Editor style="height: 500px; overflow-y: hidden;" v-model="html" :defaultConfig="editorConfig" :mode="mode"
-        @onCreated="onCreated" />
+    <p>
+        container 和 toolbar 分开
+    </p>
+    <div>
+        <div ref="toolbar" class="toolbar"></div>
+        <p>------ 我是分割线 ------</p>
+        <div ref="text" class="text"></div>
     </div>
   </div>
 </template>
 
 <script>
-import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+import E from 'wangeditor'
 export default {
-  components: { Editor, Toolbar },
-  data() {
+  data() { 
     return {
-      editor: null,//编辑器实例
-      html: '<p>hello</p>',
-      toolbarConfig: {//工具栏配置  https://www.wangeditor.com/v5/toolbar-config.html
-           // toolbarKeys: [ /* 显示哪些菜单，如何排序、分组 */ ],
-        excludeKeys: [ "uploadVideo" ,"insertVideo","group-video"],
-      },
-      editorConfig: {//编辑器配置  https://www.wangeditor.com/v5/editor-config.html
-        placeholder: '请输入内容...',
-        // readOnly: true,
-        MENU_CONF: {// 所有的菜单配置，都要在 MENU_CONF 属性下
-          uploadImage: {
-            // 小于该值就插入 base64 格式（而不上传），默认为 0
-            base64LimitSize: 5 * 1024 * 100000000000 // 5kb
-          }
-        }
-      },
-      mode: 'default', // or 'simple'
+      editor:null
     }
   },
-  methods: {
-    get() {
-      console.log(this.editor.getHtml(), "getHtml")// 
-    },
-    onCreated(editor) {
-      this.editor = Object.seal(editor) // 一定要用 Object.seal() ，否则会报错
-      console.log(this.editor.getAllMenuKeys(),"------------")
-    },
-  },
-  mounted() {
-    /*
-    相关事件 
-       @onCreated="handleCreated"
-        @onChange="handleChange"
-        @onDestroyed="handleDestroyed"
-        @onFocus="handleFocus"
-        @onBlur="handleBlur"
-        @customAlert="customAlert"
-        @customPaste="customPaste"
+    mounted() {
+      this.editor = new E(this.$refs.toolbar, this.$refs.text)
+      //菜单栏
+      this.editor.config.menus = [
+      'head',
+      'bold',
+      'fontSize',
+      'fontName',
+      'italic',
+      'underline',
+      'strikeThrough',
+      'indent',
+      'lineHeight',
+      'foreColor',
+      'backColor',
+      'link',
+      'list',
+      'todo',
+      'justify',
+      'quote',
+      'emoticon',
+      'image',
+      // 'video',
+      'table',
+      'code',
+      // 'splitLine',
+      'undo',
+      'redo',
+      ]
+      //编辑器 z-index 默认为 10000，可以自行调整。
+      this.editor.config.zIndex = 3;
+      //创建
+      this.editor.create();
 
-this.editor相关api
-https://www.wangeditor.com/v5/API.html#handletab
+      //设置为只读模式
+      //this.editor.disable()
 
-编辑器配置 
-菜单配置 
-    */
-    // 模拟 ajax 请求，异步渲染编辑器
-    setTimeout(() => {
-      this.html = '<p>模拟 Ajax 异步设置内容 HTML</p>'
+      //设置文本
+      this.editor.txt.html("文本")
 
-    }, 1500)
+       // 获取text
+      //this.editor.txt.text() 
+
+      //清空内容
+      // this.editor.txt.clear()
   },
   beforeDestroy() {
-    const editor = this.editor
-    if (editor == null) return
-    editor.destroy() // 组件销毁时，及时销毁编辑器
+    // 销毁编辑器
+    this.editor.destroy()
+    this.editor = null
   }
-}
+  }
 </script>
 
-<style lang="scss" scoped></style>
-<style src="@wangeditor/editor/dist/css/style.css"></style>
+<style lang="scss" scoped>
+
+</style>
