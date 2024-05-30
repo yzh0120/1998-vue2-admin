@@ -24,7 +24,7 @@ export default {
       state.window_innerWidth = innerWidth
       state.window_innerHeight = innerHeight
 
-      state.mobile = state.window_innerWidth < 768 ? true : false;
+      state.mobile = state.window_innerWidth < 992 ? true : false;
     },
   },
   // 异步
