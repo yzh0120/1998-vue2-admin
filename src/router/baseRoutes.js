@@ -14,6 +14,7 @@ import print from "./modules/12-print.js"
 import tagsView from "./modules/13-tagsView.js"
 import panel from "./modules/14-panel.js"
 import edit from "./modules/15-edit.js"
+import bus from "./modules/16-bus.js"
 
 const routes = [
   {
@@ -80,7 +81,8 @@ const routes = [
   print,
   tagsView,
   panel,
-  edit 
+  edit,
+  bus
 ]
 
 export default routes
