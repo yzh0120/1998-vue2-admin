@@ -49,6 +49,7 @@ export default {
       'undo',
       'redo',
       ]
+      this.editor.config.uploadImgShowBase64  = true
       //编辑器 z-index 默认为 10000，可以自行调整。
       this.editor.config.zIndex = 3;
       //创建
@@ -75,5 +76,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.toolbar {
+            border: 1px solid #ccc;
+        }
+        .text {
+            border: 1px solid #ccc;
+            min-height: 400px;
+        }
 
 </style>
