@@ -6,22 +6,20 @@
 
 <script>
 export default {
-    mounted() {
-      this.$bus.$on('busEvent1', val => {
-          this.updateFm()
-      })
+  mounted() {
+    this.$bus.$on('busEvent1', val => {
+      this.updateFm()
+    })
   },
-    methods: {
-      updateFm() { 
-        alert(1)
-      },
+  methods: {
+    updateFm() {
+      alert(1)
     },
-    beforeDestroy() {
-      this.$bus.$off('busEvent1')
   },
-  }
+  beforeDestroy() {
+    this.$bus.$off('busEvent1')
+  },
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
