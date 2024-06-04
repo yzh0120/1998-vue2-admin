@@ -1,10 +1,4 @@
-<!--
- * @Author: yz
- * @Date: 2022-05-05 16:13:01
- * @Description: 
- * @FilePath: \workTo30_vue2Admin\src\views\10-vCharts\3-pie\2-auto-animation.vue
- * 
--->
+
 <template>
 	<page>
 		<ve-pie :data="chartData" :after-config="afterConfig" :after-set-option="afterSetOption" :events="chartEvents">

@@ -1,18 +1,6 @@
-<!--
- * @Author: yz
- * @Date: 2022-05-20 14:05:57
- * @Description: 
- * @FilePath: \workTo30_vue2Admin\src\views\10-vCharts\3-pie\3-radiusAndCenter.vue
- * 
--->
+
 <template>
   <page>
-    <!-- extend: {
-        series: {
-          center: ['50%', '50%'],
-          radius: [0, '60%']
-        }
-      } -->
     <ve-pie :data="chartData" :after-config="afterConfig"></ve-pie>
   </page>
 </template>
@@ -21,12 +9,6 @@
 export default {
   data() {
     return {
-      // extend: {
-      //   series: {
-      //     center: ['50%', '50%'],
-      //     radius: [0, '60%']
-      //   }
-      // },
       chartData: {
         columns: ["name", "count"],
         rows: [

@@ -297,6 +297,15 @@ export default {
 						icon: "shezhi1",
 					},
 					component: () => import( /* webpackChunkName: "VCharts-pie-auto-4-legend" */ "@/views/10-vCharts/3-pie/4-legend.vue"),
+				},
+				{
+					path: '5-label',
+					name: "VCharts-pie-auto-5-label",
+					meta: {
+						title: '饼图-label',
+						icon: "shezhi1",
+					},
+					component: () => import( /* webpackChunkName: "VCharts-pie-auto-5-label" */ "@/views/10-vCharts/3-pie/5-label.vue"),
 				}
 			]
 		},
