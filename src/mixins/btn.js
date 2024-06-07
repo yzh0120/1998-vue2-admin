@@ -22,12 +22,12 @@ export default {
           this.btnArr = res.data.moduleButtons
           /*
           
-          <el-button type="text" @click="look(row)" v-btn:detail="btnArr" v-if="type == `waitDo`">审核</el-button>
+          <el-button type="primary" @click="look(row)" v-btn:detail="btnArr" v-if="type == `waitDo`">审核</el-button>
 
           [这个是moduleButtons的格式
             {     
               actionAddress: null
-              enCode: "detail"
+              enCode: "detail"         //重要
               fullName: "查看"
               icon: null
               moduleButtonId: "1476864088440242179"
@@ -63,9 +63,11 @@ export default {
   },
   directives: {
     // 注册一个局部的自定义指令 v-focus
+    //<el-button type="primary"  v-btn:detail="btnArr" >审核</el-button>
     btn: {
-      // 统一全部隐藏
-      bind: function (el) {
+      // 统一全部隐藏 
+      bind: function (el) {//bind 钩子函数会立即执行
+        console.log(el.tagName,"el.tagName")
         //如果指令绑定的是button则禁用
         if (el.tagName == "BUTTON") {
           el.setAttribute("disabled", "disabled")
@@ -75,7 +77,13 @@ export default {
           el.style.display = "none"
         }
       },
-      update: function (el, binding, vnode) {
+      update: function (el, binding, vnode) {//update只会等到btnArr变化了才会执行
+        // el是dom
+        /*
+        binding.value 是 this.btnArr(后台获取的数组)
+        binding.arg 是 指令冒号后面的字符串 :-->detail
+        */
+        console.log(binding,"binding")
         //如果指令绑定的值(btnArr)是一个对象(包括数组)
         if (typeof binding.value == 'object') {
           //循环数组

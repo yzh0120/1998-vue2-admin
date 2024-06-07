@@ -15,6 +15,7 @@ import tagsView from "./modules/13-tagsView.js"
 import panel from "./modules/14-panel.js"
 import edit from "./modules/15-edit.js"
 import bus from "./modules/16-bus.js"
+import vBtn from "./modules/17-v-btn.js"
 
 const routes = [
   {
@@ -82,7 +83,8 @@ const routes = [
   tagsView,
   panel,
   edit,
-  bus
+  bus,
+  vBtn
 ]
 
 export default routes
