@@ -162,13 +162,13 @@ $fanwei: 5px;
 
 	////////////////////////////////////////////////
 	&.panel-success {
-		border-color: #d6e9c6;
+		border-color: #67c23a;
 
-		// box-shadow: #d6e9c6 0px 0px $fanwei;
+		// box-shadow: #67c23a 0px 0px $fanwei;
 		>.panel-heading {
-			color: #3c763d;
-			background-color: #dff0d8;
-			border-color: #d6e9c6;
+			color: white;
+			background-color: #67c23a;
+			border-color: #67c23a;
 		}
 	}
 
@@ -186,25 +186,25 @@ $fanwei: 5px;
 
 	////////////////////////////////////////////////
 	&.panel-warning {
-		border-color: #faebcc;
+		border-color: #e6a23c;
 
-		// box-shadow: #faebcc 0px 0px $fanwei;
+		// box-shadow: #e6a23c 0px 0px $fanwei;
 		>.panel-heading {
-			color: #8a6d3b;
-			background-color: #fcf8e3;
-			border-color: #faebcc;
+			color: white;//#8a6d3b;
+			background-color: #e6a23c;
+			border-color: #e6a23c;
 		}
 	}
 
 	////////////////////////////////////////////////
 	&.panel-danger {
-		border-color: #ebccd1;
+		border-color: #f56c6c;
 
-		// box-shadow: #ebccd1 0px 0px $fanwei;
+		// box-shadow: #f56c6c 0px 0px $fanwei;
 		>.panel-heading {
-			color: #a94442;
-			background-color: #f2dede;
-			border-color: #ebccd1;
+			color: white;
+			background-color: #f56c6c;
+			border-color: #f56c6c;
 		}
 	}
 
