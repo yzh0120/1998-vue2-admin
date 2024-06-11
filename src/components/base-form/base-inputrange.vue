@@ -118,6 +118,7 @@ export default {
   watch: {
     start: {
       handler(newVal) {
+        this.$set(this.data, this.item.labelField[0], this.start);
         let arr = this.$fn.deepClone(this.xxx);
         arr[0] = this.start;
         this.xxx = arr;
@@ -126,6 +127,7 @@ export default {
     },
     end: {
       handler(newVal) {
+        this.$set(this.data, this.item.labelField[1], this.end);
         let arr = this.$fn.deepClone(this.xxx);
         arr[1] = this.end;
         this.xxx = arr;

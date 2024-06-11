@@ -33,6 +33,18 @@
 <script>
 export default {
   //   props: ["data", "item"],
+  watch: {
+    xxxxxx: {
+      handler() { 
+        if (this.item.type.includes("daterange")) { 
+          if (this.$fn.type(this.data[this.item.field]) == "arr" && this.$fn.type(this.item.labelField) == "arr") {
+            this.$set(this.data, this.item.labelField[0], this.data[this.item.field][0]);
+            this.$set(this.data, this.item.labelField[1], this.data[this.item.field][1]);
+          }
+        }
+      },
+    },
+  },
   props: {
     data: {
       type: Object,
@@ -61,9 +73,13 @@ export default {
     },
   },
   computed: {
+    xxxxxx() { 
+      return this.data[this.item.field]
+    },
     xxx: {
       get() {
-        if (this.item.type == "datetimerange" || this.item.type == "daterange" || this.item.type == "yearMonthrange") {
+        // if (this.item.type == "datetimerange" || this.item.type == "daterange" || this.item.type == "yearMonthrange") {
+        if (this.item.type.includes("daterange")) { 
           if (this.$fn.type(this.data[this.item.field]) != "arr") {
             this.$set(this.data, this.item.field, []);
           }

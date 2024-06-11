@@ -86,6 +86,7 @@ export default {
             type: "inputrange",
             field: "_inputrange",
             title: "范围输入框",
+            labelField: ["start2", "end2"]
           },
           ////////////////////////////////////////////////////////////////////////
           {
@@ -177,7 +178,7 @@ export default {
           //   field: "_datetimerange",
           //   title: "年月日_时间范围选择器",
           // },
-          // { type: "daterange", field: "_daterange", title: "年月日范围选择器" },
+          { type: "daterange", field: "_daterange", title: "年月日范围选择器",labelField:["start","end"] },
           // { type: "time", field: "_time", title: "时间范围选择器" },
           ////////////////////////////////////////////////////////////////////////
           {
