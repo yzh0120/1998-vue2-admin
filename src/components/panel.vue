@@ -4,11 +4,11 @@
 			<!-- 头部 -->
 			<div :class="[`panel-heading`]" @click="bodyHandle" :style="{ fontSize: sizeComputed }">
 
-				<!-- <div class="shu"> -->
+				<div :class="type == `mxh` ? `shu` : ``">
 					<div v-if="head">{{ head }}{{ header }}</div>
 					<slot name="head"></slot>
 					<slot name="header"></slot>
-				<!-- </div> -->
+				</div>
 
 			</div>
 			<!-- 身体 -->
@@ -17,19 +17,19 @@
 					<slot></slot>
 				</div>
 			</div> -->
-			
-      <div v-if="isOne">
-        <div class="panel-body" v-if="showBody" :style="{ padding: `15px` }">
-          <slot></slot>
-        </div>
-      </div>
-      <div v-else class="panel-body" v-show="showBody" :style="{ padding: `15px` }" >
-        <slot></slot>
-      </div>
+
+			<div v-if="isOne">
+				<div class="panel-body" v-if="showBody" :style="{ padding: `15px` }">
+					<slot></slot>
+				</div>
+			</div>
+			<div v-else class="panel-body" v-show="showBody" :style="{ padding: `15px` }">
+				<slot></slot>
+			</div>
 		</div>
 	</div>
 </template>
-    <!-- 
+<!-- 
 	default 
 	primary
 	success
@@ -56,12 +56,12 @@ export default {
 	},
 	computed: {
 		isOne() {
-      if (this.count < 1) {
-        return true
-      } else {
-        return false
-      }
-    },
+			if (this.count < 1) {
+				return true
+			} else {
+				return false
+			}
+		},
 		addType() {
 			return "panel-" + this.type
 		},
@@ -86,45 +86,45 @@ export default {
 	watch: {
 		"close": {
 			handler() {
-        setTimeout(() => {
-          this.showBody = !this.close
-          if (this.showBody) {
-            this.count++
-          }
-        }, 0)
-      },
+				setTimeout(() => {
+					this.showBody = !this.close
+					if (this.showBody) {
+						this.count++
+					}
+				}, 0)
+			},
 		},
 	},
 	mounted() {
-    if (this.close) {
-      setTimeout(() => {
-        this.showBody = false
-      }, 0)
-    } else {
-      setTimeout(() => {
-        this.showBody = true
-        this.count++
-      }, 0)
-    }
-  },
+		if (this.close) {
+			setTimeout(() => {
+				this.showBody = false
+			}, 0)
+		} else {
+			setTimeout(() => {
+				this.showBody = true
+				this.count++
+			}, 0)
+		}
+	},
 	methods: {
 		bodyHandle() {
-      if (!this.listenTo) {
-        setTimeout(() => {
-          this.showBody = !this.showBody;
-          if (this.showBody) {
-            this.count++
-          }
-          console.log(this.showBody)
-        }, 0)
+			if (!this.listenTo) {
+				setTimeout(() => {
+					this.showBody = !this.showBody;
+					if (this.showBody) {
+						this.count++
+					}
+					console.log(this.showBody)
+				}, 0)
 
-      }
-    }
+			}
+		}
 
 	}
 };
 </script>
-    
+
 <style scoped lang="scss">
 $fanwei: 5px;
 
@@ -136,7 +136,7 @@ $fanwei: 5px;
 	// -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 	//   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 
-////////////////////////////////////////////////
+	////////////////////////////////////////////////
 	&.panel-default {
 		border-color: #ddd;
 
@@ -147,7 +147,8 @@ $fanwei: 5px;
 			border-color: #ddd;
 		}
 	}
-////////////////////////////////////////////////
+
+	////////////////////////////////////////////////
 	&.panel-primary {
 		border-color: #337ab7;
 
@@ -158,7 +159,8 @@ $fanwei: 5px;
 			border-color: #337ab7;
 		}
 	}
-////////////////////////////////////////////////
+
+	////////////////////////////////////////////////
 	&.panel-success {
 		border-color: #d6e9c6;
 
@@ -169,7 +171,8 @@ $fanwei: 5px;
 			border-color: #d6e9c6;
 		}
 	}
-////////////////////////////////////////////////
+
+	////////////////////////////////////////////////
 	&.panel-info {
 		border-color: #bce8f1;
 
@@ -180,7 +183,8 @@ $fanwei: 5px;
 			border-color: #bce8f1;
 		}
 	}
-////////////////////////////////////////////////
+
+	////////////////////////////////////////////////
 	&.panel-warning {
 		border-color: #faebcc;
 
@@ -191,7 +195,8 @@ $fanwei: 5px;
 			border-color: #faebcc;
 		}
 	}
-////////////////////////////////////////////////
+
+	////////////////////////////////////////////////
 	&.panel-danger {
 		border-color: #ebccd1;
 
@@ -202,18 +207,20 @@ $fanwei: 5px;
 			border-color: #ebccd1;
 		}
 	}
-////////////////////////////////////////////////
-	// &.panel-mxh {
-	// 	border-color: #F6F6F6;
-	//   // box-shadow: #ebccd1 0px 0px $fanwei;
-	//   > .panel-heading {
-	// 	color: #4E5969;
-	// 	font-weight: bold;
-	// 	background-color: #F6F6F6;
-	// 	border-color: #F6F6F6;
-	//   }
-	// }
-////////////////////////////////////////////////
+
+	////////////////////////////////////////////////
+	&.panel-mxh {
+		border-color: #ddd;
+
+		// box-shadow: #ddd 0px 0px $fanwei;
+		>.panel-heading {
+			color: #333;
+			background-color: #f5f5f5;
+			border-color: #ddd;
+		}
+	}
+
+	////////////////////////////////////////////////
 	.panel-heading {
 		padding: 10px 15px;
 		border-bottom: 1px solid transparent;
@@ -230,20 +237,21 @@ $fanwei: 5px;
 	}
 }
 
-.shu{
-		padding-left: 10px;
-		position: relative;
-		// width:10px;
-		// height:10px;
-		// background-color: #F6384C;
-		&::before{
-			content: "";
-			display:inline-block;
-			position: absolute;
-					width:4px;
-		height:100%;
+.shu {
+	padding-left: 10px;
+	position: relative;
+
+	// width:10px;
+	// height:10px;
+	// background-color: #F6384C;
+	&::before {
+		content: "";
+		display: inline-block;
+		position: absolute;
+		width: 4px;
+		height: 100%;
 		left: -4px;
-		background-color: white;
-		}
+		background-color: #F6384C;
 	}
+}
 </style>

@@ -41,6 +41,51 @@
         default
       </div>
     </panel>
+
+    <panel type="mxh">
+      <div slot="header">
+        default
+      </div>
+    </panel>
+
+    <el-divider>分割线</el-divider>
+
+
+    <panel2 type="primary"  :close="close">
+      <div slot="header">
+        primary
+      </div>
+    </panel2>
+
+    <panel2 type="success" :close="true">
+      <div slot="header">
+        success
+      </div>
+    </panel2>
+
+    <panel2 type="info">
+      <div slot="header">
+        info
+      </div>
+    </panel2>
+
+    <panel2 type="warning">
+      <div slot="header">
+        warning
+      </div>
+    </panel2>
+
+    <panel2 type="danger">
+      <div slot="header">
+        danger
+      </div>
+    </panel2>
+
+    <panel2 type="default">
+      <div slot="header">
+        default
+      </div>
+    </panel2>
   </div>
 </template>
 
