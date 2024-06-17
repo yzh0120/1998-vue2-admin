@@ -64,6 +64,14 @@ export default {
         title: 'vueTransitionGroup',
         icon: "shezhi1",
       }
+    }, {
+      path: 'flex',
+      name: 'style-flex',
+      component: () => import( /* webpackChunkName: "style-flex" */ "@/views/6-style/7-flex.vue"),
+      meta: {
+        title: 'flex',
+        icon: "shezhi1",
+      }
     }
   ]
 }
