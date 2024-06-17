@@ -1,5 +1,7 @@
 <template>
   <div>
+  <el-button type="primary" size="default" @click="ggg">获取html</el-button>
+  
     <p>
         container 和 toolbar 分开
     </p>
@@ -66,6 +68,11 @@ export default {
 
       //清空内容
       // this.editor.txt.clear()
+  },
+  methods: {
+    ggg(){
+      console.log(this.editor.txt.html())
+    },
   },
   beforeDestroy() {
     // 销毁编辑器
