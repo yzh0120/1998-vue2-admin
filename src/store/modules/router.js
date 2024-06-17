@@ -47,14 +47,12 @@ function replaceField(asyncRouterMap) {
       meta: {}
     };
     if (route.target) {
-      obj.name = route.enCode
-      obj.meta.title = route.fullName
-      obj.meta.icon = route.icon
-      // obj.meta.noCache = false
-      obj.path = route.urlAddress
-      obj.meta.hidden = !route.isMenu
-      // obj.todoNum = route.todoNum
-      obj.component = route.target
+      obj.name = route.enCode//必须唯一因为在左侧菜单组件中是key
+      obj.meta.title = route.fullName//标题
+      obj.meta.icon = route.icon//图标
+      obj.path = route.urlAddress//路径
+      obj.meta.hidden = !route.isMenu//是否隐藏
+      obj.component = route.target//组件
     }
     // console.log(route.children, "obj.children")
     if (route.children && route.children.length) {
