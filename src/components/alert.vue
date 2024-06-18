@@ -9,9 +9,14 @@ data：{
  -->
 <!-- :show-close="false" -->
 <template>
-  <vxe-modal ref="modal" v-model="flag" :width="w" :height="h" showFooter :title="title" @close="cancel" v-if="flag"
-    :show-zoom="true">
-    <slot></slot>
+  <vxe-modal ref="modal" v-model="flag" :mask="false" 
+  :lockView="false" :width="data.width" :height="data.height" show-footer :title="title" @close="cancel" v-if="flag" show-zoom>
+      {{ data.width  }}
+        <template #corner>
+          <vxe-icon name="minus" @click="narrow" style="cursor: pointer;"></vxe-icon>
+        </template>
+
+          <slot></slot>
 
     <template #footer>
       <el-button @click="cancel" v-if="!msg" plain>取消</el-button>
@@ -27,12 +32,43 @@ export default {
       type: Object,
       default: () => { 
         return {
+          width: null,
+          height:null,
           loading:false
         }
       }
     }
   },
+  data() { 
+    return {
+      oldW: null,
+      oldH:null
+    }
+  },
+  mounted() { 
+    if (!this.data.width) { 
+      this.data.width = "80%"
+    }
+    if (!this.data.height) { 
+      this.data.height = "80%"
+    }
+    this.oldW = this.data.width
+    this.oldH = this.data.height
+
+
+  },
   methods: {
+    narrow() { 
+      if (this.data.width == 200) {
+        this.data.width = this.oldW
+        this.data.height = this.oldH
+      } else { 
+        this.data.width = 200
+        this.data.height = 200
+      }
+      console.log(this.data.width, "this.data.width")
+      this.$forceUpdate()
+    },
     cancel() {
       this.$emit("cancel");
     },
@@ -52,12 +88,12 @@ export default {
         this.data.alert = val;
       },
     },
-    w() {
-      return this.data.width ? this.data.width : "80%";
-    },
-    h() {
-      return this.data.height ? this.data.height : "80%";
-    },
+    // w() {
+    //   return this.data.width ? this.data.width : "80%";
+    // },
+    // h() {
+    //   return this.data.height ? this.data.height : "80%";
+    // },
     title() {
       return this.data.title ? this.data.title : "标题";
     },
