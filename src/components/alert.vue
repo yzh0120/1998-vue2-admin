@@ -32,6 +32,7 @@ export default {
       type: Object,
       default: () => { 
         return {
+  
           width: null,
           height:null,
           loading:false
@@ -41,6 +42,8 @@ export default {
   },
   data() { 
     return {
+      // top: "center",
+      //       left:"center",
       oldW: null,
       oldH:null
     }
@@ -62,11 +65,16 @@ export default {
       if (this.data.width == 200) {
         this.data.width = this.oldW
         this.data.height = this.oldH
+        // this.top= "center"
+        // this.left="center"
       } else { 
         this.data.width = 200
         this.data.height = 200
+        // this.top=0
+        // this.left=0
       }
       console.log(this.data.width, "this.data.width")
+      this.$refs.modal.setPosition(0,0)
       this.$forceUpdate()
     },
     cancel() {
