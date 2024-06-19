@@ -91,7 +91,10 @@ export default {
         } else {
           if (this.data[this.item.field] === null || this.data[this.item.field] === "" || this.data[this.item.field] === undefined) {
             return this.data[this.item.field];
-          } else {
+          } else if (String(this.data[this.item.field]).split(".").length >= 3) { 
+            return this.data[this.item.field];
+          }
+          else {
             let str = this.data[this.item.field] + ""
             let str1 = this.$num.formatMoney(str,this.pointNum)
             return str1
