@@ -1,5 +1,6 @@
 //实现table细边框,设置如下css：
 .table{
+	word-break: break-all;//强制断句
 	border:0.5px solid #ddd;
 	border-spacing: 0;
 	border-collapse:collapse;
