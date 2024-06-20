@@ -215,3 +215,19 @@ export function convertCurrency(money) {
   }
   return chineseStr;
 }
+
+export function selfNumber(val) { 
+  if (val === null || val === undefined || val === "") { 
+    return 0
+  } else {
+    return Number(val)
+  }
+}
+
+export function isNull(val) { 
+  if (val === null || val === undefined || val === "" || val === 0 || val === "0") { 
+    return true
+  } else {
+    return false
+  }
+}
