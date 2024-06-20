@@ -351,15 +351,20 @@ export default {
     },
     //简单下拉
     slotSelectAll() {
+      //循环list
       this.for_List.forEach((item) => {
+        //如果item有个slotSelect标识
         if (item.slotSelect) {
+          //触发方法
           this.selectChange(this.formData[item.field], item, "不是手动触发的")
         }
       })
     },
     //简单下拉的change事件
     selectChange(e, item_f, noEmit) {
+      //如果当前item选择是 并且没有被隐藏
       if (e === item_f.trueLabel && item_f.show !== false) {
+        //循环item的checkArr字段 checkArr是被控制的field
         item_f.checkArr.forEach((item) => {
           this._set(this.data, item, { show: true })
 

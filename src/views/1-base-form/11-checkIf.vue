@@ -4,9 +4,9 @@
     <base-form :data="form2" ref="form2" @event="formEvent"></base-form>
     <el-divider>下拉框</el-divider>
     <base-form :data="form3" ref="form3" @event="formEvent"></base-form>
-    <el-divider>多个复选框控制</el-divider>
+    <el-divider>多个复选框控制 1控制2 2控制3 可以导致1让3消失</el-divider>
     <base-form :data="form4" ref="form4" @event="formEvent"></base-form>
-    <el-divider>先复选框控制 + 后watch控制</el-divider>
+    <el-divider>先复选框控制 + 后watch控制(这个和4的区别是 是多选一而不是一起显示和展示)</el-divider>
     <base-form :data="form5" ref="form5" @event="formEvent"></base-form>
   </page>
 </template>
@@ -75,7 +75,7 @@ export default {
       form4: {
         span: true,
         list: [
-        {
+          {
             slotCheck: "选择1",
             checkArr: [`ccc`],
             trueLabel: 1,
@@ -120,9 +120,11 @@ export default {
             field: "_input52",
             title: "普通下拉框(看这个)",
             span: 12,
+            trueLabel: 1,
+            falseLabel: 0,
             opt: [
               { text: "显示1", value: "1" },
-              {text:"显示2",value:"2"}
+              { text: "显示2", value: "2" }
             ]
           },
           {
@@ -130,7 +132,7 @@ export default {
             field: "_input555551",
             title: "我是一(看这个)",
             span: 12,
-            show:false,
+            show: false,
             rules: [
               { required: true, message: "请输入" },
               { validator: self.$validator.numberpoint },
@@ -140,7 +142,7 @@ export default {
             type: "input",
             field: "_input555552",
             title: "我是二(看这个)",
-            show:false,
+            show: false,
             span: 12,
             rules: [
               { required: true, message: "请输入" },
@@ -191,17 +193,23 @@ export default {
       handler() {
         if (this.$refs.form5) {
           this.$refs.form5.slotCheckAll()
-          console.log(this.form5.data._input52,this.form5.data._input52 === "1","this.form5.data._input52")
-          if (this.form5.data._input52 === "1") {
-          this._set(this.form5, "_input555551", { show: true })
-          this._set(this.form5, "_input555552", { show: false })
-        } else if (this.form5.data._input52 === "2") {
-          this._set(this.form5, "_input555551", { show: false })
-          this._set(this.form5, "_input555552", { show: true })
-        } else { 
-          this._set(this.form5, "_input555551", { show: false })
-          this._set(this.form5, "_input555552", { show: false })
-        }
+
+          if (this.form5.data.ccc555 == 1) {
+            if (this.form5.data._input52 === "1") {
+              this._set(this.form5, "_input555551", { show: true })
+              this._set(this.form5, "_input555552", { show: false })
+            } else if (this.form5.data._input52 === "2") {
+              this._set(this.form5, "_input555551", { show: false })
+              this._set(this.form5, "_input555552", { show: true })
+            } else {
+              this._set(this.form5, "_input555551", { show: false })
+              this._set(this.form5, "_input555552", { show: false })
+            }
+          } else {
+            this._set(this.form5, "_input555551", { show: false })
+            this._set(this.form5, "_input555552", { show: false })
+          }
+
         }
       },
       immediate: true,
@@ -211,12 +219,11 @@ export default {
   methods: {
     formEvent(e) {
       // if (e.item.field == "_input52") { 
-        
+
       // }
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
