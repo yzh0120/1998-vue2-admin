@@ -52,6 +52,19 @@ export function creditCode(rule, value, callback) {
   }
 }
 
+//最大允许12位整数内以及6位小数
+export function numLimit18_6(rule, value, callback) {
+  if (value) {
+    var reg = /^[1-9]\d{0,11}(\.\d{1,6})?$|^0(\.\d{1,6})?$/;
+    if (reg.test(value) == false) {
+      callback("最大允许12位整数以及6位小数");
+    } else {
+      callback();
+    }
+  } else {
+    callback();
+  }
+}
 
 /**
  * { validator: self.$validator.IDcard, trigger: "blur" },
@@ -106,19 +119,7 @@ export function mobileOrphone(rule, value, callback) {
   }
 }
 
-//最大允许12位整数内以及6位小数
-export function numLimit18_6(rule, value, callback) {
-  if (value) {
-    var reg = /^[1-9]\d{0,11}(\.\d{1,6})?$|^0(\.\d{1,6})?$/;
-    if (reg.test(value) == false) {
-      callback("最大允许12位整数以及6位小数");
-    } else {
-      callback();
-    }
-  } else {
-    callback();
-  }
-}
+
 
 export function isExternal(path) {
   return /^(https?:|mailto:|tel:)/.test(path)
