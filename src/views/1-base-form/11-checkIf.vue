@@ -109,7 +109,7 @@ export default {
         list: [
           {
             slotCheck: "显示详细",
-            checkArr: [`_input52`],
+            checkArr: [`_input52`,`_input555551`,`_input555552`],//也可以在这里写checkArr: [`_input52`]
             trueLabel: 1,
             falseLabel: 0,
             field: "ccc555",
@@ -206,8 +206,9 @@ export default {
               this._set(this.form5, "_input555552", { show: false })
             }
           } else {
-            this._set(this.form5, "_input555551", { show: false })
-            this._set(this.form5, "_input555552", { show: false })
+            //也可以在这里写
+            // this._set(this.form5, "_input555551", { show: false })
+            // this._set(this.form5, "_input555552", { show: false })
           }
 
         }
