@@ -98,6 +98,15 @@ export default {
       }
     },
     {
+      path: 'pageTable',
+      name: 'pageTable',
+      component: () => import( /* webpackChunkName: "pageTable" */ "@/views/2-vxe-table/10-pageTable.vue"),
+      meta: {
+        title: 'pageTable',
+        icon: "shezhi1",
+      }
+    },
+    {
       path: 'table',
       name: 'vxeTable-table',
       component: () => import( /* webpackChunkName: "vxeTable-table" */ "@/views/2-vxe-table/999-table.vue"),
