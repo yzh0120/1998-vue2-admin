@@ -135,10 +135,7 @@ export default {
     ///////////////////切换
     //获取文件
     getFiles() {
-      if (this.noGetApi) {
-        this.$emit("getAllFile")
-      } else {
-        if (this.folderId || this.selfClass) {
+      if (this.folderId || this.selfClass) {
           eleFileApi.queryList(
             {
               companyName: this.selfClass,
@@ -170,7 +167,11 @@ export default {
             }
           })
         }
-      }
+      // if (this.noGetApi) {
+      //   // this.$emit("getAllFile")
+      // } else {
+        
+      // }
 
 
 
