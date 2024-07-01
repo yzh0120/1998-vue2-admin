@@ -399,7 +399,7 @@ export function zhNUmEng(rule, value, callback) {
 //空格
 // export function KongGe(rule, value, callback) {
 //   if (value) {
-//     var reg = /^\S*$/;
+//     var reg = /^\S*$/;//不允许空格               //^[^\(\)]*$  不允许英文的括号
 //     if (reg.test(value) == false) {
 //       callback(new Error("不允许空格"));
 //     } else {
