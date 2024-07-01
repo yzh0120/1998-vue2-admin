@@ -97,7 +97,6 @@ export default {
     };
   },
   created() {
-    // this.getFiles(); //获取历史文件///////////////////切换
     if (this.noGetApi) {
 
     }
