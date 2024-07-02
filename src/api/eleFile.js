@@ -14,60 +14,24 @@ import {
   MessageBox
 } from 'element-ui';
 
-//上传文件
-export function uploadFile(formData, pathUrl) {
-  let headers = {
-    'Authorization': "Bearer " + cookieFn.getCookie(process.env.VUE_APP_TOKEN),
-    'content-type': 'multipart/form-data'
-  }
-  let url = "/system/file_annexes/uploadFile"
-  if (pathUrl) {
-    url = pathUrl
-  }
 
-  return axios({
-    baseURL: process.env.VUE_APP_API,
-    url: url,
-    method: 'post',
-    headers: headers,
-    data: formData,
-  })
-}
 
 
 
 //下載文件流 默认get 导出
 export function download(params = {}, downloadUrl, method = "get") {
-  if (downloadUrl == "pre") {
-    if (/.xls|.xlsx|.doc|.docx|.ppt|.pptx/g.test(params.fileUrl)) {
-      // var ele = `
-      //              <iframe src='https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(params.fileUrl)}' width='100%' height='100%' frameborder='1'>
-      //              </iframe>
-      //          `;
-      // var newwindow = window.open(params.fileUrl, "_blank", '');
-      // newwindow.document.write(ele);
-      window.open(`https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(params.fileUrl)}`)
-    } else {
-      window.open(params.fileUrl)
-    }
-    return;
-  }
   let msg = Message({
     message: "正在下载文件，请稍等",
     type: 'warning',
     duration: 0
   })
   let headers = {
-    // 'Authorization': "Bearer " + getToken(),
     'Authorization': "Bearer " + cookieFn.getCookie(process.env.VUE_APP_TOKEN),
   }
   let finallyUrl  = "/system/file_annexes/download"
   if (downloadUrl) {
     finallyUrl = downloadUrl//type
   }
-  // else {
-  //   finallyUrl = "/system/file_annexes/download"
-  // }
 
   return new Promise((resolve, reject) => {
     axios({
@@ -128,31 +92,14 @@ export function download(params = {}, downloadUrl, method = "get") {
 
 }
 
-//url下载文件流
-export async function download_url(url) {
 
-  let type = url.split("/").pop()
-  const x = new window.XMLHttpRequest();
-  x.open('GET', url, true);
-  x.responseType = 'blob';
-  x.onload = () => {
-    // let time = new Date().toLocaleDateString();
-    const url = window.URL.createObjectURL(x.response);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = type;
-    a.click();
-  };
-  x.send()
-
-}
 
 /**
  * 通过url下载文件并对下载的文件更名 是url下载文件流升级版
  * @param {*} url
  * @param {*} filename
  */
-export const downloadFile = (url, filename) => {
+export const download_url = (url, filename) => {
   function getBlob(url) {
     return new Promise(resolve => {
       const XML = new XMLHttpRequest();
@@ -210,3 +157,44 @@ export function queryList(data) {
     data: data
   })
 }
+
+
+//上传文件  感觉没用了
+export function uploadFile(formData, pathUrl) {
+  let headers = {
+    'Authorization': "Bearer " + cookieFn.getCookie(process.env.VUE_APP_TOKEN),
+    'content-type': 'multipart/form-data'
+  }
+  let url = "/system/file_annexes/uploadFile"
+  if (pathUrl) {
+    url = pathUrl
+  }
+
+  return axios({
+    baseURL: process.env.VUE_APP_API,
+    url: url,
+    method: 'post',
+    headers: headers,
+    data: formData,
+  })
+}
+
+
+//url下载文件流
+// export async function download_url(url) {
+
+//   let type = url.split("/").pop()
+//   const x = new window.XMLHttpRequest();
+//   x.open('GET', url, true);
+//   x.responseType = 'blob';
+//   x.onload = () => {
+//     // let time = new Date().toLocaleDateString();
+//     const url = window.URL.createObjectURL(x.response);
+//     const a = document.createElement('a');
+//     a.href = url;
+//     a.download = type;
+//     a.click();
+//   };
+//   x.send()
+
+// }
