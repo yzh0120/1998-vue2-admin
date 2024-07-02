@@ -292,9 +292,9 @@ export default {
       }
       //如果只有taskName并且 mode == "getFileById"
       else if (this.uploadObj.taskName ||  this.mode == "getFileById") {
-        console.log(data, "data")
+        // console.log(data, "data")
         this.uploadObj.detail = [data];//data是单个文件
-        console.log(data.onlinePreviewUrl, 'onlinePreviewUrlonlinePreviewUrlonlinePreviewUrl');
+        // console.log(data.onlinePreviewUrl, 'onlinePreviewUrlonlinePreviewUrlonlinePreviewUrl');
         this.$emit("success", {
           taskName: this.uploadObj.taskName,
           data: data,
