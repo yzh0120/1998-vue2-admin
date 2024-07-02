@@ -6,6 +6,8 @@
 
 
 fileId 文件id需要传给后台
+新增弹窗的文件 感觉没啥用了但是有点很明显 可以获取多个文件
+<oneFile :uploadObj="uploadObj" :projectId="oneFormAlert.data.id" mode="onlyOne"  :fileId="oneFormAlert.data.currentFileId"></oneFile>
 现在用这个感觉方便点缺点是只能获取一个文件
 <oneFile :uploadObj="uploadObj"  mode="getFileById"  :fileId="oneFormAlert.data.currentFileId"></oneFile>
    -->
@@ -143,6 +145,22 @@ export default {
             if (res.code == 200) {
               this.$emit("getFile", { data: res.data })
               this.uploadObj.detail = res.data;
+              //如果是onlyOne模式 那个只会显示和id匹配的一个
+              if (this.mode == "onlyOne") {
+                if (!this.fileId) {
+                  this.uploadObj.detail = []
+                  return this.$message.error("文件id是空！")
+
+                }
+                // this.uploadObj.detail = [ res.data[res.data.length - 1] ];
+                let activeFile = res.data.find((e) => {
+                  return e.id == this.fileId
+                })
+                if (activeFile) {
+                  this.uploadObj.detail = [activeFile]
+                }
+
+              }
             } else {
               this.$message.error(res.msg);
             }
@@ -290,8 +308,8 @@ export default {
           }
         })
       }
-      //如果只有taskName并且 mode == "getFileById"
-      else if (this.uploadObj.taskName ||  this.mode == "getFileById") {
+      //如果只有taskName并且 mode == "onlyOne"
+      else if (this.uploadObj.taskName || this.mode == "onlyOne" || this.mode == "getFileById") {
         console.log(data, "data")
         this.uploadObj.detail = [data];//data是单个文件
         console.log(data.onlinePreviewUrl, 'onlinePreviewUrlonlinePreviewUrlonlinePreviewUrl');
