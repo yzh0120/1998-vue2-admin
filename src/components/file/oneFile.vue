@@ -132,7 +132,7 @@ export default {
       
      },
     ///////////////////切换
-    //获取文件
+    //通过taskName获取文件
     getFiles() {
       if (this.folderId || this.selfClass) {
           eleFileApi.queryList(
