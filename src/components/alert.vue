@@ -7,7 +7,14 @@ data：{
 	msg：false                                是否只是信息弹窗
 }
  -->
-<!-- :show-close="false" -->
+<!-- 
+      <alert :data="alertData" @cancel="alertCancel" @close="alertCancel" @confirm="alertConfirm">
+    </alert>
+
+       alertData: {
+        alert: false
+      },
+ -->
 <template>
   <vxe-modal ref="modal" v-model="flag" :mask="false" 
   :lockView="false" :width="data.width" :height="data.height" show-footer :title="title" @close="cancel" v-if="flag" show-zoom>
