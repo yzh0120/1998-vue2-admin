@@ -116,6 +116,7 @@ export default {
     };
   },
   created() {
+    //获取城市
     this.$watch(
       function () {
         return this.item[this.city];
@@ -142,7 +143,7 @@ export default {
         immediate: true,
       }
     );
-    //////////////////////////////////////////////////////////////////////////////////////
+     //获取区域
     this.$watch(
       function () {
         return this.item[this.areas];
