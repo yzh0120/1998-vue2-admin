@@ -99,11 +99,37 @@ export default {
     );
     this.$watch(
       function () {
+        return this.item[this.province];
+      },
+      {
+        handler(v) {
+          if (v) {
+            this.getCitys(this.item[this.province]);
+          }
+        },
+        immediate: true,
+      }
+    );
+    //
+    this.$watch(
+      function () {
         return this.item[this.areas];
       },
       {
         handler(v) {
-          // console.log(v, "vvvv");
+          if (v) {
+            this.getAreas(this.item[this.province],this.item[this.city]);
+          }
+        },
+        immediate: true,
+      }
+    );
+    this.$watch(
+      function () {
+        return this.item[this.city];
+      },
+      {
+        handler(v) {
           if (v) {
             this.getAreas(this.item[this.province],this.item[this.city]);
           }
