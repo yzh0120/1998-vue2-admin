@@ -144,7 +144,7 @@ export default {
       testApi.pageList(data).then((res) => {
         this.gridOptions.loading = false
         if (res.code == 200) {
-          if (res.data.list.length == 0 && this.pagerData.pageNo != 1) {
+          if (res.data.records.length == 0 && this.pagerData.pageNo != 1) {
             this.pagerData.pageNo--
             this.getData()
           } else {

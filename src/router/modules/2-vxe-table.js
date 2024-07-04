@@ -102,7 +102,16 @@ export default {
       name: 'pageTable',
       component: () => import( /* webpackChunkName: "pageTable" */ "@/views/2-vxe-table/10-pageTable.vue"),
       meta: {
-        title: 'pageTable',
+        title: '分页Table',
+        icon: "shezhi1",
+      }
+    },
+    {
+      path: 'zsyTable',
+      name: 'zsyTable',
+      component: () => import( /* webpackChunkName: "zsyTable" */ "@/views/2-vxe-table/11-zsyTable.vue"),
+      meta: {
+        title: '自适应Table',
         icon: "shezhi1",
       }
     },
