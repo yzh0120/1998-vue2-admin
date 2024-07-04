@@ -64,11 +64,7 @@ export default {
       //表格
       gridOptions: {
         loading: false,
-        border: true,
-        showOverflow: true,
-        // height: self.$store.state.config.navTableIntableHeight,
         height: self.$store.state.config.tableheight,
-        align: "center",
         columns: [
           {
             title: "序号",

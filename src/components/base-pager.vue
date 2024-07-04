@@ -69,7 +69,7 @@
   }
   .fixed{
     position: fixed;
-    bottom: -20px;
+    bottom: 0px;
     right: 0;
     z-index: 99999999999999999;
   }
