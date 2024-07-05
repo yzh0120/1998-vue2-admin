@@ -336,13 +336,6 @@ export default {
         }
       });
     },
-    //显示隐藏
-    sync() {
-      this.againShow = false;
-      this.$nextTick(() => {
-        this.againShow = true;
-      });
-    },
     //清空校验
     clearValidate() {
       this.$refs.form?.clearValidate()
