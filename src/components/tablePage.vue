@@ -5,8 +5,13 @@
     </div>
 
     <div class="bottom" ref="boottom">
-      <div :style="{ height: height }" class="bbb" v-if="tableChange">
+      <!-- <div :style="{ height: height }" class="bbb" v-if="tableChange">
         <slot name="table"></slot>
+      </div> -->
+      <div :style="{ height: height }" class="bbb">
+        <div style="height: 95%;">
+          <slot name="table"></slot>
+        </div>
       </div>
     </div>
   </div>
@@ -24,11 +29,10 @@ export default {
   mounted() {
     const _this = this;
     const erd = elementResizeDetectorMaker()
-    //监听top  只是为了在窗口变化的时候 改变 _this.height 然后触发
+    //监听top  只是为了在窗口变化的时候 改变 _this.height 然后触发监听bottom的方法(所以监听bottom的方法才有setTimeout 为了保持先后顺序)
     erd.listenTo(_this.$refs.top, (element) => {
       console.log(_this.$refs.boottom.offsetHeight, "top.offsetHeight")
       _this.height = 0 + 'px'
-      //this.tableChange = true
     })
     //监听bottom
     erd.listenTo(_this.$refs.boottom, (element) => {
