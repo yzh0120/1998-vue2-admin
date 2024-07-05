@@ -18,7 +18,7 @@
   } 
  -->
 
- <template>
+<template>
   <el-form ref="form" :class="data.className" :model="formData" :label-width="labelWidth" style="" :inline="inline"
     :size="size" @submit.native.prevent :disabled="disabled">
     <div v-if="againShow">
@@ -29,7 +29,8 @@
           <el-col :xs="item.xs" :sm="item.sm" :md="item.md" :lg="item.lg" :xl="item.xl"
             v-for="(item, index) in for_List" :key="index + `row`" v-if="item.show === false ? false : true">
             <!-- item.show === false ? false : true -->
-            <el-form-item :prop="item.field" :label="item.title" :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
+            <el-form-item :prop="item.field" :label="item.title"
+              :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
               :label-width="item.labelWidth">
               <!-- 问号 -->
               <template v-if="item.labelTip" #label>
@@ -75,7 +76,8 @@
           <el-col :span="item.span ? item.span : 8" v-for="(item, index) in for_List" :key="index + `span`"
             v-if="item.show === false ? false : true">
             <!-- item.show === false ? false : true -->
-            <el-form-item :prop="item.field" :label="item.title" :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
+            <el-form-item :prop="item.field" :label="item.title"
+              :class="[item.labelTip?`labelTipClass`:``,item.className]" :rules="item.rules"
               :label-width="item.labelWidth">
               <!-- 问号 -->
               <template v-if="item.labelTip" #label>
@@ -124,13 +126,13 @@
           :label-width="item.labelWidth" :class="[item.labelTip?`labelTipClass`:``,item.className]">
           <!-- 问号 -->
           <template v-if="item.labelTip" #label>
-                <div>
-                  {{ item.title }}
-                  <el-tooltip class="item" effect="dark" :content="item.labelTip" placement="top-start">
-                    <i class="el-icon-question"></i>
-                  </el-tooltip>
-                </div>
-              </template>
+            <div>
+              {{ item.title }}
+              <el-tooltip class="item" effect="dark" :content="item.labelTip" placement="top-start">
+                <i class="el-icon-question"></i>
+              </el-tooltip>
+            </div>
+          </template>
           <!-- 插槽 -->
           <template v-if="item.slot">
             <slot :name="item.slot" />
@@ -313,79 +315,7 @@ export default {
     },
   },
   methods: {
-    //简单下拉和复选的集合方法
-    checkAndSelect() {
-      this.slotCheckAll()
-      this.slotSelectAll()
-    },
-    //简单复选
-    slotCheckAll() {
-      this.for_List.forEach((item) => {
-        if (item.slotCheck) {
-          this.checkboxChange(this.formData[item.field], item, "不是手动触发的")
-        }
-      })
-    },
-    //简单复选的change事件
-    checkboxChange(e, item_f, noEmit) {
-      if (e === item_f.trueLabel && item_f.show !== false) {
-        item_f.checkArr.forEach((item) => {
-          this._set(this.data, item, { show: true })
-        })
-      } else {
-        item_f.checkArr.forEach((item) => {
-          this._set(this.data, item, { show: false })
-        })
-      }
-      let obj = {
-        item: item_f,
-        name: "slotCheck",
-        event: "slotCheck",
-        value: e
-      }
-      if (noEmit) {
 
-      } else {
-        this.$emit("event", obj);
-      }
-    },
-    //简单下拉
-    slotSelectAll() {
-      //循环list
-      this.for_List.forEach((item) => {
-        //如果item有个slotSelect标识
-        if (item.slotSelect) {
-          //触发方法
-          this.selectChange(this.formData[item.field], item, "不是手动触发的")
-        }
-      })
-    },
-    //简单下拉的change事件
-    selectChange(e, item_f, noEmit) {
-      //如果当前item选择是 并且没有被隐藏
-      if (e === item_f.trueLabel && item_f.show !== false) {
-        //循环item的checkArr字段 checkArr是被控制的field
-        item_f.checkArr.forEach((item) => {
-          this._set(this.data, item, { show: true })
-
-        })
-      } else {
-        item_f.checkArr.forEach((item) => {
-          this._set(this.data, item, { show: false })
-        })
-      }
-      let obj = {
-        item: item_f,
-        name: "slotSelect",
-        event: "slotSelect",
-        value: e
-      }
-      if (noEmit) {
-
-      } else {
-        this.$emit("event", obj);
-      }
-    },
     //将不同的表单控件的rules的trigger设定
     autoTrigger() {
       this.data.list.forEach((item) => {
@@ -503,14 +433,87 @@ export default {
       }
       this.$emit("event", e);
     },
+    /////////////////////////////////////////////////////
+    //简单下拉和复选的集合方法
+    checkAndSelect() {
+      this.slotCheckAll()
+      this.slotSelectAll()
+    },
+    //简单复选
+    slotCheckAll() {
+      this.for_List.forEach((item) => {
+        if (item.slotCheck) {
+          this.checkboxChange(this.formData[item.field], item, "不是手动触发的")
+        }
+      })
+    },
+    //简单复选的change事件
+    checkboxChange(e, item_f, noEmit) {
+      if (e === item_f.trueLabel && item_f.show !== false) {
+        item_f.checkArr.forEach((item) => {
+          this._set(this.data, item, { show: true })
+        })
+      } else {
+        item_f.checkArr.forEach((item) => {
+          this._set(this.data, item, { show: false })
+        })
+      }
+      let obj = {
+        item: item_f,
+        name: "slotCheck",
+        event: "slotCheck",
+        value: e
+      }
+      if (noEmit) {
+
+      } else {
+        this.$emit("event", obj);
+      }
+    },
+    //简单下拉
+    slotSelectAll() {
+      //循环list
+      this.for_List.forEach((item) => {
+        //如果item有个slotSelect标识
+        if (item.slotSelect) {
+          //触发方法
+          this.selectChange(this.formData[item.field], item, "不是手动触发的")
+        }
+      })
+    },
+    //简单下拉的change事件
+    selectChange(e, item_f, noEmit) {
+      //如果当前item选择是 并且没有被隐藏
+      if (e === item_f.trueLabel && item_f.show !== false) {
+        //循环item的checkArr字段 checkArr是被控制的field
+        item_f.checkArr.forEach((item) => {
+          this._set(this.data, item, { show: true })
+
+        })
+      } else {
+        item_f.checkArr.forEach((item) => {
+          this._set(this.data, item, { show: false })
+        })
+      }
+      let obj = {
+        item: item_f,
+        name: "slotSelect",
+        event: "slotSelect",
+        value: e
+      }
+      if (noEmit) {
+
+      } else {
+        this.$emit("event", obj);
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
-::v-deep{
-  .labelTipClass .el-form-item__label{
+::v-deep {
+  .labelTipClass .el-form-item__label {
     display: flex;
     justify-content: flex-end;
   }
