@@ -239,20 +239,12 @@ export default {
           this.percentage = 0;
         }
       });
-      console.log("文件上传中,对于自定义上传貌似没用")
-      // this.percentage = 0;
-      // this.$nextTick(() => {
-      //   this.percentage = Number(file.percentage.toFixed(0));
-      //   if (this.percentage >= 100) {
-      //     this.percentage = 0;
-      //   }
-      // });
+      // console.log("文件上传中,对于自定义上传貌似没用")
     },
     //5 文件上传成功
     upLoadSuccess(data, file) {
       this.currentNum--
       console.log("文件上传成功")
-      this.currentNum = 0;
       this.$message.success(data.fileName + "上传成功！");
       //如果是自定义的上传文件路径
       if (this.pathUrl) {
@@ -284,9 +276,7 @@ export default {
       }
       //如果只有taskName并且 mode == "getFileById"
       else if (this.uploadObj.taskName ||  this.mode == "getFileById") {
-        // console.log(data, "data")
         this.uploadObj.detail = [data];//data是单个文件
-        // console.log(data.onlinePreviewUrl, 'onlinePreviewUrlonlinePreviewUrlonlinePreviewUrl');
         this.$emit("success", {
           taskName: this.uploadObj.taskName,
           data: data,
