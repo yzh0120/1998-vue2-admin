@@ -29,18 +29,33 @@ export default {
   mounted() {
     const _this = this;
     const erd = elementResizeDetectorMaker()
-    //监听top  只是为了在窗口变化的时候 改变 _this.height 然后触发监听bottom的方法(所以监听bottom的方法才有setTimeout 为了保持先后顺序)
+    // //监听top  只是为了在窗口变化的时候 改变 _this.height 然后触发监听bottom的方法(所以监听bottom的方法才有setTimeout 为了保持先后顺序)
+    // erd.listenTo(_this.$refs.top, (element) => {
+    //   console.log(_this.$refs.boottom.offsetHeight, "top.offsetHeight")
+    //   _this.height = 0 + 'px'
+    // })
+    // //监听bottom
+    // erd.listenTo(_this.$refs.boottom, (element) => {
+    //   setTimeout(() => {
+    //     console.log(element.offsetHeight, "bottom.offsetHeight")
+    //     _this.height = element.offsetHeight + 'px'
+    //     this.tableChange = true
+    //   }, 100)
+    // })
+    //////////////////////////////////////////
     erd.listenTo(_this.$refs.top, (element) => {
-      console.log(_this.$refs.boottom.offsetHeight, "top.offsetHeight")
-      _this.height = 0 + 'px'
+      console.log(_this.$refs.boottom.offsetHeight, "top")
+      _this.height = _this.$refs.boottom.offsetHeight + "px"
     })
     //监听bottom
     erd.listenTo(_this.$refs.boottom, (element) => {
-      setTimeout(() => {
-        console.log(element.offsetHeight, "bottom.offsetHeight")
+      console.log(element.offsetHeight, "bottom")
+      if (Number.parseInt(_this.height) == element.offsetHeight) {
+
+      } else {
         _this.height = element.offsetHeight + 'px'
         this.tableChange = true
-      }, 100)
+      }
     })
   },
 }
@@ -60,7 +75,7 @@ export default {
   }
 
   .bottom {
-    // overflow-y: auto;
+    overflow-y: auto;
     // background-color: yellow;
     flex-grow: 2;
 
