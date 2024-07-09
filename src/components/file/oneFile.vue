@@ -14,7 +14,7 @@ fileId 文件id需要传给后台
 
     <el-progress :percentage="percentage" :text-inside="true" :stroke-width="15" v-if="percentage"></el-progress>
     <!-- :on-progress="progress" 自定义的上次 on-progress失效 -->
-    <el-upload :disabled="btnDisabled" class="i-upload" :action="uploaduUrl" :http-request="changeFile"
+    <el-upload :disabled="btnDisabled" class="i-upload"  :http-request="changeFile"
       :show-file-list="false" multiple :on-change="handleChange" >
       <el-button :disabled="btnDisabled" :size="btnSize" :type="btnType">{{ btnText }}
       </el-button>
@@ -148,14 +148,6 @@ export default {
             }
           })
         }
-      // if (this.noGetApi) {
-      //   // this.$emit("getAllFile")
-      // } else {
-        
-      // }
-
-
-
     },
 
     //1 点击上传文件时的改变事件

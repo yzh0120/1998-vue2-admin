@@ -39,7 +39,7 @@ export default {
   props: {
     selfClass: {
       type: String,
-      default: true,
+      default: "",
     },
     /**
      * 是否显示上传按钮
