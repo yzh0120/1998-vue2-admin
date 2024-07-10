@@ -395,18 +395,18 @@ export function zhNUmEng(rule, value, callback) {
 }
 
 //空格
-// export function KongGe(rule, value, callback) {
-//   if (value) {
-//     var reg = /^\S*$/;//不允许空格               //^[^\(\)]*$  不允许英文的括号
-//     if (reg.test(value) == false) {
-//       callback(new Error("不允许空格"));
-//     } else {
-//       callback();
-//     }
-//   } else {
-//     callback();
-//   }
-// }
+export function noKongGe(rule, value, callback) {
+  if (value) {
+    var reg = /^\S*$/;//不允许空格               //^[^\(\)]*$  不允许英文的括号
+    if (reg.test(value) == false) {
+      callback(new Error("不允许空格"));
+    } else {
+      callback();
+    }
+  } else {
+    callback();
+  }
+}
 
 //判断字符串是否是https?:|mailto:|tal: 开头的
 export function isExternal(path) {
