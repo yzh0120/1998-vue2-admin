@@ -152,6 +152,23 @@ export function ZHnumber(rule, value, callback) {
     callback();
   }
 }
+
+//匹配中文，英文字母和数字及_
+export function zhNUmEng(rule, value, callback) {
+  if (value) {
+    var reg = /^[a-zA-Z0-9\u4e00-\u9fa5\.\(\)\（\）\&\[\]\{\}\、\_\-\,\，]+$/;
+    if (reg.test(value) == false) {
+      callback(new Error("请输入中文，英文字母和数字及_-.()&[]{}、"));
+    } else if (value.length > 60) {
+      callback(new Error("字符长度限制在60"));
+    } else {
+      callback();
+    }
+  } else {
+    callback();
+  }
+}
+
 //企业名称正则( 中文 数字 英文)
 export function isCompany(rule, value, callback) {
   if (value) {
@@ -367,7 +384,7 @@ export function gsNum(rule, value, callback) {
 // 非空格
 export function notSpace(rule, value, callback) {
   if (value) {
-    var reg = /^[^\s]*$/;
+    var reg = /^[^\s]*$/;  //^[^\(\)]*$  不允许英文的括号
     if (reg.test(value) == false) {
       callback(new Error("不能输入空格"));
     } else {
@@ -377,36 +394,19 @@ export function notSpace(rule, value, callback) {
     callback();
   }
 }
-
-//匹配中文，英文字母和数字及_
-export function zhNUmEng(rule, value, callback) {
-  if (value) {
-    var reg = /^[a-zA-Z0-9\u4e00-\u9fa5\.\(\)\（\）\&\[\]\{\}\、\_\-\,\，]+$/;
-    if (reg.test(value) == false) {
-      callback(new Error("请输入中文，英文字母和数字及_-.()&[]{}、"));
-    } else if (value.length > 60) {
-      callback(new Error("字符长度限制在60"));
-    } else {
-      callback();
-    }
-  } else {
-    callback();
-  }
-}
-
 //空格
-export function noKongGe(rule, value, callback) {
-  if (value) {
-    var reg = /^\S*$/;//不允许空格               //^[^\(\)]*$  不允许英文的括号
-    if (reg.test(value) == false) {
-      callback(new Error("不允许空格"));
-    } else {
-      callback();
-    }
-  } else {
-    callback();
-  }
-}
+// export function noKongGe(rule, value, callback) {
+//   if (value) {
+//     var reg = /^\S*$/;//不允许空格              
+//     if (reg.test(value) == false) {
+//       callback(new Error("不允许空格"));
+//     } else {
+//       callback();
+//     }
+//   } else {
+//     callback();
+//   }
+// }
 
 //判断字符串是否是https?:|mailto:|tal: 开头的
 export function isExternal(path) {
