@@ -33,6 +33,12 @@ import axios from 'axios';
 import * as cookieFn from '@/utils/cookie.js';
 export default {
   props: {
+    fdata: {
+      type: Object,
+      default: () => {
+
+      }
+    },
     //如果是true  这个组件不需要调用接口
     noGetApi: {
       type: Boolean,
@@ -90,7 +96,7 @@ export default {
     return {
       currentNum: 0,//控制上传数量
       percentage: 0,//控制进度条
-      uploaduUrl: "", //process.env.VUE_APP_down_API + "/v1/base/file/upload", //上传地址
+      uploaduUrl: "", // 没用但是组件需要
       btnDisabled: false,
     };
   },
@@ -154,6 +160,7 @@ export default {
     handleChange() {
       console.log("文件改变事件")
       this.btnDisabled = !this.btnDisabled;
+      //this.fdata.btnDisabled = !this.fdata.btnDisabled;
     },
     //2 取消默认上传事件
     changeFile(file) { //
@@ -189,6 +196,7 @@ export default {
         onUploadProgress: (progressEvent) => { this.progress(progressEvent) }
       }).then((res) => {
         this.btnDisabled = !this.btnDisabled;
+        //this.fdata.btnDisabled = !this.fdata.btnDisabled;
         console.log(res, "res")
         let { data } = res//data是包含人工code的对象
         if (data.code == 200) {//上传成功
@@ -206,6 +214,7 @@ export default {
       let activeFileType = file.name.split(".").pop();//文件类型
       if (item.num && item.detail.length + this.currentNum >= item.num) {
         this.btnDisabled = !this.btnDisabled;
+        //this.fdata.btnDisabled = !this.fdata.btnDisabled;
         this.$message.error(`只能上传${item.num}个`);
         return false;
       }
@@ -216,11 +225,13 @@ export default {
       ) {
         this.$message.error(`请上传正确的文件类型`);
         this.btnDisabled = !this.btnDisabled;
+        //this.fdata.btnDisabled = !this.fdata.btnDisabled;
         return false;
       }
       else if (item.size && ((file.size / 1024 / 1024) > item.size)) {
         this.$message.error(`文件最大为${item.size}M`)
         this.btnDisabled = !this.btnDisabled;
+        //this.fdata.btnDisabled = !this.fdata.btnDisabled;
         return false;
       }
       else {
