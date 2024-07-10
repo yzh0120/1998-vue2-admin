@@ -155,7 +155,8 @@ export function dataItem_text(field, value, isNumber) {
     }
 
   } else {
-    return '数据字典没有此字段'
+    // return ''
+    alert("数据字典没有此字段")
   }
 }
 //label
@@ -174,6 +175,6 @@ export function dataItem_list(field, isNumber) {
     }
 
   } else {
-    return '数据字典没有此字段'
+    alert("数据字典没有此字段")
   }
 }
