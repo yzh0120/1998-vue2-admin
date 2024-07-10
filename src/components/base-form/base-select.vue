@@ -14,6 +14,7 @@
  mult : true                                多标签选择模式
  disabled:true                              禁用
  -->
+ <!--  :filter-method="item.filterFn" -->
  <template>
   <el-select
     style="width: 100%"
@@ -26,7 +27,7 @@
     :multiple="mult || item.create"
     :allow-create="item.create"
     filterable
-    :filter-method="item.filterFn"
+   
     :remote="remote"
     :remote-method="item.remote"
   >

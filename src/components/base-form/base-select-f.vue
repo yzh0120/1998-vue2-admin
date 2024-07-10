@@ -33,10 +33,23 @@
                 }
             },
  -->
+ <!--     :filter-method="item.filterFn"  -->
 <template>
-  <el-select v-if="showTick" style="width: 100%" v-model="mvalue" :disabled="item.disabled" clearable
-    :placeholder="_getPlaceholder(item)" @change="change" @clear="setValueNull" :multiple="mult || item.create"
-    :allow-create="item.create" filterable :filter-method="item.filterFn" :remote="remote" :remote-method="item.remote">
+  <el-select 
+  v-if="showTick" 
+  style="width: 100%" 
+  v-model="mvalue" 
+  :disabled="item.disabled" 
+  clearable
+    :placeholder="_getPlaceholder(item)" 
+    @change="change" 
+    @clear="setValueNull" 
+    :multiple="mult || item.create"
+    :allow-create="item.create" 
+    filterable 
+
+    :remote="remote" 
+    :remote-method="item.remote">
     <el-option v-for="(childItem, childIndex) in item.opt" :key="childIndex" :label="childItem[text]"
       :value="childItem[value]" />
   </el-select>
