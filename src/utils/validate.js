@@ -155,7 +155,7 @@ export function ZHnumber(rule, value, callback) {
 //企业名称正则( 中文 数字 英文)
 export function isCompany(rule, value, callback) {
   if (value) {
-    var reg = /^[\u4e00-\u9fa5\(\)（）、\da-zA-Z&]{2,50}$/;
+    var reg = /^[\u4e00-\u9fa5\(\)\（\）\、\da-zA-Z&]{2,50}$/;
     if (reg.test(value) == false) {
       callback("企业名称格式不正确");
     } else {
