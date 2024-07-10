@@ -105,7 +105,7 @@ export function mobile(rule, value, callback) {
 
 
 //手机号和座机正则
-export function mobileOrphone(rule, value, callback) {
+export function mobileOrZhuoji(rule, value, callback) {
   if (value) {
     var reg = /^1[3,4,5,6,7,8,9][0-9]\d{8}$/;
     var reg1 = /^[0][1-9]{2,3}-[0-9]{5,10}$/; //带区号
@@ -121,23 +121,8 @@ export function mobileOrphone(rule, value, callback) {
 
 
 
-export function isExternal(path) {
-  return /^(https?:|mailto:|tel:)/.test(path)
-}
 
-//企业名称正则
-export function isCompany(rule, value, callback) {
-  if (value) {
-    var reg = /^[\u4e00-\u9fa5\(\)（）、\da-zA-Z&]{2,50}$/;
-    if (reg.test(value) == false) {
-      callback("企业名称格式不正确");
-    } else {
-      callback();
-    }
-  } else {
-    callback();
-  }
-}
+
 
 
 //只允许中文、括号
@@ -160,6 +145,19 @@ export function ZHnumber(rule, value, callback) {
     var reg = /^[\u4e00-\u9fa5\（\）\(\)\d]+$/;
     if (reg.test(value) == false) {
       callback("请输入中文、括号、数字");
+    } else {
+      callback();
+    }
+  } else {
+    callback();
+  }
+}
+//企业名称正则( 中文 数字 英文)
+export function isCompany(rule, value, callback) {
+  if (value) {
+    var reg = /^[\u4e00-\u9fa5\(\)（）、\da-zA-Z&]{2,50}$/;
+    if (reg.test(value) == false) {
+      callback("企业名称格式不正确");
     } else {
       callback();
     }
@@ -409,3 +407,8 @@ export function zhNUmEng(rule, value, callback) {
 //     callback();
 //   }
 // }
+
+//判断字符串是否是https?:|mailto:|tal: 开头的
+export function isExternal(path) {
+  return /^(https?:|mailto:|tel:)/.test(path)
+}
