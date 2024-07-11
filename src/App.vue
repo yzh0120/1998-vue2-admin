@@ -58,6 +58,21 @@ export default {
       this.$socket.connect(); //重新socket连接 */
     },
   },
+  created() { 
+    // this.favicon(); 和侧边栏的logo保持一致
+  },
+  methods: {
+    favicon() {
+      var link =
+        document.querySelector("link[rel*='icon']") ||
+        document.createElement("link");
+      link.type = "image/x-icon";
+      link.rel = "shortcut icon";
+
+      link.href = require("@/assets/logo.png");
+      document.getElementsByTagName("head")[0].appendChild(link);
+    },
+  },
 }
 </script>
 
