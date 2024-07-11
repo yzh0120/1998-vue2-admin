@@ -2,22 +2,24 @@
   <div class="header_tagsView_div">
     <el-scrollbar ref="scrollbarRef" @wheel.native.prevent="onHandleScroll" class="tagsView_elScrollbar">
       <ul class="header_tagsView_div-ul" ref="tagsUlRef">
-        <li v-for="(v, k) in tagsViewList" :key="k" class="header_tagsView_div-ul-li" :data-name="v.name"
-          :class="{ 'is-active': v.path === tagsRoutePath }" @contextmenu.prevent="onContextmenu(v, $event)"
+        <li v-for="(v, k) in tagsViewList" :key="k" 
+          :class="[`header_tagsView_div-ul-li`,v.path === tagsRoutePath? `is-active` :``]" 
+          :data-name="v.name"
+          @contextmenu.prevent="onContextmenu(v, $event)"
           @click="onTagsClick(v, k)" ref="tagsRefs">
           <!-- 当前路由的图标 -->
-          <svgIcon :icon="v.meta.icon" className="header_tagsView_div-ul-li-iconfont font14"
+          <svgIcon :icon="v.meta.icon" className="header_tagsView_div-ul-li-iconfont"
             v-if="v.path === tagsRoutePath"></svgIcon>
           <!-- 非当前路由的图标 -->
-          <svgIcon :icon="v.meta.icon" className="header_tagsView_div-ul-li-iconfont font14 is-tagsview-icon"
+          <svgIcon :icon="v.meta.icon" className="header_tagsView_div-ul-li-iconfont  is-tagsview-icon"
             v-if="v.path !== tagsRoutePath"></svgIcon>
           <!-- 标题 -->
           <span>{{ v.meta.title }}</span>
           <!-- 刷新 -->
-          <i class="el-icon-refresh-right header_tagsView_div-ul-li-icon ml5" v-if="v.path === tagsRoutePath"
+          <i class="el-icon-refresh-right header_tagsView_div-ul-li-icon" v-if="v.path === tagsRoutePath"
             @click.stop="_refreshCurrentTagsView(v)"></i>
             <!-- 能否关闭 -->
-          <i class="el-icon-close header_tagsView_div-ul-li-icon ml5" v-if="!v.meta.isAffix"
+          <i class="el-icon-close header_tagsView_div-ul-li-icon" v-if="!v.meta.isAffix"
             @click.stop="_closeCurrentTagsView(v)"></i>
         </li>
       </ul>
@@ -263,6 +265,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// 最外面的dive
 .header_tagsView_div {
   height: 34px;//控制整体高度
   flex: 1;
@@ -272,19 +275,19 @@ export default {
   & ::v-deep .is-vertical {
     display: none !important;
   }
-
+// 滚动条
   .el-scrollbar {
     width: 100%;
     overflow: hidden;
     position: relative;
     height: 100%;
   }
-
+// 滚动条内容
   .el-scrollbar__wrap {
     overflow-x: auto !important;
     max-height: 100%;
   }
-
+// header_tagsView_div-ul
   &-ul {
     list-style: none;
     margin: 0;
@@ -297,7 +300,7 @@ export default {
     color: #606266;
     font-size: 12px;
     padding: 0 15px;
-
+    // header_tagsView_div-ul-li
     &-li {
       flex-shrink: 0 !important;
       height: 26px;
@@ -313,7 +316,7 @@ export default {
       cursor: pointer;
       justify-content: space-between;
       transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
-
+       // header_tagsView_div-ul-li ::before
       &::before {
         content: "";
         position: absolute;
@@ -328,32 +331,33 @@ export default {
         transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
         background: #409eff;
       }
-
+       // header_tagsView_div-ul-li :hover
       &:hover {
         color: #ffffff;
         transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
         border-color: transparent;
-
+        // header_tagsView_div-ul-li :hover ::before
         &::before {
           opacity: 1;
           transform: translate3d(0, 0, 0);
           border-radius: 2px;
         }
-
+        // header_tagsView_div-ul-li:hover .is-tagsview-icon
         .is-tagsview-icon {
           color: #ffffff;
           transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
         }
       }
-
+      // header_tagsView_div-ul-li-iconfont
       &-iconfont {
         position: relative;
         left: -5px;
-        top: 1px;
+        top: -1px;
         color: #ffffff;
       }
-
+      // header_tagsView_div-ul-li-icon
       &-icon {
+        margin-left: 6px;
         border-radius: 100%;
         position: relative;
         height: 14px;
@@ -362,18 +366,18 @@ export default {
         line-height: 14px;
         top: 1px;
       }
-
+      //header_tagsView_div-ul-li  .is-tagsview-icon
       .is-tagsview-icon {
         color: #606266;
         transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
       }
     }
-
+    // header_tagsView_div-ul .is-active
     .is-active {
       color: #ffffff;
       transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
       border-color: transparent;
-
+      // header_tagsView_div-ul .is-active ::before
       &::before {
         opacity: 1;
         transform: translate3d(0, 0, 0);
@@ -381,7 +385,7 @@ export default {
       }
     }
   }
-
+  // header_tagsView_div ::-webkit-scrollbar
   & ::-webkit-scrollbar {
     display: none !important;
   }

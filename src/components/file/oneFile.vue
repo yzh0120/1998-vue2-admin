@@ -198,11 +198,11 @@ export default {
         this.btnDisabled = !this.btnDisabled;
         //this.fdata.btnDisabled = !this.fdata.btnDisabled;
         console.log(res, "res")
-        let { data } = res//data是包含人工code的对象
-        if (data.code == 200) {//上传成功
-          this.upLoadSuccess(data.data, file.file)
+        // let { data } = res//data是包含人工code的对象
+        if (res.code == 200) {//上传成功
+          this.upLoadSuccess(res.data, file.file)
         } else { //上传失败
-          this.$message.error(data.msg);
+          this.$message.error(res.msg);
           this.currentNum--
         }
       })
