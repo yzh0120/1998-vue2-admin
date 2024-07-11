@@ -57,6 +57,18 @@ router.beforeEach(async (to, from, next) => {
   //     }
   //   })
   // }
+
+  //   //刚进去保存query
+  //   let flag = from.query.channelCode || to.query.channelCode
+  //   if (flag) {
+  //     if (!to.query.channelCode) {
+  //       next({
+  //         path: to.path,
+  //         query: from.query
+  //       })
+  //     }
+  // }
+  
   console.log(cookieFn.getCookie(process.env.VUE_APP_TOKEN),"cookieFn.getCookie(process.env.VUE_APP_TOKEN)")
   if (cookieFn.getCookie(process.env.VUE_APP_TOKEN)) { //如果浏览器有token
 
