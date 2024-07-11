@@ -68,7 +68,7 @@ export function numLimit18_6(rule, value, callback) {
 
 /**
  * { validator: self.$validator.IDcard, trigger: "blur" },
- * 身份证正则（大陆，香港，新加坡）
+ * 身份证正则（大陆，香港，新加坡   只能输入数字和英文）
  */
 export function IDcard(rule, value, callback) {
   if (value) {
