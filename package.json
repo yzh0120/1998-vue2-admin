@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve --open",
-    "build": "vue-cli-service build",
+    
     "build:test": "vue-cli-service build --mode test",
-    "build:uat": "vue-cli-service build --mode uat"
+    "build:uat": "vue-cli-service build --mode uat",
+    "build:a": "vue-cli-service build --mode builda",
+    "build:b": "vue-cli-service build --mode buildb",
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "js-base64": "^3.7.5",
