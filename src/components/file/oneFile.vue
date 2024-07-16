@@ -221,7 +221,8 @@ export default {
       else if (
         item.type &&
         item.type.length &&
-        !item.type.includes(activeFileType)
+        !item.type.includes(activeFileType.toLowerCase())
+        // !item.type.some((p) => p.toLowerCase() == activeFileType.toLowerCase())
       ) {
         this.$message.error(`请上传正确的文件类型`);
         this.btnDisabled = !this.btnDisabled;
