@@ -43,6 +43,8 @@ export default {
   // 视距(透视)  产生近大远小的效果 写在被观察的父盒子上  如果需要在网页产生3d效果需要透视(理解为3D物体投影到2D平面内) 
   perspective: 800px !important;
   //视距的原点 
+  //  第一个参数是负数就是从右往左看
+  //  第二个参数是负数就是从高往下看
   perspective-origin: center -300px;
   // 控制子元素开启三维立体环境 代码是写给父级 但是影响的是子盒子
   transform-style: preserve-3d !important;
