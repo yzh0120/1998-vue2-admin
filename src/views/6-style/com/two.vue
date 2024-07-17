@@ -36,18 +36,18 @@
 // }
 
 .box{
-  width: 90%;
+  width: 1000px;
   margin: 0 auto;
   border: 1px solid #ccc;
   display: flex;
   flex-wrap: wrap;
   // justify-content: space-around;
   // align-content: flex-start;
-  padding-left: 26px;//重点
+  padding-left: 22px;//重点
   .son{
     width: 200px;
     height: 200px;
-    margin: 20px 10px 20px 1px;
+    margin: 20px 20px 20px 20px;
     background-color: green;
   }
 }
