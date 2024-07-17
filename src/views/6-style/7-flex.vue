@@ -1,30 +1,24 @@
 <template>
   <div>
-    <div class="father">
-      <div class="son1"></div>
-      <div class="son2"></div>
-    </div>
+    <el-divider> 左侧固定布局 </el-divider>
+    <one></one>
+
+    <el-divider> 瀑布流 </el-divider>
+    <two></two>
   </div>
 </template>
 
 <script>
+import one from "./com/one"
+import two from "./com/two"
   export default {
-    
+  components: {
+      one,
+      two
+  },
   }
 </script>
 
 <style lang="scss" scoped>
-.father{
-  height: 500px;
-  background-color: black;
-  display: flex;
-  .son1{
-    width: 200px;
-    background-color: red;
-  }
-  .son2{
-    flex-grow:1;
-    background-color: green;
-  }
-}
+
 </style>
