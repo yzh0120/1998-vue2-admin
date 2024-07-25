@@ -15,7 +15,7 @@ function resolve(dir) {
 //静态资源目录
 function fnStatic() {
   if (process.env.VUE_APP_ENV === 'test') {
-    return "/"
+    return "/test/"
   } else if (process.env.VUE_APP_ENV === 'build') {
     return "/build/"
   } else {
