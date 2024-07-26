@@ -206,7 +206,7 @@ export default {
               this._set(this.form5, "_input555552", { show: false })
             }
           } else {
-            //也可以在这里写
+            //如果 checkArr: [`_input52`]  需要在这里写
             // this._set(this.form5, "_input555551", { show: false })
             // this._set(this.form5, "_input555552", { show: false })
           }
