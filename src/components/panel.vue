@@ -18,7 +18,7 @@
 				</div>
 			</div> -->
 
-			<div v-if="isOne">
+			<div v-if="isOne && firstNotShow">
 				<div class="panel-body" v-if="showBody" :style="{ padding: `15px` }">
 					<slot></slot>
 				</div>
@@ -48,6 +48,9 @@ export default {
 		},
 		close: {
 			default: false
+		},
+		firstNotShow: {
+			default: true
 		},
 		size: {
 			type: String,
