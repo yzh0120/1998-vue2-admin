@@ -87,7 +87,8 @@ export function IDcard(rule, value, callback) {
 //手机号正则
 export function mobile(rule, value, callback) {
   if (value) {
-    var reg = /^1[3,4,5,6,7,8,9][0-9]\d{8}$/;
+    // var reg = /^1[3,4,5,6,7,8,9][0-9]\d{8}$/;
+    var reg = /\b\d{11}\b/;
     if (reg.test(value) == false) {
       callback("请输入正确的手机号");
     } else {
@@ -107,7 +108,8 @@ export function mobile(rule, value, callback) {
 //手机号和座机正则
 export function mobileOrZhuoji(rule, value, callback) {
   if (value) {
-    var reg = /^1[3,4,5,6,7,8,9][0-9]\d{8}$/;
+    // var reg = /^1[3,4,5,6,7,8,9][0-9]\d{8}$/;
+    var reg = /\b\d{11}\b/;
     var reg1 = /^[0][1-9]{2,3}-[0-9]{5,10}$/; //带区号
     if (reg.test(value) == false && reg1.test(value) == false) {
       callback("请输入正确的号码");
