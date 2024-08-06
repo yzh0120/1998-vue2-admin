@@ -123,9 +123,9 @@ export default {
   },
   methods: {
     //通过文件id获取单个文件
-    getById() {
+    getById(fileId) {
       if (this.fileId) { 
-        eleFileApi.getById({id: this.fileId}).then((res) => {
+        eleFileApi.getById({id: fileId ? fileId : this.fileId}).then((res) => {
         if (res.code == 0) {
           this.uploadObj.detail = [res.data]
         } else { 
@@ -258,43 +258,49 @@ export default {
       this.currentNum--
       console.log("文件上传成功")
       this.$message.success(data.fileName + "上传成功！");
-      //如果是自定义的上传文件路径
-      if (this.pathUrl) {
-        this.$emit("success", {
+      this.$emit("success", {
           taskName: this.uploadObj.taskName,
           data,
           file,
         });
+      //如果是自定义的上传文件路径
+      if (this.pathUrl || this.noGetApi) {
+       
+      }else if (this.mode == "getFileById") {
+        this.getById(data.id)
       }
-      //如果有项目id并且没有模式  
-      else if (this.folderId && this.mode == "") {
-        eleFileApi.queryList(
-          {
-            folderId: this.folderId,
-            taskName: this.uploadObj.taskName,
-          }
-        ).then((res) => {
-          if (res.code == 200) {
-            this.uploadObj.detail = res.data;
-            this.$emit("success", {
-              taskName: this.uploadObj.taskName,
-              data: res.data,
-              file,
-            });
-          } else {
-            this.$message.error(res.msg);
-          }
-        })
+      else {
+        this.getFiles(); //获取历史文件///////////////////切换
       }
-      //如果只有taskName并且 mode == "getFileById"
-      else if (this.uploadObj.taskName ||  this.mode == "getFileById") {
-        this.uploadObj.detail = [data];//data是单个文件
-        this.$emit("success", {
-          taskName: this.uploadObj.taskName,
-          data: data,
-          file,
-        });
-      }
+      // //如果有项目id并且没有模式  
+      // else if (this.folderId && this.mode == "") {
+      //   eleFileApi.queryList(
+      //     {
+      //       folderId: this.folderId,
+      //       taskName: this.uploadObj.taskName,
+      //     }
+      //   ).then((res) => {
+      //     if (res.code == 200) {
+      //       this.uploadObj.detail = res.data;
+      //       this.$emit("success", {
+      //         taskName: this.uploadObj.taskName,
+      //         data: res.data,
+      //         file,
+      //       });
+      //     } else {
+      //       this.$message.error(res.msg);
+      //     }
+      //   })
+      // }
+      // //如果只有taskName并且 mode == "getFileById"
+      // else if (this.uploadObj.taskName ||  this.mode == "getFileById") {
+      //   this.uploadObj.detail = [data];//data是单个文件
+      //   this.$emit("success", {
+      //     taskName: this.uploadObj.taskName,
+      //     data: data,
+      //     file,
+      //   });
+      // }
     },
 
   },
