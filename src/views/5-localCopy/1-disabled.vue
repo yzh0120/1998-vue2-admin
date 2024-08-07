@@ -14,12 +14,20 @@ export default {
   mounted() {
     setTimeout(() => {
               this.$nextTick(() => {
-                $(".disabled_all").find("input,textarea").attr("disabled", "disabled");
-                $(".disabled_all").find("button").attr("disabled", "disabled");
+                // $(".disabled_all").find("input,textarea").attr("disabled", "disabled");
+                // $(".disabled_all").find("button").attr("disabled", "disabled");
 
-                $(".disabled_all").find(".el-input").addClass("is-disabled")
-                $(".disabled_all").find(".el-textarea").addClass("is-disabled")
-                $(".disabled_all").find("button").addClass("is-disabled")
+                // $(".disabled_all").find(".el-input").addClass("is-disabled")
+                // $(".disabled_all").find(".el-textarea").addClass("is-disabled")
+                // $(".disabled_all").find("button").addClass("is-disabled")
+
+
+                // $(".disabled_all").find("input,textarea").hide()
+                $(".disabled_all").find("button").hide()
+
+                // $(".disabled_all").find(".el-input").hide()
+                // $(".disabled_all").find(".el-textarea").hide()
+                $(".disabled_all").find("button").hide()
               });
             }, 500)
   },
