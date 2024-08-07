@@ -71,10 +71,12 @@ export function divide(num1, num2) {
  */
 export function formatSpace(val, spaceNumber = 4, separator = " ") {
   if (val !== "" && val !== undefined && val !== null) {
-    return XEUtils.commafy(val, {
-      spaceNumber: spaceNumber,
-      separator: separator
-    })
+    // return XEUtils.commafy(val, {
+    //   spaceNumber: spaceNumber,
+    //   separator: separator
+    // })
+
+    return  val.replace(/(.{4})(?=.)/g, '$1 ');
   }
   return ""
 }
