@@ -124,7 +124,7 @@ export function dataItem_text(field, value, isNumber) {
   if (value === null || value === undefined) {
     return ""
   }
-  let arr = store.state.config.dataItem[field]
+  let arr = deepClone(store.state.config.dataItem[field])
   // console.log(arr,"----111")
   if (arr) {
     if (isNumber) {
