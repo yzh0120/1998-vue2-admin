@@ -160,24 +160,24 @@ export function queryList(data) {
 
 
 //上传文件  感觉没用了
-export function uploadFile(formData, pathUrl) {
-  let headers = {
-    'Authorization': "Bearer " + cookieFn.getCookie(process.env.VUE_APP_TOKEN),
-    'content-type': 'multipart/form-data'
-  }
-  let url = "/system/file_annexes/uploadFile"
-  if (pathUrl) {
-    url = pathUrl
-  }
+// export function uploadFile(formData, pathUrl) {
+//   let headers = {
+//     'Authorization': "Bearer " + cookieFn.getCookie(process.env.VUE_APP_TOKEN),
+//     'content-type': 'multipart/form-data'
+//   }
+//   let url = "/system/file_annexes/uploadFile"
+//   if (pathUrl) {
+//     url = pathUrl
+//   }
 
-  return axios({
-    baseURL: process.env.VUE_APP_API,
-    url: url,
-    method: 'post',
-    headers: headers,
-    data: formData,
-  })
-}
+//   return axios({
+//     baseURL: process.env.VUE_APP_API,
+//     url: url,
+//     method: 'post',
+//     headers: headers,
+//     data: formData,
+//   })
+// }
 
 
 //url下载文件流
