@@ -12,6 +12,12 @@
 
 			</div>
 			<!-- 身体 -->
+			<!-- <div class="panel-body" :style="{ height: height }">
+				<div ref="innerBodyBody" style="padding: 15px;">
+					<slot></slot>
+				</div>
+			</div> -->
+
 			<div v-if="isOne && firstNotShow">
 				<div class="panel-body" v-if="showBody" :style="{ padding: `15px` }">
 					<slot></slot>
@@ -144,7 +150,8 @@ $fanwei: 5px;
 			border-color: #ddd;
 		}
 	}
-////////////////////////////////////////////////
+
+	////////////////////////////////////////////////
 	&.panel-primary {
 		border-color: #337ab7;
 
@@ -155,18 +162,20 @@ $fanwei: 5px;
 			border-color: #337ab7;
 		}
 	}
-////////////////////////////////////////////////
-	&.panel-success {
-		border-color: #d6e9c6;
 
-		// box-shadow: #d6e9c6 0px 0px $fanwei;
+	////////////////////////////////////////////////
+	&.panel-success {
+		border-color: #67c23a;
+
+		// box-shadow: #67c23a 0px 0px $fanwei;
 		>.panel-heading {
-			color: #3c763d;
-			background-color: #dff0d8;
-			border-color: #d6e9c6;
+			color: white;
+			background-color: #67c23a;
+			border-color: #67c23a;
 		}
 	}
-////////////////////////////////////////////////
+
+	////////////////////////////////////////////////
 	&.panel-info {
 		border-color: #bce8f1;
 
@@ -177,26 +186,28 @@ $fanwei: 5px;
 			border-color: #bce8f1;
 		}
 	}
-////////////////////////////////////////////////
-	&.panel-warning {
-		border-color: #faebcc;
 
-		// box-shadow: #faebcc 0px 0px $fanwei;
+	////////////////////////////////////////////////
+	&.panel-warning {
+		border-color: #e6a23c;
+
+		// box-shadow: #e6a23c 0px 0px $fanwei;
 		>.panel-heading {
-			color: #8a6d3b;
-			background-color: #fcf8e3;
-			border-color: #faebcc;
+			color: white;//#8a6d3b;
+			background-color: #e6a23c;
+			border-color: #e6a23c;
 		}
 	}
-////////////////////////////////////////////////
-	&.panel-danger {
-		border-color: #ebccd1;
 
-		// box-shadow: #ebccd1 0px 0px $fanwei;
+	////////////////////////////////////////////////
+	&.panel-danger {
+		border-color: #f56c6c;
+
+		// box-shadow: #f56c6c 0px 0px $fanwei;
 		>.panel-heading {
-			color: #a94442;
-			background-color: #f2dede;
-			border-color: #ebccd1;
+			color: white;
+			background-color: #f56c6c;
+			border-color: #f56c6c;
 		}
 	}
 
