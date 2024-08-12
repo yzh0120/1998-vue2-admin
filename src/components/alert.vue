@@ -17,7 +17,7 @@ data：{
  -->
 <template>
   <vxe-modal ref="modal" v-model="flag" :mask="false" 
-  :lockView="false" :width="data.width" :height="data.height" show-footer :title="title" @close="cancel" v-if="flag" >
+  :lockView="false" :width="data.width" :height="data.height" show-footer :title="title" @close="cancel" v-if="flag" resize>
       <!-- {{ data.width  }} -->
         <template #corner>
           <vxe-icon name="minus" @click="narrow" style="cursor: pointer;" v-if="active_full_narrow == `normal`"></vxe-icon>
