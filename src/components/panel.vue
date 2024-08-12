@@ -43,6 +43,7 @@ export default {
 		close: {
 			default: false
 		},
+		//这个是即使close 也是渲染body里面的组件
 		firstNotShow: {
 			default: true
 		},
