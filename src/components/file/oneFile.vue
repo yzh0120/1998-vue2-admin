@@ -282,15 +282,10 @@ export default {
           data,
           file,
         });
-      //如果是自定义的上传文件路径
-      if (this.pathUrl || this.noGetApi) {
-       
-      }
-      //如果有项目id并且没有模式(普通模式)
-      else if (this.folderId && this.mode == "") {
+       if (!this.mode && this.folderId) {
         eleFileApi.queryList(
           {
-            folderId: this.folderId,
+            folderId: this.folderId,  
             taskName: this.uploadObj.taskName,
           }
         ).then((res) => {
@@ -307,7 +302,7 @@ export default {
         })
       }
       //如果 mode == "getFileById"
-      else if (this.mode == "noFolderId") {
+      else if (this.uploadObj.taskName || this.mode == "noFolderId") {
         this.uploadObj.detail = [data];//data是单个文件
         this.$emit("success", {
           taskName: this.uploadObj.taskName,
