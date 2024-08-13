@@ -6,8 +6,14 @@
 
 
 fileId 文件id需要传给后台
+
 现在用这个感觉方便点缺点是只能获取一个文件
-<oneFile :uploadObj="uploadObj"  mode="getFileById"  :fileId="oneFormAlert.data.currentFileId"></oneFile>
+<oneFile mode="getFileById"    :fileId="oneFormAlert.data.currentFileId" 
+:uploadObj="uploadObj" ></oneFile>
+
+可以获取多个
+ <oneFile  mode="noFolderId" :projectId="formInfoAlert.data.id" :fileId="formInfoAlert.data.fileId" 
+:uploadObj="uploadObj" ></oneFile>
    -->
   <span>
     <span style="font-size: 14px; color:red" v-if="!percentage && btnDisabled">服务器正在处理中,请稍后</span>
@@ -107,7 +113,7 @@ export default {
     else if (this.mode == "getFileById") {
       this.getById()
     }
-    else {
+    else {//包含 noFolderId 模式
       this.getFiles(); //获取历史文件///////////////////切换
     }
 
@@ -149,6 +155,19 @@ export default {
             if (res.code == 200) {
               this.$emit("getFile", { data: res.data })
               this.uploadObj.detail = res.data;
+              if (this.mode == "noFolderId") {
+                if (!this.fileId) {
+                  this.uploadObj.detail = []
+                  return  this.$message.error("文件id是空！")
+                }
+                let activeFile = res.data.find((e) => {
+                  return e.id == this.fileId
+                })
+                if (activeFile) {
+                  this.uploadObj.detail = [activeFile]
+                }
+
+              }
             } else {
               this.$message.error(res.msg);
             }
@@ -266,41 +285,39 @@ export default {
       //如果是自定义的上传文件路径
       if (this.pathUrl || this.noGetApi) {
        
-      }else if (this.mode == "getFileById") {
+      }
+      //如果有项目id并且没有模式(普通模式)
+      else if (this.folderId && this.mode == "") {
+        eleFileApi.queryList(
+          {
+            folderId: this.folderId,
+            taskName: this.uploadObj.taskName,
+          }
+        ).then((res) => {
+          if (res.code == 200) {
+            this.uploadObj.detail = res.data;
+            this.$emit("success", {
+              taskName: this.uploadObj.taskName,
+              data: res.data,
+              file,
+            });
+          } else {
+            this.$message.error(res.msg);
+          }
+        })
+      }
+      //如果 mode == "getFileById"
+      else if (this.mode == "noFolderId") {
+        this.uploadObj.detail = [data];//data是单个文件
+        this.$emit("success", {
+          taskName: this.uploadObj.taskName,
+          data: data,
+          file,
+        });
+      }
+      else if (this.mode == "getFileById") {
         this.getById(data.id)
       }
-      else {
-        this.getFiles(); //获取历史文件///////////////////切换
-      }
-      // //如果有项目id并且没有模式  
-      // else if (this.folderId && this.mode == "") {
-      //   eleFileApi.queryList(
-      //     {
-      //       folderId: this.folderId,
-      //       taskName: this.uploadObj.taskName,
-      //     }
-      //   ).then((res) => {
-      //     if (res.code == 200) {
-      //       this.uploadObj.detail = res.data;
-      //       this.$emit("success", {
-      //         taskName: this.uploadObj.taskName,
-      //         data: res.data,
-      //         file,
-      //       });
-      //     } else {
-      //       this.$message.error(res.msg);
-      //     }
-      //   })
-      // }
-      // //如果只有taskName并且 mode == "getFileById"
-      // else if (this.uploadObj.taskName ||  this.mode == "getFileById") {
-      //   this.uploadObj.detail = [data];//data是单个文件
-      //   this.$emit("success", {
-      //     taskName: this.uploadObj.taskName,
-      //     data: data,
-      //     file,
-      //   });
-      // }
     },
 
   },
