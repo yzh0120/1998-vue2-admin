@@ -285,10 +285,11 @@ export default {
       if (!this.mode && this.folderId) {
         this.getFiles()
       }
-      //如果 mode == "getFileById"
+      //如果 mode == "noFolderId"
       else if (this.mode == "noFolderId") {
         this.uploadObj.detail = [data];//data是单个文件
       }
+      //如果 mode == "getFileById"
       else if (this.mode == "getFileById") {
         this.getById(data.id)
       }
