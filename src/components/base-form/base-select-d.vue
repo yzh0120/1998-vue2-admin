@@ -6,7 +6,7 @@
                         title: "渠道名称",
                         field: "channel_id",
                         type: "selectd",
-                        optmini:[],
+                        optmini:[],            // 这个字段在文件内就处理好了
                         opt: [],               //重点需要一开始把所有数据请求出来
                         text: "name",
                         value: "id",
