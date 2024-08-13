@@ -1,4 +1,3 @@
-
 <template>
   <!-- 
     自定义路径
@@ -20,8 +19,8 @@ fileId 文件id需要传给后台
 
     <el-progress :percentage="percentage" :text-inside="true" :stroke-width="15" v-if="percentage"></el-progress>
     <!-- :on-progress="progress" 自定义的上次 on-progress失效 -->
-    <el-upload :disabled="btnDisabled" class="i-upload"  :action="uploaduUrl" :http-request="changeFile"
-      :show-file-list="false" multiple :on-change="handleChange" >
+    <el-upload :disabled="btnDisabled" class="i-upload" :action="uploaduUrl" :http-request="changeFile"
+      :show-file-list="false" multiple :on-change="handleChange">
       <el-button :disabled="btnDisabled" :size="btnSize" :type="btnType">{{ btnText }}
       </el-button>
     </el-upload>
@@ -29,7 +28,7 @@ fileId 文件id需要传给后台
 
   </span>
 </template>
- 
+
 <script>
 import * as eleFileApi from "@/api/eleFile";
 import axios from 'axios';
@@ -130,49 +129,49 @@ export default {
   methods: {
     //通过文件id获取单个文件
     getById(fileId) {
-      if (this.fileId) { 
-        eleFileApi.getById({id: fileId ? fileId : this.fileId}).then((res) => {
-        if (res.code == 0) {
-          this.uploadObj.detail = [res.data]
-        } else { 
-          this.$message.error(res.msg);
-        }
-       })
+      if (this.fileId) {
+        eleFileApi.getById({ id: fileId ? fileId : this.fileId }).then((res) => {
+          if (res.code == 0) {
+            this.uploadObj.detail = [res.data]
+          } else {
+            this.$message.error(res.msg);
+          }
+        })
       }
-      
-     },
+
+    },
     ///////////////////切换
     //通过taskName获取文件
     getFiles() {
       if (this.folderId || this.selfClass) {
-          eleFileApi.queryList(
-            {
-              companyName: this.selfClass,
-              folderId: this.folderId,
-              taskName: this.uploadObj.taskName,
-            }
-          ).then((res) => {
-            if (res.code == 200) {
-              this.$emit("getFile", { data: res.data })
-              this.uploadObj.detail = res.data;
-              if (this.mode == "noFolderId") {
-                if (!this.fileId) {
-                  this.uploadObj.detail = []
-                  return  this.$message.error("文件id是空！")
-                }
-                let activeFile = res.data.find((e) => {
-                  return e.id == this.fileId
-                })
-                if (activeFile) {
-                  this.uploadObj.detail = [activeFile]
-                }
-
+        eleFileApi.queryList(
+          {
+            companyName: this.selfClass,
+            folderId: this.folderId,
+            taskName: this.uploadObj.taskName,
+          }
+        ).then((res) => {
+          if (res.code == 200) {
+            this.$emit("getFile", { data: res.data })
+            this.uploadObj.detail = res.data;
+            if (this.mode == "noFolderId") {
+              if (!this.fileId) {
+                this.uploadObj.detail = []
+                return this.$message.error("文件id是空！")
               }
-            } else {
-              this.$message.error(res.msg);
+              let activeFile = res.data.find((e) => {
+                return e.id == this.fileId
+              })
+              if (activeFile) {
+                this.uploadObj.detail = [activeFile]
+              }
+
             }
-          })
-        }
+          } else {
+            this.$message.error(res.msg);
+          }
+        })
+      }
     },
 
     //1 点击上传文件时的改变事件
@@ -193,7 +192,7 @@ export default {
         if (!this.beforeUpload(file.file, this.uploadObj)) {
           return
         }
-        
+
         fd.append('file', file.file)// 传文件
         fd.append('folderId', this.folderId)
         fd.append('taskName', this.uploadObj.taskName)//selfClass
@@ -278,37 +277,17 @@ export default {
       console.log("文件上传成功")
       this.$message.success(data.fileName + "上传成功！");
       this.$emit("success", {
-          taskName: this.uploadObj.taskName,
-          data,
-          file,
-        });
-       if (!this.mode && this.folderId) {
-        eleFileApi.queryList(
-          {
-            folderId: this.folderId,  
-            taskName: this.uploadObj.taskName,
-          }
-        ).then((res) => {
-          if (res.code == 200) {
-            this.uploadObj.detail = res.data;
-            this.$emit("success", {
-              taskName: this.uploadObj.taskName,
-              data: res.data,
-              file,
-            });
-          } else {
-            this.$message.error(res.msg);
-          }
-        })
+        taskName: this.uploadObj.taskName,
+        data,
+        file,
+      });
+      //普通模式
+      if (!this.mode && this.folderId) {
+        this.getFiles()
       }
       //如果 mode == "getFileById"
       else if (this.uploadObj.taskName || this.mode == "noFolderId") {
         this.uploadObj.detail = [data];//data是单个文件
-        this.$emit("success", {
-          taskName: this.uploadObj.taskName,
-          data: data,
-          file,
-        });
       }
       else if (this.mode == "getFileById") {
         this.getById(data.id)
@@ -318,10 +297,9 @@ export default {
   },
 };
 </script>
- 
+
 <style style="scss" scoped>
 .downloadFile {
   cursor: pointer;
 }
 </style>
- 
