@@ -130,6 +130,7 @@ export default {
         immediate: true,
       }
     );
+    //如果有省也需要获取市的下拉框
     this.$watch(
       function () {
         return this.item[this.province];
@@ -157,6 +158,7 @@ export default {
         immediate: true,
       }
     );
+    //如果有市也需要获取区域的下拉框
     this.$watch(
       function () {
         return this.item[this.city];
