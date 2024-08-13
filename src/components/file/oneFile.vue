@@ -154,6 +154,7 @@ export default {
           if (res.code == 200) {
             this.$emit("getFile", { data: res.data })
             this.uploadObj.detail = res.data;
+            ////////////////////////////////////////////////
             if (this.mode == "noFolderId") {
               if (!this.fileId) {
                 this.uploadObj.detail = []
@@ -165,8 +166,8 @@ export default {
               if (activeFile) {
                 this.uploadObj.detail = [activeFile]
               }
-
             }
+            ////////////////////////////////////////////////
           } else {
             this.$message.error(res.msg);
           }
