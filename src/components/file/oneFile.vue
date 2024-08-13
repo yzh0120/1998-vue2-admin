@@ -105,7 +105,7 @@ export default {
       btnDisabled: false,
     };
   },
-  created() {
+  mounted() {
     if (this.noGetApi) {
 
     }
