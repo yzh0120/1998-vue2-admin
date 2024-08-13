@@ -275,7 +275,6 @@ export default {
     //5 文件上传成功
     upLoadSuccess(data, file) {
       this.currentNum--
-      console.log("文件上传成功")
       this.$message.success(data.fileName + "上传成功！");
       this.$emit("success", {
         taskName: this.uploadObj.taskName,
