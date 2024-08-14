@@ -11,21 +11,22 @@ export default {
   components: {
   },
   watch: {
-            "$store.state.user.userInfo.id": {
-          handler(newVal, oldVal) {
-            if (newVal && newVal.length > 0) {
-              //存在
-              // console.log("1111111111111")
-              this.$socket.io.opts.query = {
-                token: 123, //localStorage.getItem("token") || '没有token'
-              };
-              this.$socket.open();
-            } else {
-              this.$socket.disconnect(); //中断socket连接
-            }
-          },
-          immediate: true,
-        },
+    //先注释掉 需要再打开
+    // "$store.state.user.userInfo.id": {
+    //   handler(newVal, oldVal) {
+    //     if (newVal && newVal.length > 0) {
+    //       //存在
+    //       // console.log("1111111111111")
+    //       this.$socket.io.opts.query = {
+    //         token: 123, //localStorage.getItem("token") || '没有token'
+    //       };
+    //       this.$socket.open();
+    //     } else {
+    //       this.$socket.disconnect(); //中断socket连接
+    //     }
+    //   },
+    //   immediate: true,
+    // },
   },
   sockets: {
     //内置事件
@@ -58,7 +59,7 @@ export default {
       this.$socket.connect(); //重新socket连接 */
     },
   },
-  created() { 
+  created() {
     // this.favicon(); 和侧边栏的logo保持一致
   },
   methods: {
@@ -76,6 +77,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>
