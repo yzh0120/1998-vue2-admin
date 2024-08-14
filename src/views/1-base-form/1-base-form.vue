@@ -160,8 +160,8 @@ export default {
             type: "date", field: "_date", title: "年月日选择器加限制范围", pickerOpt: {
               disabledDate: (time) => {
                 //过去两年是禁用的
-                console.log(time.getTime(),self.$date.addDate(-2, "year",new Date()), new Date(self.$date.addDate(-2, "year",new Date())).getTime(), "123123")
-                return time.getTime() < new Date(self.$date.addDate(-2, "year",new Date())).getTime();
+                console.log(time.getTime(),self.$fn.addDate(-2, "year",new Date()), new Date(self.$fn.addDate(-2, "year",new Date())).getTime(), "123123")
+                return time.getTime() < new Date(self.$fn.addDate(-2, "year",new Date())).getTime();
               },
             },
           },

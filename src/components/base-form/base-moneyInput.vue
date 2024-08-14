@@ -96,7 +96,7 @@ export default {
           }
           else {
             let str = this.data[this.item.field] + ""
-            let str1 = this.$num.formatMoney(str,this.pointNum)
+            let str1 = this.$fn.formatMoney(str,this.pointNum)
             return str1
           }
 
