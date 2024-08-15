@@ -3,7 +3,11 @@
     <vxe-modal v-model="applyRefund" width="390" height="390" title=" " class="my_alert">
 
       <div style="color:#1B1B1B;font-size: 20px;text-align: center;font-weight: 600;">绑定二维码</div>
-      <div style="display: flex;justify-content: center;align-items: center;position: relative;top: 20px;">
+      <div style="display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: 20px;">
         <div @click="() => { express = false }" v-if="express"
           style="width: 230px;height: 230px;
           background-color: rgba(0, 0, 0, 0.5);
@@ -19,9 +23,9 @@
         </div>
         <img :src="`${imgUrl}`" width="230px" height="230px"  />
       </div>
-      <!-- <div style="text-align: center">
+      <div style="text-align: center;margin-top: 40px;" >
         使用微信扫码，绑定微信公众号，可实时获取开函进度。
-      </div> -->
+      </div>
 
 
     </vxe-modal>
