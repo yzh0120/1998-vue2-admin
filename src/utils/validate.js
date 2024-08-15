@@ -52,19 +52,7 @@ export function creditCode(rule, value, callback) {
   }
 }
 
-//最大允许12位整数内以及6位小数
-export function numLimit18_6(rule, value, callback) {
-  if (value) {
-    var reg = /^[1-9]\d{0,11}(\.\d{1,6})?$|^0(\.\d{1,6})?$/;
-    if (reg.test(value) == false) {
-      callback("最大允许12位整数以及6位小数");
-    } else {
-      callback();
-    }
-  } else {
-    callback();
-  }
-}
+
 
 /**
  * { validator: self.$validator.IDcard, trigger: "blur" },
@@ -246,7 +234,34 @@ export function realnumber6point(rule, value, callback) {
     callback();
   }
 }
+//
+export function Num_13(rule, value, callback) { 
+  if (value) {
+    var value2  =  value.match(/\d+/g);//将数字提出成数组
+    var reg = /^\d{13}$/;//固定13的正则
+    if (reg.test(value2[0]) == false) {
+      callback("快递单号是13位");
+    } else {
+      callback();
+    }
+  } else {
+    callback();
+  }
+}
 
+//最大允许12位整数内以及6位小数
+export function numLimit18_6(rule, value, callback) {
+  if (value) {
+    var reg = /^[1-9]\d{0,11}(\.\d{1,6})?$|^0(\.\d{1,6})?$/;
+    if (reg.test(value) == false) {
+      callback("最大允许12位整数以及6位小数");
+    } else {
+      callback();
+    }
+  } else {
+    callback();
+  }
+}
 
 //邮编
 export function ems(rule, value, callback) {
