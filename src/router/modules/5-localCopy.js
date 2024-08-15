@@ -71,6 +71,24 @@ export default {
         title: 'localCopy-banner',
         icon: "shezhi1",
       }
+    },
+    {
+      path: 'towCode',
+      name: 'localCopy-towCode',
+      component: () => import( /* webpackChunkName: "localCopy-move" */ "@/views/5-localCopy/8-towCode.vue"),
+      meta: {
+        title: '二维码',
+        icon: "shezhi1",
+      }
+    },
+    {
+      path: 'hover',
+      name: 'localCopy-hover',
+      component: () => import( /* webpackChunkName: "localCopy-move" */ "@/views/5-localCopy/9-hover.vue"),
+      meta: {
+        title: '悬浮展示',
+        icon: "shezhi1",
+      }
     }
   ]
 }
