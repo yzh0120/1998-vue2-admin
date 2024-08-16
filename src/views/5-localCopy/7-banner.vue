@@ -36,21 +36,26 @@ export default {
       var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
       this.screenWidth = width;
       //图片                高 / 宽  700 / 1920
-      this.bannerHeight = 550 / 1920 * this.screenWidth - 50
+      this.bannerHeight = 550 / 1920 * this.screenWidth 
       document.getElementById('el-carousel').style.height = this.bannerHeight + 'px';
     },
     setSize: function () {
-      this.bannerHeight = 550 / 1920 * this.screenWidth - 50
+      this.bannerHeight = 550 / 1920 * this.screenWidth 
       document.getElementById('el-carousel').style.height = this.bannerHeight + 'px';
     },
   },
 }
 </script>
 
-<style lang="scss" >
-.abc {
+<style lang="scss" scoped>
+::v-deep {
   .el-carousel__container {
     height: 100% !important;
   }
+}
+.my_img {
+  object-fit: cover;
+  height: 100%;
+  // margin-bottom: 50px;
 }
 </style>
