@@ -89,6 +89,15 @@ export default {
         title: '悬浮展示',
         icon: "shezhi1",
       }
+    },
+    {
+      path: 'radio',
+      name: 'localCopy-radio',
+      component: () => import( /* webpackChunkName: "localCopy-move" */ "@/views/5-localCopy/10-radio.vue"),
+      meta: {
+        title: '单选',
+        icon: "radio",
+      }
     }
   ]
 }
