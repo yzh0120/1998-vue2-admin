@@ -18,6 +18,26 @@
       </el-radio-group>
     </div>
 
+    <div class="heng">
+      <el-radio-group size="default" v-model="radio">
+        <el-radio :label="item.id" border v-for="(item, index) in payList" :key="index">
+          <div class="item2">
+            <div class="img"></div>
+            <div>耳机</div>
+            <!-- <div class="one">{{ item.companyName }}</div>
+            <div class="two">{{ item.project }}</div>
+            <div class="three">
+              <div class="tit">中标时间：</div>
+              <div class="value">{{ item.time }}</div>
+              &nbsp;
+              <div class="tit">中标金额：</div>
+              <div class="value">{{ item.money }}</div>
+            </div> -->
+          </div>
+        </el-radio>
+      </el-radio-group>
+    </div>
+
   </div>
 </template>
 
@@ -72,9 +92,42 @@ export default {
       background-color: #FFFAFA;
     }
 
+    .el-radio.is-bordered {
+      padding: 0px 20px 0 10px;
+    }
+
     .el-radio {
       margin-left: 0px !important;
       background: #F7F7F7;
+      // height: auto;
+      display: flex;
+      margin: 0;
+      margin-bottom: 20px;
+      width: 100%;
+      height: 120px;
+
+      .el-radio__input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .heng{
+    .el-radio-group {
+      width: 100%;
+      display: flex;
+      // flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .el-radio.is-bordered+.el-radio {
+      margin-bottom: 20px;
+    }
+
+    .el-radio.is-bordered.is-checked {
+      background-color: #FFFAFA;
     }
 
     .el-radio.is-bordered {
@@ -82,6 +135,10 @@ export default {
     }
 
     .el-radio {
+      width: 164px !important;
+      height: 126px !important;
+      margin-left: 0px !important;
+      background: #F7F7F7;
       // height: auto;
       display: flex;
       margin: 0;
@@ -100,7 +157,6 @@ export default {
 }
 
 //////////////////
-/// 
 .item {
   padding: 20px 0;
   display: flex;
@@ -140,6 +196,18 @@ export default {
       color: rgba(0, 0, 0, 0.6);
       line-height: 22px;
     }
+  }
+}
+.item2{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  .img{
+    width: 90px;
+    height: 90px;
+    background-color: red;
   }
 }
 </style>
