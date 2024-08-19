@@ -1,6 +1,7 @@
 <template>
   <div>
-    <el-radio-group size="default" v-model="radio">
+    <div class="shu">
+      <el-radio-group size="default" v-model="radio" >
           <el-radio :label="item.id" border v-for="(item, index) in payList" :key="index">
             <div class="item">
               <div class="one">{{ item.companyName }}</div>
@@ -15,6 +16,8 @@
             </div>
           </el-radio>
         </el-radio-group>
+    </div>
+
   </div>
 </template>
 
@@ -53,15 +56,14 @@
 
 <style lang="scss" scoped>
 ::v-deep {
-  .el-radio-group {
+  .shu{
+    .el-radio-group {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
   }
-  [data-v-51334e34] .el-radio.is-bordered{
-    margin-left:20px
-  }
+
   .el-radio.is-bordered+.el-radio {
     margin-bottom: 20px;
   }
@@ -71,6 +73,7 @@
   }
 
   .el-radio {
+    margin-left:0px !important;
     background: #F7F7F7;
   }
   .el-radio.is-bordered{
@@ -91,6 +94,8 @@
       align-items: center;
     }
   }
+  }
+
 }
 
 //////////////////
