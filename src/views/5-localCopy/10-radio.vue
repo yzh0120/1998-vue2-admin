@@ -1,31 +1,31 @@
 <template>
   <div>
     <div class="shu">
-      <el-radio-group size="default" v-model="radio" >
-          <el-radio :label="item.id" border v-for="(item, index) in payList" :key="index">
-            <div class="item">
-              <div class="one">{{ item.companyName }}</div>
-              <div class="two">{{ item.project }}</div>
-              <div class="three">
-                <div class="tit">中标时间：</div>
-                <div class="value">{{ item.time }}</div>
-                &nbsp;
-                <div class="tit">中标金额：</div>
-                <div class="value">{{ item.money }}</div>
-              </div>
+      <el-radio-group size="default" v-model="radio">
+        <el-radio :label="item.id" border v-for="(item, index) in payList" :key="index">
+          <div class="item">
+            <div class="one">{{ item.companyName }}</div>
+            <div class="two">{{ item.project }}</div>
+            <div class="three">
+              <div class="tit">中标时间：</div>
+              <div class="value">{{ item.time }}</div>
+              &nbsp;
+              <div class="tit">中标金额：</div>
+              <div class="value">{{ item.money }}</div>
             </div>
-          </el-radio>
-        </el-radio-group>
+          </div>
+        </el-radio>
+      </el-radio-group>
     </div>
 
   </div>
 </template>
 
 <script>
-  export default {
-  data() { 
-      return {
-        radio: "1",
+export default {
+  data() {
+    return {
+      radio: "1",
       payList: [
         {
           id: "1",
@@ -49,51 +49,52 @@
           money: "8,000,000元"
         }
       ],
-      }
+    }
   },
-  }
+}
 </script>
 
 <style lang="scss" scoped>
 ::v-deep {
-  .shu{
+  .shu {
     .el-radio-group {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
-  .el-radio.is-bordered+.el-radio {
-    margin-bottom: 20px;
-  }
- 
-  .el-radio.is-bordered.is-checked {
-    background-color: #FFFAFA;
-  }
-
-  .el-radio {
-    margin-left:0px !important;
-    background: #F7F7F7;
-  }
-  .el-radio.is-bordered{
-    padding: 0px 20px 0 10px;
-  }
-
-  .el-radio {
-    // height: auto;
-    display: flex;
-    margin: 0;
-    margin-bottom: 20px;
-    width: 100%;
-    height: 120px;
-
-    .el-radio__input {
+      width: 100%;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-around;
     }
-  }
+
+    .el-radio.is-bordered+.el-radio {
+      margin-bottom: 20px;
+    }
+
+    .el-radio.is-bordered.is-checked {
+      background-color: #FFFAFA;
+    }
+
+    .el-radio {
+      margin-left: 0px !important;
+      background: #F7F7F7;
+    }
+
+    .el-radio.is-bordered {
+      padding: 0px 20px 0 10px;
+    }
+
+    .el-radio {
+      // height: auto;
+      display: flex;
+      margin: 0;
+      margin-bottom: 20px;
+      width: 100%;
+      height: 120px;
+
+      .el-radio__input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 
 }
