@@ -83,7 +83,7 @@ export default {
           companyName:this.selfClass
         }
       ).then((res) => {
-        if (res.code == 0) {
+        if (res.code == 200) {
           // this.uploadObj.detail = res.data;
           let fileList = res.data || [];
           //循环本地

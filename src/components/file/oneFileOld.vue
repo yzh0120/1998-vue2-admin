@@ -122,7 +122,7 @@ export default {
     getById() {
       if (this.fileId) { 
         eleFileApi.getById({id: this.fileId}).then((res) => {
-        if (res.code == 0) {
+        if (res.code == 200) {
           this.uploadObj.detail = [res.data]
         } else { 
           this.$message.error(res.msg);
