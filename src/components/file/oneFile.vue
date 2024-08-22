@@ -213,10 +213,13 @@ export default {
         headers: headers,
         data: fd,
         onUploadProgress: (progressEvent) => { this.progress(progressEvent) }
-      }).then((res) => {
+      }).then((res2) => {
+        console.log(res2, "res2")
+        let res = res2.data
+        
         this.btnDisabled = !this.btnDisabled;
         //this.fdata.btnDisabled = !this.fdata.btnDisabled;
-        console.log(res, "res")
+      
         // let { data } = res//data是包含人工code的对象
         if (res.code == 200) {//上传成功
           this.upLoadSuccess(res.data, file.file)
