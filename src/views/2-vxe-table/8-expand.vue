@@ -3,6 +3,9 @@
 
     <!-- 表格 -->
     <vxe-grid v-bind="gridOptions" auto-resize>
+      <template #expand="{ row }">
+        12123
+      </template>
       <template #num_default="{ rowIndex }">
         <span>{{ (pagerData.pageNo - 1) * pagerData.pageSize + rowIndex + 1 }}</span>
       </template>
@@ -55,6 +58,12 @@ export default {
             slots: {
               default: "num_default",
             },
+          },
+          {
+            type: "expand",
+            title: "详细",
+            width: 60,
+            slots: { content: "expand" },
           },
           {
             field: "projectNo",
