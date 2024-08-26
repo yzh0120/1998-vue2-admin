@@ -23,7 +23,7 @@ service.interceptors.response.use(
   response => {
     const code = response.data.code;
     if (code != 200) {
-      Notification.error({ title: msg })
+      Notification.error({ title: response.data.info })
     }
     if (response.status === 200) { // 如果状态码是200  会执行.then的第一个函数
       return Promise.resolve(response.data)
