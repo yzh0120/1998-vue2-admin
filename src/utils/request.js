@@ -21,9 +21,16 @@ const service = axios.create({
 service.interceptors.response.use(
   //code == 200
   response => {
+    const code = response.data.code;
+    if (code != 200) {
+      Notification.error({ title: msg })
+    }
     if (response.status === 200) { // 如果状态码是200  会执行.then的第一个函数
-
-      // // 未设置状态码则默认成功状态
+      return Promise.resolve(response.data)
+    } else { //除了200 在2xx的范围 会执行.then的第二个函数  Promise.reject(res)  1
+      return Promise.reject(response)
+    }
+          // // 未设置状态码则默认成功状态
       // const code = response.data.code;
       // if (code == 200) {
       //   return Promise.resolve(response.data)
@@ -51,10 +58,6 @@ service.interceptors.response.use(
       //   })
       //   return Promise.reject(response)
       // }
-      return Promise.resolve(response.data)
-    } else { //除了200 在2xx的范围 会执行.then的第二个函数  Promise.reject(res)  1
-      return Promise.reject(response)
-    }
   },
   //code != 200
   err => {
