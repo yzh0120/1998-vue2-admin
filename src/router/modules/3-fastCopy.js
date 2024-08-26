@@ -25,5 +25,13 @@ export default {
       title: '导航页面',
       icon: "shezhi1",
     }
+  }, {
+    path: 'getMoney',
+    name: 'fastCopy-getMoney',
+    component: () => import( /* webpackChunkName: "fastCopy-getMoney" */ "@/views/3-fastCopy/3-getMoney.vue"),
+    meta: {
+      title: '收银台',
+      icon: "shezhi1",
+    }
   }]
 }

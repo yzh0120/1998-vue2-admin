@@ -69,6 +69,9 @@ Vue.component("pdfPage", pdfPage)
 
 import tablePage from "@/components/tablePage"
 Vue.component('tablePage', tablePage)
+
+import baseCard from '@/components/baseCard'
+Vue.component('baseCard', baseCard)
 /** mixin *******************************************************************************************************/
 import baseFormMixin from "@/mixins/baseForm";
 Vue.mixin(baseFormMixin)
