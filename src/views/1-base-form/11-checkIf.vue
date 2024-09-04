@@ -1,13 +1,16 @@
 <template>
   <page>
     <el-divider>复选框</el-divider>
-    <base-form :data="form2" ref="form2" @event="formEvent"></base-form>
+    <base-form :data="form1" ref="form1" @event="formEvent"></base-form>
     <el-divider>下拉框</el-divider>
-    <base-form :data="form3" ref="form3" @event="formEvent"></base-form>
+    <base-form :data="form2" ref="form2" @event="formEvent"></base-form>
     <el-divider>多个复选框控制 1控制2 2控制3 可以导致1让3消失</el-divider>
+    <base-form :data="form3" ref="form3" @event="formEvent"></base-form>
+    <el-divider>先复选框控制 + 后watch控制(这个和3的区别是 是多选一而不是一起显示和展示)</el-divider>
     <base-form :data="form4" ref="form4" @event="formEvent"></base-form>
-    <el-divider>先复选框控制 + 后watch控制(这个和4的区别是 是多选一而不是一起显示和展示)</el-divider>
+    <el-divider>还没想好</el-divider>
     <base-form :data="form5" ref="form5" @event="formEvent"></base-form>
+    <el-button @click="ggg">safds</el-button>
   </page>
 </template>
 
@@ -16,7 +19,8 @@ export default {
   data() {
     let self = this;
     return {
-      form2: {
+      gggh:false,
+      form1: {
         span: true,
         list: [
           {
@@ -40,7 +44,7 @@ export default {
         ],
         data: {},
       },
-      form3: {
+      form2: {
         span: true,
         list: [
           {
@@ -72,7 +76,7 @@ export default {
         ],
         data: {},
       },
-      form4: {
+      form3: {
         span: true,
         list: [
           {
@@ -104,12 +108,12 @@ export default {
         ],
         data: {},
       },
-      form5: {
+      form4: {
         span: true,
         list: [
           {
             slotCheck: "显示详细",
-            checkArr: [`_input52`,`_input555551`,`_input555552`],//也可以在这里写checkArr: [`_input52`]
+            checkArr: [`_input52`, `_input555551`, `_input555552`],//也可以在这里写checkArr: [`_input52`]
             trueLabel: 1,
             falseLabel: 0,
             field: "ccc555",
@@ -152,20 +156,49 @@ export default {
         ],
         data: {},
       },
+      form5: {
+        span: true,
+        list: [
+          {
+            slotCheck: "选择1",
+            checkArr: [`ccc`],
+            trueLabel: 1,
+            falseLabel: 0,
+            field: "ccc1",
+            span: 12,
+          },
+          {
+            type: "input",
+            title: "123",
+            field: "ccc",
+            span: 12,
+          }
+        ],
+        data: {},
+      },
     };
   },
   mounted() {
     setTimeout(() => {
-      this.form2.data.ccc = 1
+      this.form1.data.ccc = 1
 
-      this.form3.data.ccc = 0
+      this.form2.data.ccc = 0
     }, 1000)
   },
   watch: {
+    "form1.data": {
+      handler() {
+        if (this.$refs.form1) {
+          this.$refs.form1.slotCheckAll()
+        }
+      },
+      immediate: true,
+      deep: true
+    },
     "form2.data": {
       handler() {
         if (this.$refs.form2) {
-          this.$refs.form2.slotCheckAll()
+          this.$refs.form2.slotSelectAll()
         }
       },
       immediate: true,
@@ -174,7 +207,7 @@ export default {
     "form3.data": {
       handler() {
         if (this.$refs.form3) {
-          this.$refs.form3.slotSelectAll()
+          this.$refs.form3.slotCheckAll()
         }
       },
       immediate: true,
@@ -184,6 +217,24 @@ export default {
       handler() {
         if (this.$refs.form4) {
           this.$refs.form4.slotCheckAll()
+
+          if (this.form4.data.ccc555 == 1) {
+            if (this.form4.data._input52 === "1") {
+              this._set(this.form4, "_input555551", { show: true })
+              this._set(this.form4, "_input555552", { show: false })
+            } else if (this.form4.data._input52 === "2") {
+              this._set(this.form4, "_input555551", { show: false })
+              this._set(this.form4, "_input555552", { show: true })
+            } else {
+              this._set(this.form4, "_input555551", { show: false })
+              this._set(this.form4, "_input555552", { show: false })
+            }
+          } else {
+            //如果 checkArr: [`_input52`]  需要在这里写
+            // this._set(this.form4, "_input555551", { show: false })
+            // this._set(this.form4, "_input555552", { show: false })
+          }
+
         }
       },
       immediate: true,
@@ -193,31 +244,23 @@ export default {
       handler() {
         if (this.$refs.form5) {
           this.$refs.form5.slotCheckAll()
-
-          if (this.form5.data.ccc555 == 1) {
-            if (this.form5.data._input52 === "1") {
-              this._set(this.form5, "_input555551", { show: true })
-              this._set(this.form5, "_input555552", { show: false })
-            } else if (this.form5.data._input52 === "2") {
-              this._set(this.form5, "_input555551", { show: false })
-              this._set(this.form5, "_input555552", { show: true })
-            } else {
-              this._set(this.form5, "_input555551", { show: false })
-              this._set(this.form5, "_input555552", { show: false })
-            }
-          } else {
-            //如果 checkArr: [`_input52`]  需要在这里写
-            // this._set(this.form5, "_input555551", { show: false })
-            // this._set(this.form5, "_input555552", { show: false })
-          }
-
         }
+            if (this.gggh) {
+            console.log(randomNumber % 2, "randomNumber")
+            this.$set(this.form5.data, "ccc1", 1)
+            this._set(this.form5, "ccc1", { disabled: true })
+          } else {
+            this._set(this.form5, "ccc1", { disabled: false })
+          }
       },
       immediate: true,
       deep: true
-    },
+    }
   },
   methods: {
+    ggg() { 
+      this.gggh = (Math.floor(Math.random() * 100) % 2 === 0)
+    },
     formEvent(e) {
       // if (e.item.field == "_input52") { 
 
