@@ -4,13 +4,12 @@
     <base-form :data="form1" ref="form1" @event="formEvent"></base-form>
     <el-divider>下拉框</el-divider>
     <base-form :data="form2" ref="form2" @event="formEvent"></base-form>
-    <el-divider>多个复选框控制 1控制2 2控制3 可以导致1让3消失</el-divider>
+    <el-divider>多个复选框嵌套控制 1控制2 2控制3 可以导致1让3消失</el-divider>
     <base-form :data="form3" ref="form3" @event="formEvent"></base-form>
-    <el-divider>先复选框控制 + 后watch控制(这个和3的区别是 是多选一而不是一起显示和展示)</el-divider>
+    <el-divider>先复选框控制 + 后watch控制(这个和3的有区别是)</el-divider>
     <base-form :data="form4" ref="form4" @event="formEvent"></base-form>
     <el-divider>还没想好</el-divider>
     <base-form :data="form5" ref="form5" @event="formEvent"></base-form>
-    <el-button @click="ggg">safds</el-button>
   </page>
 </template>
 
@@ -19,7 +18,6 @@ export default {
   data() {
     let self = this;
     return {
-      gggh:false,
       form1: {
         span: true,
         list: [
@@ -245,22 +243,23 @@ export default {
         if (this.$refs.form5) {
           this.$refs.form5.slotCheckAll()
         }
-            if (this.gggh) {
+        const randomNumber = Math.floor(Math.random() * 100);
+            if (randomNumber % 2 === 0) {
             console.log(randomNumber % 2, "randomNumber")
             this.$set(this.form5.data, "ccc1", 1)
             this._set(this.form5, "ccc1", { disabled: true })
-          } else {
+            } else {
+              this.$set(this.form5.data, "ccc1", null)
             this._set(this.form5, "ccc1", { disabled: false })
           }
+       
+
       },
       immediate: true,
       deep: true
     }
   },
   methods: {
-    ggg() { 
-      this.gggh = (Math.floor(Math.random() * 100) % 2 === 0)
-    },
     formEvent(e) {
       // if (e.item.field == "_input52") { 
 
