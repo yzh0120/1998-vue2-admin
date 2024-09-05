@@ -15,8 +15,9 @@ export default {
    * @param {*} keyStr
    * @return {*}
    */
-  encrypt(word, keyStr) {
-    keyStr = keyStr ? keyStr : signkey;
+  encrypt(word) {
+    // keyStr = keyStr ? keyStr : signkey;
+    let keyStr = signkey
     var key = CryptoJS.enc.Utf8.parse(keyStr);
     var srcs = CryptoJS.enc.Utf8.parse(word);
     var encrypted = CryptoJS.AES.encrypt(srcs, key, {
@@ -33,8 +34,9 @@ export default {
    * @param {*} keyStr
    * @return {*}
    */
-  decrypt(word, keyStr) {
-    keyStr = keyStr ? keyStr : signkey;
+  decrypt(word) {
+    // keyStr = keyStr ? keyStr : signkey;
+    let keyStr = signkey
     var key = CryptoJS.enc.Utf8.parse(keyStr);
     var decrypt = CryptoJS.AES.decrypt(word, key, {
       mode: CryptoJS.mode.ECB,
