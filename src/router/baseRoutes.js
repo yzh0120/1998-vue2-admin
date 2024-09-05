@@ -16,7 +16,7 @@ import panel from "./modules/14-panel.js"
 import edit from "./modules/15-edit.js"
 import bus from "./modules/16-bus.js"
 import vBtn from "./modules/17-v-btn.js"
-import vuexx from "./modules/18-vuex.js"
+import aes from "./modules/18-aes.js"
 
 const routes = [
   {
@@ -86,7 +86,7 @@ const routes = [
   edit,
   bus,
   vBtn,
-  vuexx
+  aes
 ]
 
 export default routes
