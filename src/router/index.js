@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import baseRoutes from './baseRoutes.js'
 import store from '@/store/index' //vuex
 import * as cookieFn from '@/utils/cookie.js';
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css' // progress bar style
 import {
   Message,
 } from 'element-ui';
@@ -38,6 +40,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => { 
+  NProgress.start()
   ////外链登录
   // if (to.query.workCode) {
   //   let data = {
@@ -92,7 +95,7 @@ router.beforeEach(async (to, from, next) => {
 
     if (to.path === '/login') { //如果去登录页 直接跳转首页
       next("/")
-      // NProgress.done()
+      NProgress.done()
     } else {
       if (!store.state.router.routes.length) { //如果vuex中的routers（通过接口获取的数组）长度为0
 
@@ -106,7 +109,7 @@ router.beforeEach(async (to, from, next) => {
                 ...to,
                 replace: true
               }) //如果参数to不能找到对应的路由的话，就再执行一次beforeEach((to, from, next)直到其中的next({ ...to})能找到对应的路由为止。
-              // NProgress.done()
+              NProgress.done()
             })
           } else {
             Message({
@@ -124,14 +127,14 @@ router.beforeEach(async (to, from, next) => {
   } else { 
     if (whiteListName.indexOf(to.name) !== -1) { //白名单
       next() //放行
-      // NProgress.done()
+      NProgress.done()
     } else { //非白名单，跳转登录页
       store.dispatch("tagsView/delAllTagsView", []).then(() => {
         setTimeout(() => {
           location.reload()
         }, 100);
         next(`/login`)
-        // NProgress.done()
+        NProgress.done()
       }); //中断当前导航的afterEach,又进入一次路由守卫的beforeEach,等待 next()放行
     }
   }
@@ -139,7 +142,7 @@ router.beforeEach(async (to, from, next) => {
 
 router.afterEach(() => {
   // finish progress bar
-  // NProgress.done()
+  NProgress.done()
 })
 
 
