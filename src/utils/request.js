@@ -21,6 +21,10 @@ const service = axios.create({
 service.interceptors.response.use(
   //code == 200
   response => {
+      // if (response.config.method == "post") {
+      //     response.data = JSON.parse(aes.decrypt(response.data))
+      //     return Promise.resolve(data)
+      // }
     const code = response.data.code;
     if (code != 200) {
       Notification.error({ title: response.data.info })
@@ -30,11 +34,6 @@ service.interceptors.response.use(
     } else { //除了200 在2xx的范围 会执行.then的第二个函数  Promise.reject(res)  1
       return Promise.reject(response)
     }
-          // // 未设置状态码则默认成功状态
-      // const code = response.data.code;
-      // if (code == 200) {
-      //   return Promise.resolve(response.data)
-      // }
       // //token失效
       // else if (code == 401) {
       //   if (!store.state.config.alert401) {
@@ -50,13 +49,6 @@ service.interceptors.response.use(
       //       }
       //     })
       //   }
-      // }
-      // //其他自定义code
-      // else {
-      //   Notification.error({
-      //     title: response.data.info
-      //   })
-      //   return Promise.reject(response)
       // }
   },
   //code != 200
