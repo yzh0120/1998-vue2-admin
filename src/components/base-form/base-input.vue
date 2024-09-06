@@ -1,4 +1,3 @@
-
 <!-- 输入框
  type:'input '                              控件类型
  field:xxx                                  控件对应的字段      
@@ -10,17 +9,16 @@
  tip:true                                   内容溢出悬浮显示
  disabled:true                              禁用
  -->
- <!--  -->
+<!--  -->
 <template>
-  <el-input v-model="data[item.field]" :type="item.type" :disabled="item.disabled" :placeholder="_getPlaceholder(item)"
-    @clear="setValueNull" @blur="blur(data[item.field])" @focus="focus(data[item.field])" @input="input(data[item.field])"
-    clearable  :maxlength="item.max">
-    <template slot="prepend" v-if="item.prepend">{{ item.prepend }}</template>
-    <template slot="append" v-if="item.append">{{ item.append }}</template>
+  <el-input  v-model="xxx" :type="item.type" :disabled="item.disabled" :placeholder="_getPlaceholder(item)"
+    @clear="setValueNull" @blur="blur(data[item.field])" @focus="focus(data[item.field])"
+    @input="input(data[item.field])" clearable :maxlength="item.max">
 
-    <!-- <el-button @click="search" slot="append" v-if="item.btn" :loading="item.loading">{{
-      item.btn
-    }}</el-button> -->
+    <template slot="suffix" v-if="item.hide">
+      <span class="el-icon-view" @click="togglePasswordVisibility">{{ data[item.field] }}</span>
+    </template>
+
   </el-input>
   <!--  -->
 </template>
@@ -38,10 +36,37 @@ export default {
       default: () => { },
     },
   },
+  computed: {
+    xxx: {
+      get() {
+        if (this.item.hide) {
+          if (this.passwordVisible) {
+            return  this.data[this.item.field]?.replace(/./g, '*');
+          } else {
+            // console.log(this.data[this.item.field],"this.data[this.item.field]")
+            return this.data[this.item.field];
+          }
+        } else {
+          return this.data[this.item.field];
+        }
+      },
+      set(val) {
+        console.log(val,"val")
+        this.$set(this.data, this.item.field, val);
+      },
+    }
+  },
   data() {
-    return {};
+    return {
+      passwordVisible: true
+    };
   },
   methods: {
+
+    togglePasswordVisibility() {
+      this.passwordVisible = !this.passwordVisible;
+      console.log(this.passwordVisible, "this.passwordVisible")
+    },
     blur(value) {
       this.$emit("baseFormEvent", {
         name: "blur",
@@ -73,7 +98,7 @@ export default {
       });
     },
   },
-  computed: {},
+
 };
 </script>
 

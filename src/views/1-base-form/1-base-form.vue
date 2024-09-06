@@ -57,6 +57,17 @@ export default {
             ],
           },
           {
+            type: "input",
+            field: "_input33333",
+            hide:true,
+            labelTip: "若为长期，可不填",
+            title: "小眼睛输入框",
+            rules: [
+              { required: true, message: "请输入" },
+              { validator: self.$validator.numberpoint },
+            ],
+          },
+          {
             type: "formatInput",
             field: "_formatInput",
             title: "金额格式化输入框",
