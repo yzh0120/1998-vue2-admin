@@ -6,7 +6,7 @@
  * 
  */
 import CryptoJS from 'crypto-js'
-const signkey = "0ca03a92751282f6ee05f8e6e42020b5"
+const signkey = "0ca03a92751282f6"
 // const signkey = process.env.VUE_APP_AESKEY   //用process.env会解不出来
 
 export default {
