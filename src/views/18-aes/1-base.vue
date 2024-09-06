@@ -15,16 +15,20 @@ export default {
     return {
       input:"",
       a1: "",
-      a2:""
+      a2: "",
+      obj:{
+        name: "殷洲",
+        age:18
+      },
     }
   },
     methods:{
       ggg() {
-        this.a1 = aes.encrypt(JSON.stringify(this.input))
+        this.a1 = aes.encrypt(JSON.stringify(this.obj)) //aes.encrypt(JSON.stringify(this.input))
       },
       ggg2() { 
-        console.log(aes.decrypt(this.input),"123")
-        this.a2 = aes.decrypt(this.input)
+        console.log(aes.decrypt(this.a1),"123")
+        this.a2 = JSON.parse(aes.decrypt(this.a1)) //aes.decrypt(this.input)
       },
     }
   }
