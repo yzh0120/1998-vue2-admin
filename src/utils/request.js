@@ -21,8 +21,9 @@ const service = axios.create({
 service.interceptors.response.use(
   //code == 200
   response => {
+    // console.log(response.config.url,"response.config")
       // if (response.config.method == "post") {
-      //     response.data = JSON.parse(aes.decrypt(response.data))
+      //     response.data.data = JSON.parse(aes.decrypt(response.data.data))
       //     return Promise.resolve(data)
       // }
     const code = response.data.code;
