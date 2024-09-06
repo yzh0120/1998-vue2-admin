@@ -11,15 +11,14 @@
  -->
 <!--  -->
 <template>
-  <el-input  v-model="xxx" :type="item.type" :disabled="item.disabled" :placeholder="_getPlaceholder(item)"
+  <el-input  v-model="data[item.field]" :type="item.type" :disabled="item.disabled" :placeholder="_getPlaceholder(item)"
     @clear="setValueNull" @blur="blur(data[item.field])" @focus="focus(data[item.field])"
     @input="input(data[item.field])" clearable :maxlength="item.max">
-
-    <template slot="suffix" v-if="item.hide">
-      <span class="el-icon-view" @click="togglePasswordVisibility">{{ data[item.field] }}</span>
-    </template>
-
+    <!-- <template slot="suffix" v-if="item.hide">
+      <span class="el-icon-view" @click="togglePasswordVisibility"></span>
+    </template> -->
   </el-input>
+  
   <!--  -->
 </template>
 
@@ -37,24 +36,24 @@ export default {
     },
   },
   computed: {
-    xxx: {
-      get() {
-        if (this.item.hide) {
-          if (this.passwordVisible) {
-            return  this.data[this.item.field]?.replace(/./g, '*');
-          } else {
-            // console.log(this.data[this.item.field],"this.data[this.item.field]")
-            return this.data[this.item.field];
-          }
-        } else {
-          return this.data[this.item.field];
-        }
-      },
-      set(val) {
-        console.log(val,"val")
-        this.$set(this.data, this.item.field, val);
-      },
-    }
+    // xxx: {
+    //   get() {
+    //      console.log(this.data[this.item.field],"this.data[this.item.field]")
+    //     if (this.item.hide) {
+    //       if (this.passwordVisible) {
+    //         return  this.data[this.item.field]?.replace(/./g, '*');
+    //       } else {
+    //         return this.data[this.item.field];
+    //       }
+    //     } else {
+    //       return this.data[this.item.field];
+    //     }
+    //   },
+    //   set(val) {
+    //     console.log(val,"val")
+    //     this.$set(this.data, this.item.field, val);
+    //   },
+    // }
   },
   data() {
     return {
