@@ -56,7 +56,7 @@ router.beforeEach(async (to, from, next) => {
   //         res.data.token,
   //         new Date(res.data.expireTime)
   //       );
-  //       next("/")
+  //       next("/")//next({ path: `/eidtGuarantee/${resDAta.id}`, query: {a:1} })
   //     }
   //   })
   // }
