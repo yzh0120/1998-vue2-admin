@@ -96,7 +96,25 @@ export default {
       component: () => import( /* webpackChunkName: "localCopy-move" */ "@/views/5-localCopy/10-radio.vue"),
       meta: {
         title: '单选',
-        icon: "radio",
+        icon: "shezhi1",
+      }
+    },
+    {
+      path: 'go',
+      name: 'localCopy-go',
+      component: () => import( /* webpackChunkName: "localCopy-move" */ "@/views/5-localCopy/11-go.vue"),
+      meta: {
+        title: '锚点',
+        icon: "shezhi1",
+      }
+    },
+    {
+      path: 'vuePuzzleVerification',
+      name: 'localCopy-vuePuzzleVerification',
+      component: () => import( /* webpackChunkName: "localCopy-move" */ "@/views/5-localCopy/12-vuePuzzleVerification.vue"),
+      meta: {
+        title: '图形验证',
+        icon: "shezhi1",
       }
     }
   ]

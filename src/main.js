@@ -156,6 +156,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+import PuzzleVerification from 'vue-puzzle-verification'
+Vue.use(PuzzleVerification)
+
 //vxe
 import XEUtils from 'xe-utils'
 Vue.prototype.$utils = XEUtils
