@@ -124,7 +124,7 @@ export function type(data) {
 }
 
 //获取html内的文字
-export  function getSimpleText(str) {
+export function getSimpleText(str) {
   if (str) {
     str = str.replace(/<[^>]+>|&[^>]+;/g, "").trim(); //去掉所有的html标签和&nbsp;之类的特殊符合
     return str;
@@ -208,7 +208,7 @@ export function formatSpace(val, spaceNumber = 4, separator = " ") {
     //   separator: separator
     // })
 
-    return  val.replace(/(.{4})(?=.)/g, '$1 ');
+    return val.replace(/(.{4})(?=.)/g, '$1 ');
   }
   return ""
 }
@@ -350,16 +350,16 @@ export function convertCurrency(money) {
   return chineseStr;
 }
 
-export function selfNumber(val) { 
-  if (val === null || val === undefined || val === "") { 
+export function selfNumber(val) {
+  if (val === null || val === undefined || val === "") {
     return 0
   } else {
     return Number(val)
   }
 }
 
-export function isNull(val) { 
-  if (val === null || val === undefined || val === "" || val === 0 || val === "0") { 
+export function isNull(val) {
+  if (val === null || val === undefined || val === "" || val === 0 || val === "0") {
     return true
   } else {
     return false
@@ -468,14 +468,14 @@ export function subtractDate(date = dayjs(), number, type = "day", formatType = 
     Z	时区值		[+-]HH:mm
     ZZ	时区值		[+-]HHmm
  */
-    export function formatDate(date, format = "yyyy-MM-dd") {
-      if (date) {
-        // var date = new Date(date.replace(/-/g, "/").replace(/T/g, " "))
-        return XEUtils.toDateString(date, format)
-      }
-      return "";
+export function formatDate(date, format = "yyyy-MM-dd") {
+  if (date) {
+    // var date = new Date(date.replace(/-/g, "/").replace(/T/g, " "))
+    return XEUtils.toDateString(date, format)
+  }
+  return "";
 }
-    
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///返回数据字典文字
 export function dataItem_text(field, value, isNumber) {
