@@ -5,8 +5,18 @@ import XEUtils, {
 import store from '@/store/index' //vuex
 
 /*
+    {
+            title: "审批状态",
+            field: "applystatus",
+            type: "select",
+            opt: self.$fn.dataItem_list("applystatus"),
+            text: "itemName",
+            value: "itemValue",
+          },
+          
 formatter({ cellValue }) {
               return self.$fn.formatMoney( self.$fn.divide(cellValue,10000), 6) 
+              return self.$fn.dataItem_text("complexFormatType", cellValue)
             }}
 */
 //https://vxetable.cn/xe-utils/#/
