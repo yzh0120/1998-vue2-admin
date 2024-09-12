@@ -3,6 +3,12 @@ import XEUtils, {
   toNumber
 } from "xe-utils";
 import store from '@/store/index' //vuex
+
+/*
+formatter({ cellValue }) {
+              return self.$fn.formatMoney( self.$fn.divide(cellValue,10000), 6) 
+            }}
+*/
 //https://vxetable.cn/xe-utils/#/
 /************************************************************************************************************/
 /**
