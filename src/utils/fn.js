@@ -13,7 +13,7 @@ import store from '@/store/index' //vuex
             text: "itemName",
             value: "itemValue",
           },
-          
+
 formatter({ cellValue }) {
               return self.$fn.formatMoney( self.$fn.divide(cellValue,10000), 6) 
               return self.$fn.dataItem_text("complexFormatType", cellValue)
@@ -133,63 +133,6 @@ export  function getSimpleText(str) {
   }
 }
 
-
-///数据字典转化
-export function dataItem_text(field, value, isNumber) {
-  // console.log(value,"----111value")
-  if (value === null || value === undefined) {
-    return ""
-  }
-  let arr = deepClone(store.state.config.dataItem[field])
-  // console.log(arr,"----111")
-  if (arr) {
-    if (isNumber) {
-      let obj = arr.find((e) => {
-        return Number(e.value) === value
-      })
-      if (obj) {
-        return obj.label
-      } else {
-        return ""
-      }
-    } else {
-      let obj = arr.find((e) => {
-        // console.log(e.value,value)
-        return e.value === value
-      })
-      // console.log(obj,"obj")
-      if (obj) {
-        return obj.label
-      } else {
-        return ""
-      }
-
-    }
-
-  } else {
-    // return ''
-    alert("数据字典没有此字段")
-  }
-}
-//label
-//value
-///数据字典转化
-export function dataItem_list(field, isNumber) {
-  let arr = deepClone(store.state.config.dataItem[field])
-  if (arr) {
-    if (isNumber) {
-      arr.forEach((e) => {
-        e.value = Number(e.value)
-      })
-      return arr
-    } else {
-      return arr
-    }
-
-  } else {
-    alert("数据字典没有此字段")
-  }
-}
 
 /* num* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 /**
@@ -531,4 +474,93 @@ export function subtractDate(date = dayjs(), number, type = "day", formatType = 
         return XEUtils.toDateString(date, format)
       }
       return "";
+}
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///返回数据字典文字
+export function dataItem_text(field, value, isNumber) {
+  if (value === null || value === undefined) {
+    return ""
+  }
+  let arr = deepClone(store.state.config.dataItem[field])
+  if (arr) {
+    if (isNumber) {
+      let obj = arr.find((e) => {
+        return Number(e.value) === value
+      })
+      if (obj) {
+        return obj.label
+      } else {
+        return ""
+      }
+    } else {
+      let obj = arr.find((e) => {
+        return e.value === value
+      })
+      if (obj) {
+        return obj.label
+      } else {
+        return ""
+      }
     }
+  } else {
+    // alert("数据字典没有此字段")
+  }
+}
+//label
+//value
+///返回数据字典数组
+export function dataItem_list(field, isNumber) {
+  let arr = deepClone(store.state.config.dataItem[field])
+  if (arr) {
+    if (isNumber) {
+      arr.forEach((e) => {
+        e.value = Number(e.value)
+      })
+      return arr
+    } else {
+      return arr
+    }
+
+  } else {
+    // alert("数据字典没有此字段")
+  }
+}
+//通过部门id返回对应部门文字
+export function dept_text(value) {
+  if (value === null || value === undefined) {
+    return ""
+  }
+  let arr = deepClone(store.state.config.deptList)
+  if (arr) {
+    let obj = arr.find((e) => {
+      return e.id === value
+    })
+    if (obj) {
+      return obj.nickname
+    } else {
+      return ""
+    }
+  } else {
+    return '没有此部门'
+  }
+}
+//通过人员id返回对应人员文字
+export function user_text(value) {
+  if (value === null || value === undefined) {
+    return ""
+  }
+  let arr = deepClone(store.state.config.userList)
+  if (arr) {
+    let obj = arr.find((e) => {
+      return e.id === value
+    })
+    if (obj) {
+      return obj.nickname
+    } else {
+      return ""
+    }
+  } else {
+    return '没有此用户'
+  }
+}
