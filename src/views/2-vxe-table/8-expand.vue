@@ -122,7 +122,7 @@ export default {
       });
 
       if (res.code == 200) {
-        this.gridOptions.data[rowIndex].gridOptions2.data = res.data.contents;
+        this.gridOptions.data[rowIndex].sonData = res.data.contents;
         return true;
       } else {
         this.$message.error(res.info);
