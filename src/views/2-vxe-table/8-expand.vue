@@ -112,9 +112,10 @@ export default {
     async toggleMethod({ expanded, row, rowIndex }) { 
       //关闭状态
       if (expanded == false) {
-        return;
+        return false;
       }
       /*
+      //接口有延迟 但是会立即展开就导致 展开的子组件渲染了 但是接口还未返回  可以 <com v-if="row.sonData && row.sonData.id"> 
       let res = await api.getListByCreateUserId({
         curPage: 1,
         pageSize: 0,
@@ -122,7 +123,7 @@ export default {
       });
 
       if (res.code == 200) {
-        this.gridOptions.data[rowIndex].sonData = res.data.contents;
+        tthis.$set(this.gridOptions.data[rowIndex],"sonData",res.data)
         return true;
       } else {
         this.$message.error(res.info);
