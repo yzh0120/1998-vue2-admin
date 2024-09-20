@@ -1,6 +1,6 @@
 /**
  * { validator: self.$validator.positivenumberpoint, trigger: "blur" },
- * 正数和小数
+ * 正整数和小数
  * @param {*} rule 
  * @param {*} value 
  * @param {*} callback 
@@ -20,7 +20,7 @@ export function positivenumberpoint(rule, value, callback) {
 
 /**
  * { validator: self.$validator.positivenumber, trigger: "blur" },
- * 正数 
+ * 正整数
  */
 export function positivenumber(rule, value, callback) {
   if (value) {
@@ -109,12 +109,6 @@ export function mobileOrZhuoji(rule, value, callback) {
   }
 }
 
-
-
-
-
-
-
 //只允许中文、括号
 export function onlyZH(rule, value, callback) {
   if (value) {
@@ -173,7 +167,7 @@ export function isCompany(rule, value, callback) {
   }
 }
 
-//正数、负数和小数
+//正整数、负整数和小数
 export function numberpoint(rule, value, callback) {
   if (value) {
     var reg = /^(\-|\+)?\d+(\.\d+)?$/;
@@ -189,7 +183,7 @@ export function numberpoint(rule, value, callback) {
 
 
 
-//正数和小数 0-100
+//正整数和小数 0-100内
 export function positivenumberpoint_0_100(rule, value, callback) {
   if (value) {
     var reg = /^\d+(\.\d+)?$/;
@@ -207,7 +201,7 @@ export function positivenumberpoint_0_100(rule, value, callback) {
 
 
 
-//最大两位小数的正实数
+//最大两位小数的正数
 export function realnumber2point(rule, value, callback) {
   if (value) {
     var reg = /^[0-9]+(\.[0-9]{1,2})?$/;
@@ -221,7 +215,7 @@ export function realnumber2point(rule, value, callback) {
   }
 }
 
-//最大六位小数的数字
+//最大六位小数的正数
 export function realnumber6point(rule, value, callback) {
   if (value) {
     var reg = /^[0-9]+(\.[0-9]{1,6})?$/;
@@ -234,7 +228,7 @@ export function realnumber6point(rule, value, callback) {
     callback();
   }
 }
-//
+//固定13位正整数
 export function Num_13(rule, value, callback) { 
   if (value) {
     var value2  =  value.match(/\d+/g);//将数字提出成数组
@@ -249,7 +243,7 @@ export function Num_13(rule, value, callback) {
   }
 }
 
-//最大允许12位整数内以及6位小数
+//最大允许12位正数内以及6位小数
 export function numLimit18_6(rule, value, callback) {
   if (value) {
     var reg = /^[1-9]\d{0,11}(\.\d{1,6})?$|^0(\.\d{1,6})?$/;
@@ -277,7 +271,7 @@ export function ems(rule, value, callback) {
   }
 }
 
-//有两位小数的正数、负数
+//有两位小数的正整数、负整数
 export function realnegativenumber2point(rule, value, callback) {
   if (value) {
     var reg = /^(\-|\+)?\d+(\.\d{1,2})?$/;
@@ -292,7 +286,7 @@ export function realnegativenumber2point(rule, value, callback) {
 }
 
 
-//有两位小数的正实数
+//固定有两位小数的正整数
 export function realnumber2pointBFS(rule, value, callback) {
   if (value) {
     // var reg = /^[0-9]+(\.[0-9]{2})?$/;
