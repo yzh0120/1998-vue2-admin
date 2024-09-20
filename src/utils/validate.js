@@ -9,7 +9,7 @@ export function positivenumberpoint(rule, value, callback) {
   if (value) {
     var reg = /^\d+(\.\d+)?$/;
     if (reg.test(value) == false) {
-      callback("请输入正数和小数");
+      callback("请输入正整数和小数");
     } else {
       callback();
     }
@@ -26,7 +26,7 @@ export function positivenumber(rule, value, callback) {
   if (value) {
     var reg = /^\d+$/;
     if (reg.test(value) == false) {
-      callback("请输入正数");
+      callback("请输入正整数");
     } else {
       callback();
     }
@@ -188,7 +188,7 @@ export function positivenumberpoint_0_100(rule, value, callback) {
   if (value) {
     var reg = /^\d+(\.\d+)?$/;
     if (reg.test(value) == false) {
-      callback("请输入正数和小数");
+      callback("请输入正整数和小数");
     } else if (value > 100 || value < 0) {
       callback("请输入0-100的数字");
     } else {
@@ -201,12 +201,12 @@ export function positivenumberpoint_0_100(rule, value, callback) {
 
 
 
-//最大两位小数的正数
+//正整数或1-2位的小数
 export function realnumber2point(rule, value, callback) {
   if (value) {
     var reg = /^[0-9]+(\.[0-9]{1,2})?$/;
     if (reg.test(value) == false) {
-      callback("请输入整数或1-2位的小数");
+      callback("请输入正整数或1-2位的小数");
     } else {
       callback();
     }
@@ -215,12 +215,12 @@ export function realnumber2point(rule, value, callback) {
   }
 }
 
-//最大六位小数的正数
+//正整数或1-6位的小数
 export function realnumber6point(rule, value, callback) {
   if (value) {
     var reg = /^[0-9]+(\.[0-9]{1,6})?$/;
     if (reg.test(value) == false) {
-      callback("请输入整数或1-6位的小数");
+      callback("请输入正整数或1-6位的小数");
     } else {
       callback();
     }
@@ -271,12 +271,12 @@ export function ems(rule, value, callback) {
   }
 }
 
-//有两位小数的正整数、负整数
+//正整数、负整数或者1-2位小数
 export function realnegativenumber2point(rule, value, callback) {
   if (value) {
     var reg = /^(\-|\+)?\d+(\.\d{1,2})?$/;
     if (reg.test(value) == false) {
-      callback("请输入1-2位小数的正数、负数");
+      callback("请输入正整数、负整数或者1-2位小数");
     } else {
       callback();
     }
@@ -286,13 +286,13 @@ export function realnegativenumber2point(rule, value, callback) {
 }
 
 
-//固定有两位小数的正整数
+//固定有两位小数的正整数 在0-100之间
 export function realnumber2pointBFS(rule, value, callback) {
   if (value) {
     // var reg = /^[0-9]+(\.[0-9]{2})?$/;
     var reg = /^[0-9]+(\.[0-9]{1,2})?$/;
     if (reg.test(value) == false) {
-      callback("请输入两位小数的正实数");
+      callback("请输入/固定有两位小数的正整数");
     } else if (value < 0 || value > 100) {
       callback("必须在0-100之间");
     } else {
