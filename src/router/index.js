@@ -41,6 +41,17 @@ const router = new VueRouter({
 
 router.beforeEach(async (to, from, next) => { 
   NProgress.start()
+    //   //参数永远存在query
+  //   let flag = from.query.channelCode || to.query.channelCode
+  //   if (flag) {
+  //     if (!to.query.channelCode) {
+  //       next({
+  //         path: to.path,
+  //         query: from.query
+  //       })
+  //     }
+  // }
+
   ////外链登录
   // if (to.query.workCode) {
   //   let data = {
@@ -56,21 +67,12 @@ router.beforeEach(async (to, from, next) => {
   //         res.data.token,
   //         new Date(res.data.expireTime)
   //       );
-  //       next("/")//next({ path: `/eidtGuarantee/${resDAta.id}`, query: {a:1} })
+  //       next("/")// next({ path: `/eidtGuarantee/${resDAta.id}`, query: to.query })//参数永远存在query
   //     }
   //   })
   // }
 
-  //   //刚进去保存query
-  //   let flag = from.query.channelCode || to.query.channelCode
-  //   if (flag) {
-  //     if (!to.query.channelCode) {
-  //       next({
-  //         path: to.path,
-  //         query: from.query
-  //       })
-  //     }
-  // }
+
   
   console.log(cookieFn.getCookie(process.env.VUE_APP_TOKEN),"cookieFn.getCookie(process.env.VUE_APP_TOKEN)")
   if (cookieFn.getCookie(process.env.VUE_APP_TOKEN)) { //如果浏览器有token
