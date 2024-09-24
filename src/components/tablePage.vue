@@ -9,7 +9,7 @@
         <slot name="table"></slot>
       </div> -->
       <div :style="{ height: height }" class="bbb">
-        <div style="height: 95%;">
+        <div style="height: 100%;">
           <slot name="table"></slot>
         </div>
       </div>

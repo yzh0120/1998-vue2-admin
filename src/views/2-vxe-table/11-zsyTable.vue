@@ -54,7 +54,7 @@ export default {
       gridOptions: {
         loading: false,
         showOverflow: true,
-        // height: "95%", 
+        height: "100%", 
         columns: [
           {
             title: "序号",
