@@ -75,6 +75,8 @@ Vue.component('baseCard', baseCard)
 
 import tip from '@/components/tip'
 Vue.component("tip", tip)
+import card from '@/components/card'
+Vue.component("card", card)
 /** mixin *******************************************************************************************************/
 import baseFormMixin from "@/mixins/baseForm";
 Vue.mixin(baseFormMixin)
