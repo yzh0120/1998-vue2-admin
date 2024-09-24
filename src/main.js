@@ -164,11 +164,19 @@ Vue.use(PuzzleVerification)
 //vxe
 import XEUtils from 'xe-utils'
 Vue.prototype.$utils = XEUtils
-import VXETable from 'vxe-table'
+// import VXETable from 'vxe-table'
+// import 'vxe-table/lib/style.css'
+// Vue.use(VXETable)
+// 完整导入 UI 组件库
+import VxeUI from 'vxe-pc-ui'
+import 'vxe-pc-ui/lib/style.css'
+// 完整导入 表格库
+import VxeUITable from 'vxe-table'
 import 'vxe-table/lib/style.css'
-Vue.use(VXETable)
-VXETable.setup({
-  // size: getCookie("elsize") || "small",
+Vue.use(VxeUI)
+Vue.use(VxeUITable)
+VxeUITable.setConfig({
+  size: "small",
   table: {
     border: true, //显示边框
     stripe: true, //斑马线
@@ -176,7 +184,6 @@ VXETable.setup({
     showOverflow: true, //溢出悬浮
     // align: 'center', //居中
     highlightCurrentRow: true, //高亮当前行
-    //height:"auto",//高度自适应父容器 没有这个选项
     showFooter: true, //显示底部
   }
 })
@@ -199,19 +206,19 @@ Vue.prototype.$bus = bus
 
 /*发射
 this.$bus.$emit('busEvent', 0)
-*/ 
+*/
 
 /*接收
 this.$bus.$on('busEvent', val => {
   this.updateJs()
 })
-*/ 
+*/
 
 /*销毁
 beforeDestroy() {
     this.$root.$off('busEvent')
   },
-*/ 
+*/
 
 
 //////////////////////////////////////////////////////////////////////////////////////

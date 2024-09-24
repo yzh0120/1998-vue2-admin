@@ -1522,6 +1522,14 @@
   resolved "https://registry.yarnpkg.com/@vue/web-component-wrapper/-/web-component-wrapper-1.3.0.tgz#b6b40a7625429d2bd7c2281ddba601ed05dc7f1a"
   integrity sha512-Iu8Tbg3f+emIIMmI2ycSI8QcEuAUgPTgHwesDU1eKMLE4YC/c/sFbGc70QgMq31ijRftV0R7vCm9co6rldCeOA==
 
+"@vxe-ui/core@^3.0.9":
+  version "3.0.9"
+  resolved "https://registry.npmmirror.com/@vxe-ui/core/-/core-3.0.9.tgz#f4718fca7b61c35da925cb93ddd3317689ff38a8"
+  integrity sha512-x0sD89ySfS+BrRaH54VUw1sSAlWPYzZjUhsfsE/vLFyCyHhgW200EFrs3Tcp8NyUmGATlYTN1M2nlEQ/yQ8nUw==
+  dependencies:
+    dom-zindex "^1.0.6"
+    xe-utils "^3.5.30"
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
@@ -3361,10 +3369,10 @@ dom-serializer@^1.0.1:
     domhandler "^4.2.0"
     entities "^2.0.0"
 
-dom-zindex@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.npmmirror.com/dom-zindex/-/dom-zindex-1.0.4.tgz#c5a21153dc85962c8d4831ea42db898cc536eb26"
-  integrity sha512-PNk7u71TJ1C9Lwjjp5nNuQcVWuECFMmr9kZAwi2UbgWUM7jXdTCe4O4x5bhLUa07jpcZUVA5Du3ho7/FXzS9Ng==
+dom-zindex@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmmirror.com/dom-zindex/-/dom-zindex-1.0.6.tgz#0f911b39d3e542232ad91307638dbb869643f89e"
+  integrity sha512-FKWIhiU96bi3xpP9ewRMgANsoVmMUBnMnmpCT6dPMZOunVYJQmJhSRruoI0XSPoHeIif3kyEuiHbFrOJwEJaEA==
 
 domain-browser@^1.1.1:
   version "1.2.0"
@@ -8349,13 +8357,19 @@ vuex@^3.4.0:
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.6.2.tgz#236bc086a870c3ae79946f107f16de59d5895e71"
   integrity sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw==
 
-vxe-table@^3.8.7:
-  version "3.8.7"
-  resolved "https://registry.npmmirror.com/vxe-table/-/vxe-table-3.8.7.tgz#7f87aeadca6dfb76eee4c83fc3117ea46f96c8dc"
-  integrity sha512-ju6jDA2VNMv7UXAU2K0DlHDE8as3qnIJ/W5KNRvojUhO/kN7F6WBr7coHQY0njFX2043g4frT7o9ql/orTVhyg==
+vxe-pc-ui@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.npmmirror.com/vxe-pc-ui/-/vxe-pc-ui-3.1.4.tgz#76d1a4e47ac691ce53b94c7013cea86008da7019"
+  integrity sha512-OFMEmw4W+e8tXDtH0Go3E2tZ5tLXpO7mMONRmnYrz/HEMrhZAR3cb9Ky1+ih11cFJPqhyNy9EFwIofoVW82NLg==
   dependencies:
-    dom-zindex "^1.0.4"
-    xe-utils "^3.5.26"
+    "@vxe-ui/core" "^3.0.9"
+
+vxe-table@^3.9.0-rc.14:
+  version "3.9.0-rc.14"
+  resolved "https://registry.npmmirror.com/vxe-table/-/vxe-table-3.9.0-rc.14.tgz#4a81715be2bd4b531cddf19825ec870f1729d4c0"
+  integrity sha512-QVzGjKEkxdXaqB8OaLVlAPCUUuszSu5ow+tqw9+HB4f/3sZkZLuaXEZN05Bn/nc18Mt02WGsjw/H6YpRKKZgCQ==
+  dependencies:
+    vxe-pc-ui "^3.1.4"
 
 wangeditor@^4.7.11:
   version "4.7.15"
@@ -8635,10 +8649,10 @@ ws@~7.4.2:
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.4.6.tgz#5654ca8ecdeee47c33a9a4bf6d28e2be2980377c"
   integrity sha512-YmhHDO4MzaDLB+M9ym/mDA5z0naX8j7SIlT8f8z+I0VtzsRbekxEutHSme7NPS2qE8StCYQNUnfWdXta/Yu85A==
 
-xe-utils@^3.5.26:
-  version "3.5.27"
-  resolved "https://registry.npmmirror.com/xe-utils/-/xe-utils-3.5.27.tgz#81a4b7fbdd601b9f8daf4bd140c303f79ce515e6"
-  integrity sha512-qn303MEL90Fn+1BGAfwmz+ot/3klNc9OgX3HBO5TPKHLLl+/zhfH+zrCOi7QIhvzaRiv63SSUhQE4Z1lTwmAuw==
+xe-utils@^3.5.30:
+  version "3.5.30"
+  resolved "https://registry.npmmirror.com/xe-utils/-/xe-utils-3.5.30.tgz#f63e92f0ba10d03da6054817c83515baa31f0845"
+  integrity sha512-5Ez6JUANpMakduiTLxrNObzqMebnM4697KvHW5okedkUjXvYgGvkbg0tABTkvwDW/Pb09v7vT68dzBOeAuOu0g==
 
 xe-utils@^3.5.4:
   version "3.5.4"

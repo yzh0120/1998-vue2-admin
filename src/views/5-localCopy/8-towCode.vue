@@ -7,7 +7,7 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      top: 20px;">
+      top: 10px;">
         <div @click="() => { express = false }" v-if="express"
           style="width: 230px;height: 230px;
           background-color: rgba(0, 0, 0, 0.5);
@@ -58,56 +58,41 @@ export default {
     .vxe-modal--box {
       background-color: white !important;
       background-image: url('~@/assets/imgs/bgTwo.png');
+      border: 0px;
 
       .vxe-modal--header {
         background-color: transparent !important;
         border: 0px !important;
         height: 30px !important;
-
       }
 
-      .vxe-modal--content {
+      .vxe-modal--body {
         padding: 0px !important;
       }
     }
 
   }
-
+  //这是3.8的
   // .my_alert {
   //   .vxe-modal--box {
   //     background-color: white !important;
   //     background-image: url('~@/assets/imgs/bgTwo.png');
+  //     border: 0px;
+
   //     .vxe-modal--header {
-  //     background-color: transparent !important;
-  //     border: 0px !important;
-  //     min-height: 50px !important;
-  //     position: relative;
+  //       background-color: transparent !important;
+  //       border: 0px !important;
+  //       height: 30px !important;
 
-  //     .vxe-modal--header-title {
-  //       // text-align: center;
-  //       position: absolute;
-  //       left: 50%;
-  //       top: 50%;
-  //       padding: 0px;
-  //       transform: translate(-50%,-50%);
-  //       font-size: 20px;
-  //       color: black;
   //     }
 
-  //     .vxe-modal--header-right {
-  //       position: absolute;
-  //       right: 14px;
-  //       top: 50%;
-  //       padding: 0px;
-  //       transform: translateY(-50%);
+  //     .vxe-modal--content {
+  //       padding: 0px !important;
   //     }
-  //   }
-
-  //   .vxe-modal--content {
-  //     padding: 0px !important;
-  //   }
   //   }
 
   // }
+
+
 }
 </style>

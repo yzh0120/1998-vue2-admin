@@ -17,18 +17,18 @@ data：{
  -->
 <template>
   <vxe-modal ref="modal" v-model="flag" :mask="false" 
-  :lockView="false" :width="data.width" :height="data.height" show-footer :title="title" @close="cancel" v-if="flag" resize>
-      <!-- {{ data.width  }} -->
-        <template #corner>
+  :lockView="false" show-minimize show-maximize :width="data.width" :height="data.height" show-footer :title="title" @close="cancel" v-if="flag" resize>
+      
+        <!-- <template #corner>
           <vxe-icon name="minus" @click="narrow" style="cursor: pointer;" v-if="active_full_narrow == `normal`"></vxe-icon>
           <vxe-icon name="maximize" @click="narrow" style="cursor: pointer;"  v-else></vxe-icon>
           
-          <!-- vxe-icon-   -->
+
           <span style="margin-right: 10px"></span>
           <vxe-icon name="fullscreen" @click="full" style="cursor: pointer;" v-if="active_full_narrow == `normal`"></vxe-icon>
           <vxe-icon name="maximize" @click="full" style="cursor: pointer;"  v-else></vxe-icon>
           
-        </template>
+        </template> -->
 
           <slot></slot>
 
