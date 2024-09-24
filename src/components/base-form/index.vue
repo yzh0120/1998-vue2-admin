@@ -310,7 +310,7 @@ export default {
       if (this.data.size) {
         return this.data.size;
       } else {
-        return "mini";
+        return "small";
       }
     },
   },
