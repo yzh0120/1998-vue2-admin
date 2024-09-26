@@ -98,7 +98,7 @@ export function mobileOrZhuoji(rule, value, callback) {
   if (value) {
     // var reg = /^1[3,4,5,6,7,8,9][0-9]\d{8}$/;
     var reg = /\b\d{11}\b/;
-    var reg1 = /^[0][1-9]{2,3}-[0-9]{5,10}$/; //带区号
+    var reg1 = /^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$/; //带区号
     if (reg.test(value) == false && reg1.test(value) == false) {
       callback("请输入正确的号码");
     } else {
