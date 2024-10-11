@@ -48,6 +48,9 @@ router.beforeEach(async (to, from, next) => {
   //       next({
   //         path: to.path,
   //         query: from.query
+  //         // query: Object.assign({},to.query, {
+  //         //   productClass: productClass
+  //         // })
   //       })
   //     }
   // }
