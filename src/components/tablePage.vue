@@ -44,8 +44,11 @@ export default {
     // })
     //////////////////////////////////////////
     erd.listenTo(_this.$refs.top, (element) => {
-      console.log(_this.$refs.boottom.offsetHeight, "top")
+      if(_this.$refs.boottom){
+        console.log(_this.$refs.boottom.offsetHeight, "top")
       _this.height = _this.$refs.boottom.offsetHeight + "px"
+      }
+
     })
     //监听bottom
     erd.listenTo(_this.$refs.boottom, (element) => {
