@@ -75,6 +75,11 @@ router.beforeEach(async (to, from, next) => {
   //   })
   // }
 
+  //删除某个路由的缓存
+    // if (from.path.includes("/perfor/detail/")) { 
+  //   _delRouteCache(from.path)
+  // }
+
 
   
   console.log(cookieFn.getCookie(process.env.VUE_APP_TOKEN),"cookieFn.getCookie(process.env.VUE_APP_TOKEN)")
