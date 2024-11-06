@@ -87,8 +87,15 @@ export function starReplace(str, s, e) {
   return str.replace(_k, _v);
 }
 
-
-
+//是否是数字
+export function isNumber(data) { 
+  let str = data.replaceAll(",", "")
+  if (isNaN(Number(str))) {
+    return false
+  } else { 
+    return true
+  }
+}
 
 
 /**
