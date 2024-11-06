@@ -11,7 +11,18 @@ export default {
 	methods: {
 		// 得到placeholder的显示
 		_getPlaceholder(row) {
+			let str = "请输入"
+			if (row.type === 'select' || row.type === 'time' || row.type === 'date' || row.type === 'dateTime') { 
+				str = "请选择"
+			}
 			let placeholder
+
+			if (row.label) {
+				placeholder = row.label
+			} else { 
+				placeholder = str + row.title
+			}
+			return placeholder
 			if (row.type === 'input' || row.type === 'textarea') { //输入框
 				placeholder = '请输入' + (row.label ? row.label : row.title)
 			} else if (row.type === 'select' || row.type === 'time' || row.type === 'date' || row.type === 'dateTime') { //选择框
