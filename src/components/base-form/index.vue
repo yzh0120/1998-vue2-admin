@@ -337,8 +337,12 @@ export default {
       });
     },
     //清空校验
-    clearValidate() {
-      this.$refs.form?.clearValidate()
+    clearValidate(field) {
+      if (field) {
+        this.$refs.form?.clearValidate(field)
+      } else { 
+        this.$refs.form?.clearValidate()
+      }
     },
     //数据重置
     reset() {
