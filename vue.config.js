@@ -40,6 +40,7 @@ module.exports = {
   chainWebpack(config) {
     config.plugin('html')
       .tap(args => {
+        //网站的tabs的标题
         args[0].title = "电子保函系统";
         return args;
       })
