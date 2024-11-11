@@ -93,9 +93,6 @@ Vue.prototype.$fn = fn;
 import * as validator from "@/utils/validate"
 Vue.prototype.$validator = validator;
 
-//文件后缀名
-Vue.prototype.$fileType = ["pdf", "doc", "docx", "xls", "xlsx", "jpg", "jpeg", "gif", "png"]
-
 /** 自定义指令 *******************************************************************************************************/
 //对金额的输入框去除逗号（,）时，只需加上指令 v-enter-money 即可
 Vue.directive("enterMoney", {
