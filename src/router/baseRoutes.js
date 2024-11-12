@@ -9,7 +9,7 @@ import svgIcon from "./modules/7-svgIcon.js"
 import socket from "./modules/8-socket.js"
 import pdf from "./modules/9-pdf.js"
 import vCharts from "./modules/10-vCharts.js"
-import elementUI from "./modules/11-element-ui.js"
+// import elementUI from "./modules/11-element-ui.js"
 import print from "./modules/12-print.js"
 import tagsView from "./modules/13-tagsView.js"
 import panel from "./modules/14-panel.js"
@@ -79,7 +79,7 @@ const routes = [
   socket,
   pdf,
   vCharts,
-  elementUI,
+  // elementUI,
   print,
   tagsView,
   panel,

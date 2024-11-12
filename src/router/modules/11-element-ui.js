@@ -86,5 +86,15 @@ export default {
                 icon: "shezhi1",
             }
         },
+        {
+            path: 'radio-2',
+            name: 'element-ui-radio-2',
+            component: () => import(/* webpackChunkName: "radio" */ "@/views/11-element-ui/5-radio.vue"),
+            meta: {
+                title: '单选框2',
+                icon: "shezhi1",
+            }
+        },
+
     ]
 }
