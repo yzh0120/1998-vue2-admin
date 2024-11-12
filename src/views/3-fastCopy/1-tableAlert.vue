@@ -1,25 +1,31 @@
 <template>
   <page>
-    <!-- 表单 -->
-    <base-form :data="formSearch">
-      <template #button>
-        <el-button type="primary" @click="search" native-type="submit">搜索</el-button>
-        <el-button type="primary" @click="addData">新增</el-button>
-      </template>
-    </base-form>
-    <!-- 表格 -->
-    <vxe-grid v-bind="gridOptions" auto-resize>
-      <template #num_default="{ rowIndex }">
-        <span>{{ (pagerData.pageNo - 1) * pagerData.pageSize + rowIndex + 1 }}</span>
-      </template>
-      <template #do="{ row, rowIndex }">
-        <el-button type="text" @click="tableEdit(row, rowIndex)">编辑</el-button>
-        <el-button type="text" @click="tableDel(row, rowIndex)">删除</el-button>
-      </template>
-    </vxe-grid>
 
+    <tablePage>
+      <template #form>
+        <!-- 表单 -->
+        <base-form :data="formSearch">
+          <template #button>
+            <el-button type="primary" @click="search" native-type="submit">搜索</el-button>
+            <el-button type="primary" @click="addData">新增</el-button>
+          </template>
+        </base-form>
+      </template>
+      <template #table>
+        <!-- 表格 -->
+        <vxe-grid v-bind="gridOptions" auto-resize>
+          <template #num_default="{ rowIndex }">
+            <span>{{ (pagerData.pageNo - 1) * pagerData.pageSize + rowIndex + 1 }}</span>
+          </template>
+          <template #do="{ row, rowIndex }">
+            <el-button type="text" @click="tableEdit(row, rowIndex)">编辑</el-button>
+            <el-button type="text" @click="tableDel(row, rowIndex)">删除</el-button>
+          </template>
+        </vxe-grid>
+      </template>
+    </tablePage>
     <!-- 分页 -->
-    <pager :data="pagerData" @pageChange="getData" @sizeChange="getData" />
+    <pager :data="pagerData" @pageChange="getData" @sizeChange="getData" :fixed="true"/>
 
     <!-- 弹窗 -->
     <alert :data="alertData" @cancel="alertCancel" @close="alertCancel" @confirm="alertConfirm">
@@ -47,7 +53,8 @@ export default {
       //表格
       gridOptions: {
         loading: false,
-        height: self.$store.state.config.tableheight,
+        showOverflow: true,
+        height: "100%", 
         columns: [
           {
             title: "序号",
@@ -185,6 +192,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
-
+<style lang="scss" scoped></style>
