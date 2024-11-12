@@ -1,7 +1,7 @@
 <template>
   <page>
     <div style="height: 1000px">
-      <el-tabs ref="navTabs" class="average" @tab-click="handleClick" type="border-card">
+      <el-tabs ref="navTabs" class="average" @tab-click="handleClick" type="border-card" stretch>
         <!-- 悬浮下拉框 -->
         <div class="linkNav" ref="link" @click="linkNavFn">
           <div class="link" style="background-color: #008000"></div>
@@ -13,7 +13,6 @@
         <el-tab-pane label="基本信息">基本信息</el-tab-pane>
         <el-tab-pane label="法律诉讼">法律诉讼</el-tab-pane>
         <el-tab-pane label="经营风险">经营风险</el-tab-pane>
-        <el-tab-pane label="经营信息">经营信息</el-tab-pane>
         <el-tab-pane label="经营信息">经营信息</el-tab-pane>
       </el-tabs>
     </div>
