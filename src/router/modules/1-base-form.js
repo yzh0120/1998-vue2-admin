@@ -36,41 +36,42 @@ export default {
             }
         },
         {
-            path: 'slot',
-            name: 'baseForm-slot',
-            component: () => import( /* webpackChunkName: "4-slot-form" */ "@/views/1-base-form/4-slot-form.vue"),
-            meta: {
-                title: '含有插槽的表单',
-                icon: "shezhi1",
-            }
-        },
-        {
-            path: 'link',
-            name: 'baseForm-link',
-            component: () => import( /* webpackChunkName: "5-link-form" */ "@/views/1-base-form/5-link-form.vue"),
-            meta: {
-                title: '条件联动表单',
-                icon: "shezhi1",
-            }
-        },
-        {
-            path: 'over',
-            name: 'baseForm-over',
-            component: () => import( /* webpackChunkName: "6-baseForm-over" */ "@/views/1-base-form/6-over-form.vue"),
-            meta: {
-                title: '表单内容悬浮显示',
-                icon: "shezhi1",
-            }
-        },
-        {
             path: 'inline',
             name: 'baseForm-inline',
-            component: () => import( /* webpackChunkName: "7-inline-form" */ "@/views/1-base-form/7-inline-form.vue"),
+            component: () => import( /* webpackChunkName: "7-inline-form" */ "@/views/1-base-form/4-inline-form.vue"),
             meta: {
                 title: '行内表单',
                 icon: "shezhi1",
             }
         },
+        {
+            path: 'slot',
+            name: 'baseForm-slot',
+            component: () => import( /* webpackChunkName: "4-slot-form" */ "@/views/1-base-form/5-slot-form.vue"),
+            meta: {
+                title: '含有插槽的表单',
+                icon: "shezhi1",
+            }
+        },
+        // {
+        //     path: 'link',
+        //     name: 'baseForm-link',
+        //     component: () => import( /* webpackChunkName: "5-link-form" */ "@/views/1-base-form/5-link-form.vue"),
+        //     meta: {
+        //         title: '条件联动表单',
+        //         icon: "shezhi1",
+        //     }
+        // },
+        // {
+        //     path: 'over',
+        //     name: 'baseForm-over',
+        //     component: () => import( /* webpackChunkName: "6-baseForm-over" */ "@/views/1-base-form/6-over-form.vue"),
+        //     meta: {
+        //         title: '表单内容悬浮显示',
+        //         icon: "shezhi1",
+        //     }
+        // },
+
         {
             path: 'checkbox',
             name: 'baseForm-checkbox',
@@ -85,7 +86,7 @@ export default {
             name: 'baseForm-dynamicValidateForm',
             component: () => import( /* webpackChunkName: "9-dynamicValidateForm-form" */ "@/views/1-base-form/9-dynamicValidateForm-form.vue"),
             meta: {
-                title: '动态表单',
+                title: '原生-动态表单',
                 icon: "shezhi1",
             }
         },
@@ -94,7 +95,7 @@ export default {
             name: 'baseForm-formToTable',
             component: () => import( /* webpackChunkName: "10-formToTable-form" */ "@/views/1-base-form/10-formToTable-form.vue"),
             meta: {
-                title: 'table中的form',
+                title: '原生-table中的form',
                 icon: "shezhi1",
             }
         },
