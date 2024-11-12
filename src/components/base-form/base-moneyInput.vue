@@ -89,11 +89,14 @@ export default {
         if (this.focused) {
           return this.data[this.item.field];
         } else {
+          var decimalPart = String(this.data[this.item.field]).split('.')[1];
           if (this.data[this.item.field] === null || this.data[this.item.field] === "" || this.data[this.item.field] === undefined) {
             return this.data[this.item.field];
           } else if (String(this.data[this.item.field]).split(".").length >= 3) { 
             return this.data[this.item.field];
           }else if (!this.$fn.isNumber(this.data[this.item.field])) { 
+            return this.data[this.item.field];
+          }else if (decimalPart && decimalPart > 2) { 
             return this.data[this.item.field];
           }
           else {
