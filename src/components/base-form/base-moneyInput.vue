@@ -96,7 +96,7 @@ export default {
             return this.data[this.item.field];
           }else if (!this.$fn.isNumber(this.data[this.item.field])) { 
             return this.data[this.item.field];
-          }else if (decimalPart && decimalPart > 2) { 
+          }else if (decimalPart && decimalPart.length > 2) { 
             return this.data[this.item.field];
           }
           else {
