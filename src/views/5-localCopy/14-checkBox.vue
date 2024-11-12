@@ -18,11 +18,11 @@ export default {
     return {
       memberList: [],
       tableData: [
-        "program-code",
-        "wenjianshangchuan",
-        "biaodanzujian-biaoge",
-        "input",
-        "gouwucheman",
+      "shezhi1",
+        "format_icon",
+        "paixu",
+        "fenyeqi",
+        "a-ziyuan12",
       ],
     };
   },
