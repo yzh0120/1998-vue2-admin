@@ -3,11 +3,11 @@
     <el-button type="primary" @click="go">校验</el-button>
     <base-form :data="form" ref="form" @event="formEvent">
       <template #mySlot>
-        <el-checkbox v-model="form.data.checked" >备选项1</el-checkbox>
+        <el-checkbox v-model="form.data.checked">备选项1</el-checkbox>
       </template>
 
       <template #mySlot2>
-        <el-checkbox v-model="form.data.checked2" >备选项2</el-checkbox>
+        <el-checkbox v-model="form.data.checked2">备选项2</el-checkbox>
       </template>
     </base-form>
   </page>
@@ -52,21 +52,21 @@ export default {
   },
   watch: {
     "form.data": {
-      handler() { 
-        if (this.form.data.checked ) {
+      handler() {
+        if (this.form.data.checked) {
           this._setDatas(this.form, ["_input3", "mySlot2"], { show: true })
-        } else { 
-          this._setDatas(this.form, ["_input3", "mySlot2"], { show: false })
+          if (this.form.data.checked2) {
+            this._setDatas(this.form, ["_input4"], { show: true })
+          } else {
+            this._setDatas(this.form, ["_input4"], { show: false })
+          }
+        } else {
+          this._setDatas(this.form, ["_input3", "mySlot2","_input4"], { show: false })
         }
-        // 
-        if (this.form.data.checked && this.form.data.checked2) {
-          this._setDatas(this.form, ["_input4"], { show: true})
-        } else { 
-          this._setDatas(this.form, ["_input4"], { show: false})
-        }
+
       },
       deep: true,
-      immediate:true
+      immediate: true
     },
   },
   methods: {
