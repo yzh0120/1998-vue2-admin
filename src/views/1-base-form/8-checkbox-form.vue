@@ -1,9 +1,13 @@
 <template>
   <page>
-    <el-button type="primary" @click="go">此功能 已经被checkif取代了</el-button>
+    <el-button type="primary" @click="go">校验{{ computed_input3 }}</el-button>
     <base-form :data="form" ref="form" @event="formEvent">
       <template #mySlot>
-        <el-checkbox v-model="form.data.checked" @change="change">备选项</el-checkbox>
+        <el-checkbox v-model="form.data.checked" @change="change">备选项1</el-checkbox>
+      </template>
+
+      <template #mySlot2>
+        <el-checkbox v-model="form.data.checked2" @change="change2">备选项2</el-checkbox>
       </template>
     </base-form>
   </page>
@@ -17,66 +21,30 @@ export default {
       form: {
         span: true,
         list: [
-
-          ////////////////////////////////////////////////////////////////////////
-          {
-            type: "input",
-            field: "_input",
-            title: "普通输入框",
-            span: 12,
-            rules: [
-              { required: true, message: "请输入" },
-              { validator: self.$validator.numberpoint },
-            ],
-          },
-          {
-            type: "input",
-            field: "_input2",
-            title: "普通输入框",
-            span: 12,
-            rules: [
-              { required: true, message: "请输入" },
-              { validator: self.$validator.numberpoint },
-            ],
-          },
-
-          ////////////////////////////////////////////////////////////////////////
-          // {
-          //   type: "checkbox",
-          //   field: "_checkbox",
-          //   // title: "多选框",
-          //   span: 24,
-          //   // labelWidth: "0px",
-          //   opt: [
-          //     { text1: "显示隐藏", value1: 1 },
-          //     // { text1: "多选二", value1: 2 },
-          //   ],
-          //   text: "text1",
-          //   value: "value1",
-          // },
-          { slot: "mySlot", field: "checked", title: "多选框", span: 24, },
+          { slot: "mySlot", field: "checked", title: "多选框1", span: 24, },
           {
             type: "input",
             field: "_input3",
-            title: "普通输入框",
+            title: "普通输入框1",
             span: 12,
-
+            show:self.computed_input3,
             rules: [
               { required: true, message: "请输入" },
               { validator: self.$validator.numberpoint },
             ],
           },
-          {
-            type: "input",
-            field: "_input4",
-            title: "普通输入框",
-            span: 12,
+          // { slot: "mySlot2", field: "checked2", title: "多选框2", span: 24, },
+          // {
+          //   type: "input",
+          //   field: "_input4",
+          //   title: "普通输入框",
+          //   span: 12,
 
-            rules: [
-              { required: true, message: "请输入" },
-              { validator: self.$validator.numberpoint },
-            ],
-          },
+          //   rules: [
+          //     { required: true, message: "请输入" },
+          //     { validator: self.$validator.numberpoint },
+          //   ],
+          // },
           ////////////////////////////////////////////////////////////////////////
 
         ],
@@ -86,32 +54,24 @@ export default {
     };
   },
   watch: {
-    // "form.data": {
-    //   handler() { 
-
-    //   },
-    //   immediate: true,
-    //   deep: true
-    // }
   },
   mounted() {
-    // this.formEvent({item:{field:"_checkbox"},name:"checkbox"})
+
+  },
+  computed: {
+    computed_input3() { 
+      return this.form.data.checked  ? true : false
+    },
   },
   methods: {
     change(e) {
-      console.log(e, "e")
-      this._setDatas(this.form, ["_input4", "_input3"], { show: e ? true : false })
-      // this._setDatas(this.form, ["_input4", "_input3"], null)
+      console.log(this.form.list,"list")
+      // this._setDatas(this.form, ["_input3","mySlot2"], { show: e ? true : false })
     },
-
+    // change2(e) { 
+    //   this._setDatas(this.form, ["_input4"], { show: e ? true : false })
+    // },
     formEvent(e) {
-      // if (e.item.field == "_checkbox") {
-      //   if ((e.name == "checkbox")) {
-      //     this._set(this.form, ["_input4", "_input3"], { show: e.value[0] ? true : false })
-      //     this._setDatas(this.form, ["_input4", "_input3"], null)
-      //   }
-      // }
-
     },
     go() {
       this.$refs.form.check();

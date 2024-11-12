@@ -18,7 +18,7 @@
   } 
  -->
 
-<template>
+ <template>
   <el-form ref="form" :class="data.className" :model="formData" :label-width="labelWidth" style="" :inline="inline"
     :size="size" @submit.native.prevent :disabled="disabled">
     <div v-if="againShow">
@@ -44,6 +44,20 @@
               <!-- 插槽 -->
               <template v-if="item.slot">
                 <slot :name="item.slot" />
+              </template>
+              <!-- 是否复选框 -->
+              <template v-if="item.slotCheck">
+                <el-checkbox v-model="formData[item.field]" :true-label="item.trueLabel" :false-label="item.falseLabel"
+                  :disabled="item.disabled" @change="(e) => { checkboxChange(e, item) }">{{ item.slotCheck
+                  }}</el-checkbox>
+              </template>
+              <!-- 是否下拉框 -->
+              <template v-if="item.slotSelect">
+                <el-select v-model="formData[item.field]" placeholder="请选择" style="width:100%" :disabled="item.disabled"
+                  @change="(e) => { selectChange(e, item) }">
+                  <el-option v-for="(childItem, childIndex) in item.opt" :key="childIndex" :label="childItem.text"
+                    :value="childItem.value" />
+                </el-select>
               </template>
               <!-- 动态组件 -->
               <component :is="currentComponent(item.type)" :item="item" :bossData="data" @baseFormEvent="(e) => {
@@ -78,6 +92,20 @@
               <template v-if="item.slot">
                 <slot :name="item.slot" />
               </template>
+              <!-- 是否复选框 -->
+              <template v-if="item.slotCheck">
+                <el-checkbox v-model="formData[item.field]" :true-label="item.trueLabel" :false-label="item.falseLabel"
+                  :disabled="item.disabled" @change="(e) => { checkboxChange(e, item) }">{{ item.slotCheck
+                  }}</el-checkbox>
+              </template>
+              <!-- 是否下拉框 -->
+              <template v-if="item.slotSelect">
+                <el-select v-model="formData[item.field]" placeholder="请选择" style="width:100%" :disabled="item.disabled"
+                  @change="(e) => { selectChange(e, item) }">
+                  <el-option v-for="(childItem, childIndex) in item.opt" :key="childIndex" :label="childItem.text"
+                    :value="childItem.value" />
+                </el-select>
+              </template>
               <!-- 动态组件 -->
               <component :is="currentComponent(item.type)" :item="item" :bossData="data" @baseFormEvent="(e) => {
     event(e, item);
@@ -108,6 +136,19 @@
           <!-- 插槽 -->
           <template v-if="item.slot">
             <slot :name="item.slot" />
+          </template>
+          <!-- 是否复选框 -->
+          <template v-if="item.slotCheck">
+            <el-checkbox v-model="formData[item.field]" :true-label="item.trueLabel" :false-label="item.falseLabel"
+              :disabled="item.disabled" @change="(e) => { checkboxChange(e, item) }">{{ item.slotCheck }}</el-checkbox>
+          </template>
+          <!-- 是否下拉框 -->
+          <template v-if="item.slotSelect">
+            <el-select v-model="formData[item.field]" placeholder="请选择" style="width:100%" :disabled="item.disabled"
+              @change="(e) => { selectChange(e, item) }">
+              <el-option v-for="(childItem, childIndex) in item.opt" :key="childIndex" :label="childItem.text"
+                :value="childItem.value" />
+            </el-select>
           </template>
           <!-- 动态组件 -->
           <component :is="currentComponent(item.type)" :item="item" @baseFormEvent="(e) => {
@@ -172,8 +213,10 @@ export default {
   },
   watch: {
     "data.list.length": {
+      //data.list.splice(index,1,{})  也能触发此watch
       handler: function (newVal) {
         this._addDis(this.data); //增加disabled  可以直接写在data:{}
+        //this._addShow(this.data) //增加show 因为只会写在watch(写在data:{}也有效果)  所以不watch 暂时不用
         this._updatedata(this.data);
       },
       // immediate: true,
@@ -193,9 +236,14 @@ export default {
   created() {
     this._updatedata(this.data);
     this.autoTrigger();
-    this._addDis(this.data); //增加disabled    可以直接写在data:{}
+
+    this.checkAndSelect()
+
   },
   mounted() {
+    //this._addShow(this.data) //增加show 因为只会写在watch(写在data:{}也有效果)  所以不watch 暂时不用
+    this._addDis(this.data); //增加disabled    可以直接写在data:{}
+    this.back(); // 将form实例返回到父级
 
   },
   computed: {
@@ -292,7 +340,7 @@ export default {
     clearValidate(field) {
       if (field) {
         this.$refs.form?.clearValidate(field)
-      } else {
+      } else { 
         this.$refs.form?.clearValidate()
       }
     },
@@ -316,6 +364,13 @@ export default {
         }
       });
       return res;
+    },
+    // show(show) {
+    //   return show === false ? false : true;
+    // },
+    //表单的refs
+    back() {
+      this.data.dom = this.$refs.form; // 将form实例返回到父级
     },
     //组件
     currentComponent(componentType) {
@@ -375,7 +430,80 @@ export default {
       }
       this.$emit("event", e);
     },
+    /////////////////////////////////////////////////////
+    //简单下拉和复选的集合方法
+    checkAndSelect() {
+      this.slotCheckAll()
+      this.slotSelectAll()
+    },
+    //简单复选
+    slotCheckAll() {
+      this.for_List.forEach((item) => {
+        if (item.slotCheck) {
+          this.checkboxChange(this.formData[item.field], item, "不是手动触发的")
+        }
+      })
+    },
+    //简单复选的change事件
+    checkboxChange(e, item_f, noEmit) {
+      if (e === item_f.trueLabel && item_f.show !== false) {
+        item_f.checkArr.forEach((item) => {
+          this._set(this.data, item, { show: true })
+        })
+      } else {
+        item_f.checkArr.forEach((item) => {
+          this._set(this.data, item, { show: false })
+        })
+      }
+      let obj = {
+        item: item_f,
+        name: "slotCheck",
+        event: "slotCheck",
+        value: e
+      }
+      if (noEmit) {
 
+      } else {
+        this.$emit("event", obj);
+      }
+    },
+    //简单下拉
+    slotSelectAll() {
+      //循环list
+      this.for_List.forEach((item) => {
+        //如果item有个slotSelect标识
+        if (item.slotSelect) {
+          //触发方法
+          this.selectChange(this.formData[item.field], item, "不是手动触发的")
+        }
+      })
+    },
+    //简单下拉的change事件
+    selectChange(e, item_f, noEmit) {
+      //如果当前item选择是 并且没有被隐藏
+      if (e === item_f.trueLabel && item_f.show !== false) {
+        //循环item的checkArr字段 checkArr是被控制的field
+        item_f.checkArr.forEach((item) => {
+          this._set(this.data, item, { show: true })
+
+        })
+      } else {
+        item_f.checkArr.forEach((item) => {
+          this._set(this.data, item, { show: false })
+        })
+      }
+      let obj = {
+        item: item_f,
+        name: "slotSelect",
+        event: "slotSelect",
+        value: e
+      }
+      if (noEmit) {
+
+      } else {
+        this.$emit("event", obj);
+      }
+    },
   },
 };
 </script>
