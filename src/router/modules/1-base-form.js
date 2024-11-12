@@ -98,14 +98,14 @@ export default {
                 icon: "shezhi1",
             }
         },
-        {
-            path: 'checkIf',
-            name: 'baseForm-checkIf',
-            component: () => import( /* webpackChunkName: "11-checkIf" */ "@/views/1-base-form/11-checkIf.vue"),
-            meta: {
-                title: 'checkIf',
-                icon: "shezhi1",
-            }
-        },
+        // {
+        //     path: 'checkIf',
+        //     name: 'baseForm-checkIf',
+        //     component: () => import( /* webpackChunkName: "11-checkIf" */ "@/views/1-base-form/11-checkIf.vue"),
+        //     meta: {
+        //         title: 'checkIf',
+        //         icon: "shezhi1",
+        //     }
+        // },
     ]
 }

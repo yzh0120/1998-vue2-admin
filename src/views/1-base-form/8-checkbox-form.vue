@@ -1,13 +1,13 @@
 <template>
   <page>
-    <el-button type="primary" @click="go">校验{{ computed_input3 }}</el-button>
+    <el-button type="primary" @click="go">校验</el-button>
     <base-form :data="form" ref="form" @event="formEvent">
       <template #mySlot>
-        <el-checkbox v-model="form.data.checked" @change="change">备选项1</el-checkbox>
+        <el-checkbox v-model="form.data.checked" >备选项1</el-checkbox>
       </template>
 
       <template #mySlot2>
-        <el-checkbox v-model="form.data.checked2" @change="change2">备选项2</el-checkbox>
+        <el-checkbox v-model="form.data.checked2" >备选项2</el-checkbox>
       </template>
     </base-form>
   </page>
@@ -27,26 +27,23 @@ export default {
             field: "_input3",
             title: "普通输入框1",
             span: 12,
-            show:self.computed_input3,
             rules: [
               { required: true, message: "请输入" },
               { validator: self.$validator.numberpoint },
             ],
           },
-          // { slot: "mySlot2", field: "checked2", title: "多选框2", span: 24, },
-          // {
-          //   type: "input",
-          //   field: "_input4",
-          //   title: "普通输入框",
-          //   span: 12,
+          { slot: "mySlot2", field: "checked2", title: "多选框2", span: 24, },
+          {
+            type: "input",
+            field: "_input4",
+            title: "普通输入框4",
+            span: 12,
 
-          //   rules: [
-          //     { required: true, message: "请输入" },
-          //     { validator: self.$validator.numberpoint },
-          //   ],
-          // },
-          ////////////////////////////////////////////////////////////////////////
-
+            rules: [
+              { required: true, message: "请输入" },
+              { validator: self.$validator.numberpoint },
+            ],
+          },
         ],
         data: { checked: true },
         // titleWidth: "160px",
@@ -54,23 +51,25 @@ export default {
     };
   },
   watch: {
-  },
-  mounted() {
-
-  },
-  computed: {
-    computed_input3() { 
-      return this.form.data.checked  ? true : false
+    "form.data": {
+      handler() { 
+        if (this.form.data.checked ) {
+          this._setDatas(this.form, ["_input3", "mySlot2"], { show: true })
+        } else { 
+          this._setDatas(this.form, ["_input3", "mySlot2"], { show: false })
+        }
+        // 
+        if (this.form.data.checked && this.form.data.checked2) {
+          this._setDatas(this.form, ["_input4"], { show: true})
+        } else { 
+          this._setDatas(this.form, ["_input4"], { show: false})
+        }
+      },
+      deep: true,
+      immediate:true
     },
   },
   methods: {
-    change(e) {
-      console.log(this.form.list,"list")
-      // this._setDatas(this.form, ["_input3","mySlot2"], { show: e ? true : false })
-    },
-    // change2(e) { 
-    //   this._setDatas(this.form, ["_input4"], { show: e ? true : false })
-    // },
     formEvent(e) {
     },
     go() {
