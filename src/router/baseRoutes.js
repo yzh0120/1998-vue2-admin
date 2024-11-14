@@ -19,6 +19,7 @@ import vBtn from "./modules/17-v-btn.js"
 import aes from "./modules/18-aes.js"
 import swiper from "./modules/19-swiper.js"
 import animejs from "./modules/20-animejs.js"
+import baiduMap from "./modules/21-baiduMap.js"
 const routes = [
   {
     path: "/",
@@ -89,7 +90,8 @@ const routes = [
   vBtn,
   aes,
   swiper,
-  animejs
+  animejs,
+  baiduMap
 ]
 
 export default routes

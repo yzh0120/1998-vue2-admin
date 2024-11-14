@@ -91,6 +91,10 @@ Vue.prototype.$fn = fn;
 import * as validator from "@/utils/validate"
 Vue.prototype.$validator = validator;
 
+//事件车
+import bus from '@/utils/bus.js'
+Vue.prototype.$bus = bus
+
 /** 自定义指令 *******************************************************************************************************/
 //对金额的输入框去除逗号（,）时，只需加上指令 v-enter-money 即可
 Vue.directive("enterMoney", {
@@ -193,11 +197,13 @@ Vue.use(VCharts)
 Vue._watchers = Vue.prototype._watchers = [];
 
 
+import BaiduMap from 'vue-baidu-map'
+Vue.use(BaiduMap, {
+  ak: 'bNm1NF0Hri3kO9MLsYZRU5siYrMIS9GQ' //你申请的key
+})
 
 
 
-import bus from '@/utils/bus.js'
-Vue.prototype.$bus = bus
 
 /*发射
 this.$bus.$emit('busEvent', 0)
