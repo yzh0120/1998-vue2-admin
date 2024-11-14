@@ -30,7 +30,7 @@ export default {
       name: 'baiduMap-BmCircle',
       component: () => import( /* webpackChunkName: "baiduMap-index" */ "@/views/21-baiduMap/2-BmCircle.vue"),
       meta: {
-        title: 'BmCircle',
+        title: '圆',
         icon: "shezhi1",
       }
     },
@@ -39,7 +39,16 @@ export default {
       name: 'baiduMap-BmMarker',
       component: () => import( /* webpackChunkName: "baiduMap-index" */ "@/views/21-baiduMap/3-BmMarker.vue"),
       meta: {
-        title: 'BmMarker',
+        title: '标注',
+        icon: "shezhi1",
+      }
+    },
+    {
+      path: 'overlay',
+      name: 'baiduMap-overlay',
+      component: () => import( /* webpackChunkName: "baiduMap-index" */ "@/views/21-baiduMap/4-overlay.vue"),
+      meta: {
+        title: '自定义覆盖物',
         icon: "shezhi1",
       }
     }
