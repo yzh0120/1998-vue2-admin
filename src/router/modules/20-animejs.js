@@ -21,7 +21,7 @@ export default {
       name: 'animejs-index',
       component: () => import( /* webpackChunkName: "animejs-index" */ "@/views/20-animejs/1-index.vue"),
       meta: {
-        title: 'index',
+        title: '基础',
         icon: "shezhi1",
       }
     },
@@ -30,7 +30,16 @@ export default {
       name: 'animejs-two',
       component: () => import( /* webpackChunkName: "animejs-index" */ "@/views/20-animejs/2-two.vue"),
       meta: {
-        title: 'two',
+        title: '多个元素接力',
+        icon: "shezhi1",
+      }
+    },
+    {
+      path: 'keyArray',
+      name: 'animejs-keyArray',
+      component: () => import( /* webpackChunkName: "animejs-index" */ "@/views/20-animejs/3-keyArray.vue"),
+      meta: {
+        title: '关键帧数组',
         icon: "shezhi1",
       }
     }
