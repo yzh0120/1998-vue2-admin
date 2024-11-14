@@ -24,6 +24,15 @@ export default {
         title: 'index',
         icon: "shezhi1",
       }
+    },
+    {
+      path: 'two',
+      name: 'animejs-two',
+      component: () => import( /* webpackChunkName: "animejs-index" */ "@/views/20-animejs/2-two.vue"),
+      meta: {
+        title: 'two',
+        icon: "shezhi1",
+      }
     }
   ]
 }

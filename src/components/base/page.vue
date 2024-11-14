@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="min-height: 80vh;">
     <slot></slot>
   </div>
 </template>
