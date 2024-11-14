@@ -9,6 +9,7 @@
 </template>
 
 <script>
+//https://dafrok.github.io/vue-baidu-map/#/zh/index 中文文档
 // //所有的独立组件均存放在 vue-baidu-map/components 文件夹下，按需引用即可
 // import BaiduMap from 'vue-baidu-map/components/map/Map.vue'
 export default {
