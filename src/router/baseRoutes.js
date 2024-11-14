@@ -17,7 +17,7 @@ import edit from "./modules/15-edit.js"
 import bus from "./modules/16-bus.js"
 import vBtn from "./modules/17-v-btn.js"
 import aes from "./modules/18-aes.js"
-
+import swiper from "./modules/19-swiper.js"
 const routes = [
   {
     path: "/",
@@ -86,7 +86,8 @@ const routes = [
   edit,
   bus,
   vBtn,
-  aes
+  aes,
+  swiper
 ]
 
 export default routes
