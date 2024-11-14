@@ -9,28 +9,40 @@
 
     <div style="height:10000px">
       <el-button type="primary" @click="click">显示/隐藏</el-button>
-
-
       <transition name="fade">
         <!-- 
         vue提供的wrapper包装组件——transition，在包裹的元素中，有涉及到v-if，,v-show, 动态组件,组件根节点,，都会给它们添加进入/离开的过渡效果。
        -->
         <p v-if="show" style="width: 100px;height:100px;background-color: burlywood">hello</p>
       </transition>
+
+      <el-button type="primary" @click="click2">显示/隐藏by 'animate.css';</el-button>
+      <transition  enter-active-class="animate__animated animate__flash"
+              leave-active-class="animate__animated animate__jello">
+        <!-- 
+        vue提供的wrapper包装组件——transition，在包裹的元素中，有涉及到v-if，,v-show, 动态组件,组件根节点,，都会给它们添加进入/离开的过渡效果。
+       -->
+        <p v-if="show2" style="width: 100px;height:100px;background-color: burlywood">hello</p>
+      </transition>
     </div>
   </page>
 </template>
 
 <script>
+import 'animate.css';
 export default {
   data() {
     return {
-      show: true
+      show: true,
+      show2: true
     }
   },
   methods: {
     click() {
       this.show = !this.show
+    },
+    click2() {
+      this.show2 = !this.show2
     },
   },
 }
