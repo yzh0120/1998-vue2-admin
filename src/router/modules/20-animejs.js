@@ -102,7 +102,7 @@ export default {
       name: "animejs-parameters",
       component: blank, //() => import(/* webpackChunkName: "VCharts-Pie" */"@/views/10-vCharts/pie.vue"),
       meta: {
-        title: '参数',
+        title: '属性的参数',
         icon: "shezhi1",
       },
       children: [{
@@ -167,6 +167,44 @@ export default {
             icon: "shezhi1",
           },
           component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/5-parameters/7-FunctionBasedParameters.vue"),
+        },
+      ]
+    },
+    {
+      path: 'AnimationParameters',
+      name: "animejs-AnimationParameters",
+      component: blank, //() => import(/* webpackChunkName: "VCharts-Pie" */"@/views/10-vCharts/pie.vue"),
+      meta: {
+        title: '动画的参数',
+        icon: "shezhi1",
+      },
+      children: [
+        {
+          path: 'direction',
+          name: 'animejs-AnimationParameters-direction',
+          component: () => import( /* webpackChunkName: "animejs-index" */ "@/views/20-animejs/6-AnimationParameters/1-direction.vue"),
+          meta: {
+            title: '动画方向',
+            icon: "shezhi1",
+          }
+        },
+        {
+          path: 'loop',
+          name: 'animejs-AnimationParameters-loop',
+          component: () => import( /* webpackChunkName: "animejs-index" */ "@/views/20-animejs/6-AnimationParameters/2-loop.vue"),
+          meta: {
+            title: '动画循环次数',
+            icon: "shezhi1",
+          }
+        },
+        {
+          path: 'autoplay',
+          name: 'animejs-AnimationParameters-autoplay',
+          component: () => import( /* webpackChunkName: "animejs-index" */ "@/views/20-animejs/6-AnimationParameters/3-autoplay.vue"),
+          meta: {
+            title: '动画是否自动播放',
+            icon: "shezhi1",
+          }
         },
       ]
     }
