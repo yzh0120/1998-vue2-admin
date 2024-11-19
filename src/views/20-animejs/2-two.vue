@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 80vh;">
+  <page isTest>
     <div class="footer">
 
       <span class="xx11">深</span>
@@ -17,7 +17,7 @@
       <span class="xx10">司</span>
 
     </div>
-  </div>
+  </page>
 </template>
 
 <script>

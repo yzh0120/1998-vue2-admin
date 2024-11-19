@@ -15,8 +15,7 @@ export default {
     title: 'animejs',
     icon: "shezhi1",
   },
-  children: [
-    {
+  children: [{
       path: 'index',
       name: 'animejs-index',
       component: () => import( /* webpackChunkName: "animejs-index" */ "@/views/20-animejs/1-index.vue"),
@@ -59,15 +58,15 @@ export default {
             icon: "shezhi1",
           },
           component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/4-controls/1-playAndpause.vue"),
-      },
-      {
-        path: 'restart',
-        name: "animejs-controls-restart",
-        meta: {
-          title: '重置',
-          icon: "shezhi1",
         },
-        component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/4-controls/2-restart.vue"),
+        {
+          path: 'restart',
+          name: "animejs-controls-restart",
+          meta: {
+            title: '重置',
+            icon: "shezhi1",
+          },
+          component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/4-controls/2-restart.vue"),
         },
         {
           path: 'reverse',
@@ -96,6 +95,52 @@ export default {
           },
           component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/4-controls/5-timeline.vue"),
         }
+      ]
+    },
+    {
+      path: 'parameters',
+      name: "animejs-parameters",
+      component: blank, //() => import(/* webpackChunkName: "VCharts-Pie" */"@/views/10-vCharts/pie.vue"),
+      meta: {
+        title: '参数',
+        icon: "shezhi1",
+      },
+      children: [{
+          path: 'playAndpause',
+          name: "animejs-parameters-playAndpause",
+          meta: {
+            title: '动画持续时间',
+            icon: "shezhi1",
+          },
+          component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/5-parameters/1-duration.vue"),
+        },
+        {
+          path: 'delay',
+          name: "animejs-parameters-delay",
+          meta: {
+            title: '动画延迟时间',
+            icon: "shezhi1",
+          },
+          component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/5-parameters/2-delay.vue"),
+        },
+        {
+          path: 'endDelay',
+          name: "animejs-parameters-endDelay",
+          meta: {
+            title: '动画结束延迟时间',
+            icon: "shezhi1",
+          },
+          component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/5-parameters/3-endDelay.vue"),
+        },
+        {
+          path: '4-easing',
+          name: "animejs-parameters-4-easing",
+          meta: {
+            title: '如何动画',
+            icon: "shezhi1",
+          },
+          component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/5-parameters/4-easing.vue"),
+        },
       ]
     }
   ]

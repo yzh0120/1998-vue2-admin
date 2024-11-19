@@ -1,11 +1,11 @@
 <template>
-  <div style="height: 80vh;">
-    <div class="div1"></div>
+  <page isTest>
+    <div class="div1" style="margin-left: 100px;"></div>
 
     <div style="text-align: center;">
       <el-button type="primary" @click="restart">重置</el-button>
     </div>
-  </div>
+  </page>
 </template>
 
 <script>

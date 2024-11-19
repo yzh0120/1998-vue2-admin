@@ -1,12 +1,12 @@
 <template>
-  <div style="height: 80vh;">
-    <div class="div1"></div>
+  <page isTest>
+    <div class="div1" style="margin-left: 100px;"></div>
 
     <div style="text-align: center;width: 80%;margin: 0 auto;">
       <!-- <el-button type="primary" @click="restart">重置</el-button> -->
       <el-slider v-model="value1" @input="input"></el-slider>
     </div>
-  </div>
+  </page>
 </template>
 
 <script>

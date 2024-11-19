@@ -1,12 +1,12 @@
 <template>
-  <div style="height: 80vh;">
-    <div class="div1"></div>
+  <page isTest>
+    <div class="div1" style="margin-left: 100px;"></div>
 
     <div style="text-align: center;">
       <el-button type="primary" @click="play">播放</el-button>
       <el-button type="warning" @click="pause">暂停</el-button>
     </div>
-  </div>
+  </page>
 </template>
 
 <script>

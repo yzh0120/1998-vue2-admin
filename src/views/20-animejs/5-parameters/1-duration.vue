@@ -1,10 +1,6 @@
 <template>
   <page isTest>
     <div class="div1" style="margin-left: 100px;"></div>
-
-    <div style="text-align: center;">
-      <el-button type="primary" @click="reverse">反方向</el-button>
-    </div>
   </page>
 </template>
 
@@ -20,9 +16,6 @@ export default {
     this.fn()
   },
   methods: {
-    reverse() { 
-      this.animation1.reverse()
-    },
     // https://animejs.com/documentation/  官网
     fn() {
       this.animation1 = anime({
@@ -33,9 +26,7 @@ export default {
           { translateX: 0 },
           { translateY: 0 }
         ],
-        duration: 4000,
-        easing: 'easeInOutSine',
-        loop: true,
+        duration: 4000,//动画的持续时间
       });
     },
   },
