@@ -133,13 +133,40 @@ export default {
           component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/5-parameters/3-endDelay.vue"),
         },
         {
-          path: '4-easing',
-          name: "animejs-parameters-4-easing",
+          path: 'easing',
+          name: "animejs-parameters-easing",
           meta: {
             title: '如何动画',
             icon: "shezhi1",
           },
           component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/5-parameters/4-easing.vue"),
+        },
+        {
+          path: 'round',
+          name: "animejs-parameters-round",
+          meta: {
+            title: '数字滚动',
+            icon: "shezhi1",
+          },
+          component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/5-parameters/5-round.vue"),
+        },
+        {
+          path: 'SpecificPropertyParameters',
+          name: "animejs-parameters-SpecificPropertyParameters",
+          meta: {
+            title: '特定属性参数',
+            icon: "shezhi1",
+          },
+          component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/5-parameters/6-SpecificPropertyParameters.vue"),
+        },
+        {
+          path: 'FunctionBasedParameters',
+          name: "animejs-parameters-FunctionBasedParameters",
+          meta: {
+            title: '基于函数的参数',
+            icon: "shezhi1",
+          },
+          component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/20-animejs/5-parameters/7-FunctionBasedParameters.vue"),
         },
       ]
     }
