@@ -16,23 +16,9 @@
         <p v-if="show" style="width: 100px;height:100px;background-color: burlywood">hello</p>
       </transition>
 
-      <el-divider></el-divider>
-
-      <!-- 网址 https://animate.style/ -->
-      <el-button type="primary" @click="click2">显示/隐藏by 'animate.css'作用元素一定需要宽度;</el-button>
-      <transition enter-active-class="animate__animated animate__slideOutUp"
-        leave-active-class="animate__animated animate__zoomInDown">
-        <p v-if="show2" style="width: 100px;height:100px;background-color: burlywood">hello</p>
-      </transition>
-
-      <el-divider></el-divider>
+   
 
 
-      <el-button type="primary" @click="click3">手动添加</el-button>
-      <!-- 第一种 直接使用动画-->
-      <!-- <div ref="div1" :class="[`animate__animated`, toggle ? `animate__flipInY` : ``]">123123</div> -->
-      <!-- 第二种自定义 -->
-      <div r :class="[`animate__animated`, toggle ? `view` : ``]" style="width: 80px;height:20px;background-color: burlywood">123123</div>
     </div>
   </page>
 </template>
@@ -52,14 +38,6 @@ export default {
   methods: {
     click() {
       this.show = !this.show
-    },
-    click2() {
-      this.show2 = !this.show2
-    },
-    click3() {
-      this.toggle = true
-      clearTimeout(this.viewTimer)
-      this.viewTimer = setTimeout(() => { this.toggle = false }, 1000)
     },
   },
 }
@@ -83,29 +61,4 @@ export default {
   animation-duration: 2s; /* don't forget to set a duration! */
 }
 // 
-.view {
-  animation: jumpBoxHandler 0.5s infinite;
-}
-
-@keyframes jumpBoxHandler {
-  0% {
-    transform: translateX(0px);
-    /*开始位置*/
-  }
-
-  33% {
-    transform: translateX(15px);
-    /* 可配置跳动方向 */
-  }
-
-  33% {
-    transform: translateX(-15px);
-    /* 可配置跳动方向 */
-  }
-
-  100% {
-    transform: translateX(0px);
-    /*结束位置*/
-  }
-}
 </style>
