@@ -112,7 +112,7 @@ Vue.directive("enterMoney", {
 //格式日期
 Vue.filter("formatDate", (value, format) => {
   if (value != "0001-01-01 00:00:00" && value != "0001-01-01T00:00:00" && value) {
-    return date.formatDate(value, format)
+    return fn.formatDate(value, format)
   } else {
     return "";
   }
@@ -120,7 +120,7 @@ Vue.filter("formatDate", (value, format) => {
 ///格式文件大小
 Vue.filter("fileSize", (value) => {
   if (value) {
-    return num.numberFormatter(value);
+    return fn.numberFormatter(value);
   } else {
     return "";
   }
@@ -128,13 +128,13 @@ Vue.filter("fileSize", (value) => {
 //格式金额
 Vue.filter("formatMoney", (value, num) => {
   if (value != "undefined" && value != undefined && value != null) {
-    return num.formatMoney(value, num || 2)
+    return fn.formatMoney(value, num || 2)
   }
 })
 //格式金额
 Vue.filter("formatMoney_null", (value, num) => {
   if (value) {
-    return num.formatMoney(value, num || 2)
+    return fn.formatMoney(value, num || 2)
   } else {
     return ""
   }

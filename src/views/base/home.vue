@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    {{ 111111111 | formatMoney }}
   </div>
 </template>
 
