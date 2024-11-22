@@ -95,6 +95,8 @@ Vue.prototype.$validator = validator;
 import bus from '@/utils/bus.js'
 Vue.prototype.$bus = bus
 
+//检测自动更新
+import '@/utils/autoUpdate.js'
 /** 自定义指令 *******************************************************************************************************/
 //对金额的输入框去除逗号（,）时，只需加上指令 v-enter-money 即可
 Vue.directive("enterMoney", {
