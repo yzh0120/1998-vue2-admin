@@ -89,6 +89,7 @@ export default {
       },
       //弹窗字段
       alertData: {
+        loading:false,
         alert: false
       },
     };
@@ -192,9 +193,9 @@ export default {
     alertConfirm() {
       if (this.$refs.formAlert.check()) {
         let url = this.formAlert.data.id ? "update" : "save";
-        this.$store.state.config.al =  true
+        this.alertData.loading =  true
         testApi[url](this.addApplyForm.data).then((res) => {
-          this.$store.state.config.al =  false
+          this.alertData.loading =  false
           if (res.code == 200) {
             this.$message.success(res.info);
             this.getData();
