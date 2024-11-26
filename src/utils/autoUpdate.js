@@ -16,8 +16,8 @@ const checkUpdate = async () => {
   const scriptList = await getScriptList()
   const scriptListStr = scriptList.join(',')
 
-  //取出最后一次记录的指纹跟最新的做比较，如果不相同，则视为有更新 lastFingerprint && 
-  if(lastFingerprint !== scriptListStr) {
+  //取出最后一次记录的指纹跟最新的做比较，如果不相同，则视为有更新 
+  if(lastFingerprint &&  lastFingerprint !== scriptListStr) {
       const message = `
                               <div>尊敬的用户，检测到系统功能有更新!</div>
                               <div>为了您的高效体验，请<span style="color:#e6a23c;font-weight: 700">确认页面数据已保存</span>后刷新页面，</div>
