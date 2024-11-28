@@ -26,7 +26,14 @@
 //th背景 td:nth-child(odd)
 .table.keyvalue > tbody  tr > td:nth-child(odd){
   background-color: #f9f9f9;
+  font-weight: 700;
+  text-align: right;
 }
+.table.keyvalue > tbody  tr > td:nth-child(odd){
+	text-align: left;	
+}
+
+
 .table.row > tbody  tr:nth-child(odd){
   background-color: #f9f9f9;
 }
