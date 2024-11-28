@@ -205,9 +205,9 @@ export default {
         }
 
         fd.append('file', file.file)// 传文件
-        fd.append('folderId', this.folderId)
-        fd.append('taskName', this.uploadObj.taskName)//selfClass
-        fd.append('companyName', this.selfClass)//selfClass
+        // fd.append('folderId', this.folderId)
+        // fd.append('taskName', this.uploadObj.taskName)//selfClass
+        // fd.append('companyName', this.selfClass)//selfClass
       }
 
       let headers = {
@@ -215,12 +215,16 @@ export default {
         'content-type': 'multipart/form-data'
       }
 
-
+      let params = {
+        folderId: this.folderId,
+        taskName:this.uploadObj.taskName
+      }
       axios({
         baseURL: process.env.VUE_APP_API,
         url: url,
         method: 'post',
         headers: headers,
+        params:params,
         data: fd,
         onUploadProgress: (progressEvent) => { this.progress(progressEvent) }
       }).then((res2) => {
