@@ -81,6 +81,13 @@ export default {
       type: String,
       default: "",
     },
+    //上传路径时候自带的参数 可选
+    query: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
     //按钮名称
     btnText: {
       type: String,
@@ -186,9 +193,12 @@ export default {
       console.log("自定义上传事件")
       let url = "/system/file_annexes/uploadFile"
       let fd = new FormData()
-      if (this.pathUrl) {
+      if (this.pathUrl) {//自定义的url
         url = this.pathUrl
         fd.append('file', file.file)// 传文件
+        for (let key of Object.keys(this.query)) {
+          fd.append(key, this.query[key])// 传文件
+        }
       } else {
         if (!this.beforeUpload(file.file, this.uploadObj)) {
           return
@@ -216,10 +226,10 @@ export default {
       }).then((res2) => {
         console.log(res2, "res2")
         let res = res2.data
-        
+
         this.btnDisabled = !this.btnDisabled;
         //this.fdata.btnDisabled = !this.fdata.btnDisabled;
-      
+
         // let { data } = res//data是包含人工code的对象
         if (res.code == 200) {//上传成功
           this.upLoadSuccess(res.data, file.file)
@@ -288,14 +298,15 @@ export default {
       if (!this.mode && this.folderId) {
         this.getFiles()
       }
-      //如果 mode == "noFolderId"
-      else if (this.mode == "noFolderId") {
-        this.uploadObj.detail = [data];//data是单个文件
-      }
       //如果 mode == "getFileById"
       else if (this.mode == "getFileById") {
         this.getById(data.id)
       }
+      //如果 mode == "noFolderId"
+      else if (this.mode == "noFolderId") {
+        this.uploadObj.detail = [data];//data是单个文件
+      }
+
     },
 
   },
