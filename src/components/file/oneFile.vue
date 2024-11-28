@@ -256,7 +256,7 @@ export default {
         !item.type.includes(activeFileType.toLowerCase())
         // !item.type.some((p) => p.toLowerCase() == activeFileType.toLowerCase())
       ) {
-        this.$message.error(`请上传正确的文件类型`);
+        this.$message.error(`请上传正确的文件类型${item.type}`);
         this.btnDisabled = !this.btnDisabled;
         //this.fdata.btnDisabled = !this.fdata.btnDisabled;
         return false;
