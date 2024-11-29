@@ -8,7 +8,7 @@ import {
 const getScriptList = async () => {
   const reg = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi
   const res = await fetch(`/face/?_t=${Date.now()}`).catch((e) => {
-    console.log(e,"自动更新报错信息")
+    console.log(e, "自动更新报错信息")
   })
   const data = await res.text()
   return data.match(reg)
@@ -21,8 +21,7 @@ const checkUpdate = async () => {
   const scriptListStr = scriptList.join(',') //新的
 
   //取出最后一次记录的指纹跟最新的做比较，如果不相同，则视为有更新 
-  console.info(lastFingerprint, "旧的1")
-  console.info(scriptListStr, "新的1")
+  console.info(lastFingerprint, "旧的1", scriptListStr, "新的1")
   if (lastFingerprint && lastFingerprint !== scriptListStr) {
     const message = `
                               <div>尊敬的用户，检测到系统功能有更新!</div>
@@ -43,7 +42,7 @@ const checkUpdate = async () => {
 }
 const listenerUpdate = () => {
   checkUpdate()
-  setInterval(checkUpdate, 1000 * 5)
+  setInterval(checkUpdate, 1000 * 60)
 }
 console.info(process.env.VUE_APP_ENV, "process.env.VUE_APP_ENV")
 // //1 生产环境下执行监听自动更新
