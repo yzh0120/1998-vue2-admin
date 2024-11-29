@@ -136,7 +136,7 @@ export default {
   methods: {
     //通过文件id获取单个文件
     getById(fileId) {
-      if (this.fileId) {
+      if (fileId) {
         eleFileApi.getById({ id: fileId ? fileId : this.fileId }).then((res) => {
           if (res.code == 200) {
             this.uploadObj.detail = [res.data]
