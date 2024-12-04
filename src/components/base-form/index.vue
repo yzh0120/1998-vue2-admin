@@ -386,6 +386,10 @@ export default {
     display: flex;
     justify-content: flex-end;
   }
+
+  .el-form-item-small{
+    height: 32px !important;
+  }
 }
 </style>
 <!-- 
