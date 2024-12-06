@@ -9,9 +9,15 @@
       </span>
 
       <div class="btn-flex">
-        <el-button type="text" @click="downloadFile(file)">{{
+        <!--  -->
+        <el-popconfirm confirm-button-text='下载' cancel-button-text='预览' icon="el-icon-info" icon-color="red"
+          title="请选择下载还是预览" @cancel="look(file, index)" @confirm="downloadFile(file)">
+          <el-button type="text" slot="reference" >{{ file.fileName }}</el-button>
+        </el-popconfirm>
+        <!--  -->
+        <!-- <el-button type="text" @click="downloadFile(file)">{{
         file.fileName
-        }}</el-button>
+        }}</el-button> -->
         <i class="el-icon-error" style="color: red" @click="fileRemove(file.id, index)" v-if="del"></i>
       </div>
     </el-tooltip>
@@ -35,7 +41,7 @@
         }
       ],
    */
-   import * as eleFileApi from "@/api/eleFile";
+import * as eleFileApi from "@/api/eleFile";
 export default {
   // props: ["arr", "del"],
   props: {
@@ -56,7 +62,7 @@ export default {
     fileRemove(id, eleindex) {
       this.$confirm(`确定移除 ？`)
         .then(() => {
-          eleFileApi.removeByIds({ids:id}).then((res) => {
+          eleFileApi.removeByIds({ ids: id }).then((res) => {
             if (res.code == 200) {
               this.$message.success("删除成功");
               this.arr.splice(eleindex, 1);
@@ -68,13 +74,24 @@ export default {
         })
         .catch(() => { });
     },
+    look() { 
+      
+    },
     downloadFile(item) {
-      eleFileApi.download({ fileId: item.id });
+      // eleFileApi.download({ fileId: item.id });
+      if (item.fileSize) {
+        let size = item.fileSize / 1024 / 1024;
+        if (size < 5) {
+          window.open(item.fileUrl);
+        } else {
+          window.open(item.fileUrl + "?response-content-type=application/octet-stream");
+        }
+      } else {
+        window.open(item.fileUrl + "?response-content-type=application/octet-stream");
+      }
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
