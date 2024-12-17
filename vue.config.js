@@ -25,8 +25,7 @@ function fnStatic() {
 
 module.exports = {
   // transpileDependencies: ["*"] ,
-  transpileDependencies: ["crypto-js", 'resize-detector',"@vant","vue-puzzle-verification","vue-socket.io"],
-  // publicPath: process.env.VUE_APP_ENV === 'test' ? '/ele/' : '/',
+  // transpileDependencies: ["crypto-js", 'resize-detector',"@vant","vue-puzzle-verification","vue-socket.io"],
   publicPath: fnStatic(),
   productionSourceMap: false,
   configureWebpack: () => {
