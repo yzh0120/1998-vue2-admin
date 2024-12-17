@@ -29,14 +29,34 @@ module.exports = {
   // publicPath: process.env.VUE_APP_ENV === 'test' ? '/ele/' : '/',
   publicPath: fnStatic(),
   productionSourceMap: false,
-  configureWebpack: {
-    resolve: {
-      extensions: ['.js', '.json', '.vue'],
-      alias: {
-        '@': path.resolve(__dirname, './src')
-      }
-    },
+  configureWebpack: () => {
+    const res = {
+      resolve: {
+        extensions: ['.js', '.json', '.vue'],
+        alias: {
+          '@': path.resolve(__dirname, './src')
+        }
+      },
+      // plugins: [
+      //   new webpack.ProvidePlugin({
+      //     $: "jquery",
+      //     jQuery: "jquery",
+      //     "windows.jQuery": "jquery"
+      //   }),
+      // ],
+    };
+    
+    return res;
   },
+  /////////////////////////////
+  // configureWebpack: {
+  //   resolve: {
+  //     extensions: ['.js', '.json', '.vue'],
+  //     alias: {
+  //       '@': path.resolve(__dirname, './src')
+  //     }
+  //   },
+  // },
   chainWebpack(config) {
     config.plugin('html')
       .tap(args => {
