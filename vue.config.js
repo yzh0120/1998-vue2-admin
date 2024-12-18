@@ -8,6 +8,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const WebpackObfuscator = require("webpack-obfuscator")
+const CompressionPlugin = require('compression-webpack-plugin')
+
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -42,6 +44,15 @@ module.exports = {
         //   jQuery: "jquery",
         //   "windows.jQuery": "jquery"
         // }),
+        
+        // 使用gzip解压缩静态文件
+        new CompressionPlugin({
+          cache: false, // 不启用文件缓存
+          test: /\.(js|css|html)?$/i, // 压缩文件格式
+          filename: '[path].gz[query]', // 压缩后的文件名
+          algorithm: 'gzip', // 使用gzip压缩
+          minRatio: 0.8 // 压缩率小于1才会压缩
+        })
       ],
     };
     const IS_PROD = ["production", "test", "uat"].includes(process.env.VUE_APP_ENV);

@@ -52,6 +52,7 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11",
+    "compression-webpack-plugin": "5.0.2",
     "javascript-obfuscator": "^3.2.7",
     "webpack-obfuscator": "^2.6.0"
   }
