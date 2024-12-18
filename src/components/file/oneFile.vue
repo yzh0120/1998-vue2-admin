@@ -191,6 +191,11 @@ export default {
     },
     //2 取消默认上传事件
     changeFile(file) { //
+      if(this.uploadObj?.taskName){
+        if (!this.beforeUpload(file.file, this.uploadObj)) {
+          return
+        }
+      }
       console.log("自定义上传事件")
       let url = "/system/file_annexes/uploadFile"
       let fd = new FormData()
@@ -201,10 +206,6 @@ export default {
           fd.append(key, this.query[key])// 传文件
         }
       } else {
-        if (!this.beforeUpload(file.file, this.uploadObj)) {
-          return
-        }
-
         fd.append('file', file.file)// 传文件
         // fd.append('folderId', this.folderId)
         // fd.append('taskName', this.uploadObj.taskName)//selfClass
@@ -217,8 +218,8 @@ export default {
       }
 
       let params = {
-        folderId: this.folderId,
-        taskName:this.uploadObj.taskName
+        // folderId: this.folderId,
+        // taskName:this.uploadObj.taskName
       }
       axios({
         baseURL: process.env.VUE_APP_API,
