@@ -42,6 +42,7 @@ service.interceptors.response.use(
       //     MessageBox.alert("未授权，请重新登录", "提示", {
       //       confirmButtonText: '确定',
       //       callback: action => {
+        //store.state.config.alert401 = false;
       //         cookieFn.removeCookie(process.env.VUE_APP_TOKEN);
       //         router.push({
       //           path: '/login'
@@ -65,6 +66,7 @@ service.interceptors.response.use(
             MessageBox.alert("未授权，请重新登录", "提示", {
               confirmButtonText: '确定',
               callback: action => {
+                store.state.config.alert401 = false;
                 removeCookie(process.env.VUE_APP_TOKEN);
                 router.push({
                   path: '/login'
