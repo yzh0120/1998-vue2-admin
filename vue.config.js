@@ -7,7 +7,7 @@
  */
 const path = require('path')
 const webpack = require('webpack')
-
+const WebpackObfuscator = require("webpack-obfuscator")
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -44,16 +44,16 @@ module.exports = {
         // }),
       ],
     };
-    // const IS_PROD = ["production", "test", "uat"].includes(process.env.VUE_APP_ENV);
-    // if (IS_PROD) {
-    //   res.plugins.push(
-    //     new WebpackObfuscator({
-    //       rotateUnicodeArray: true,
-    //       reservedStrings: [" "],
-    //       unicodeEscapeSequence: true
-    //     }, [])
-    //   );
-    // }
+    const IS_PROD = ["production", "test", "uat"].includes(process.env.VUE_APP_ENV);
+    if (false) {
+      res.plugins.push(
+        new WebpackObfuscator({
+          rotateUnicodeArray: true,
+          reservedStrings: [" "],
+          unicodeEscapeSequence: true
+        }, [])
+      );
+    }
 
     return res;
   },

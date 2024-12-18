@@ -51,6 +51,8 @@
     "crypto-js": "^4.1.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "javascript-obfuscator": "^3.2.7",
+    "webpack-obfuscator": "^2.6.0"
   }
 }
