@@ -32,10 +32,10 @@ module.exports = {
   productionSourceMap: false,
   configureWebpack: () => {
     const res = {
-      output: { // 输出重构  打包编译后的 文件名称  【模块名称.版本号.js】
-        filename: `js/[name].${TimeStamp}.js`,
-        chunkFilename: `js/[name].${TimeStamp}.js`
-      },
+      // output: { // 输出重构  打包编译后的 文件名称  【模块名称.版本号.js】
+      //   filename: `js/[name].${TimeStamp}.js`,
+      //   chunkFilename: `js/[name].${TimeStamp}.js`
+      // },
       resolve: {
         extensions: ['.js', '.json', '.vue'],
         alias: {
