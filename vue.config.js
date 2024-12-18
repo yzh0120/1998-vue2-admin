@@ -36,15 +36,25 @@ module.exports = {
           '@': path.resolve(__dirname, './src')
         }
       },
-      // plugins: [
-      //   new webpack.ProvidePlugin({
-      //     $: "jquery",
-      //     jQuery: "jquery",
-      //     "windows.jQuery": "jquery"
-      //   }),
-      // ],
+      plugins: [
+        // new webpack.ProvidePlugin({
+        //   $: "jquery",
+        //   jQuery: "jquery",
+        //   "windows.jQuery": "jquery"
+        // }),
+      ],
     };
-    
+    // const IS_PROD = ["production", "test", "uat"].includes(process.env.VUE_APP_ENV);
+    // if (IS_PROD) {
+    //   res.plugins.push(
+    //     new WebpackObfuscator({
+    //       rotateUnicodeArray: true,
+    //       reservedStrings: [" "],
+    //       unicodeEscapeSequence: true
+    //     }, [])
+    //   );
+    // }
+
     return res;
   },
   /////////////////////////////
