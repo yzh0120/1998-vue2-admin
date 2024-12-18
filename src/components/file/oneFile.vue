@@ -11,6 +11,7 @@ fileId 文件id需要传给后台
 :uploadObj="uploadObj" ></oneFile>
 
 可以获取多个
+如果加了fileId只能获取一个
  <oneFile  mode="noFolderId" :projectId="formInfoAlert.data.id" :fileId="formInfoAlert.data.fileId" 
 :uploadObj="uploadObj" ></oneFile>
    -->
