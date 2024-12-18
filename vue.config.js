@@ -44,7 +44,7 @@ module.exports = {
         //   jQuery: "jquery",
         //   "windows.jQuery": "jquery"
         // }),
-        
+
         // 使用gzip解压缩静态文件
         new CompressionPlugin({
           cache: false, // 不启用文件缓存
@@ -59,7 +59,11 @@ module.exports = {
     if (false) {
       res.plugins.push(
         new WebpackObfuscator({
+          // 压缩代码
+          compact: true,
+          // 里面很多参数，我都是用默认的，如果需要知道更多，可以参考下面的文章或者官网。
           rotateUnicodeArray: true,
+          // 空格不进行加密，因为项目中有空格的时候，也会加密，则会影响展示，所以排除空格；
           reservedStrings: [" "],
           unicodeEscapeSequence: true
         }, [])
