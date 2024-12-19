@@ -186,11 +186,12 @@ export default {
     //1 点击上传文件时的改变事件
     handleChange() {
       console.log("文件改变事件")
-      this.btnDisabled = !this.btnDisabled;
+      // this.btnDisabled = !this.btnDisabled;
       //this.fdata.btnDisabled = !this.fdata.btnDisabled;
     },
     //2 取消默认上传事件
     changeFile(file) { //
+      this.btnDisabled = true
       if(this.uploadObj?.taskName){
         if (!this.beforeUpload(file.file, this.uploadObj)) {
           return
@@ -233,7 +234,7 @@ export default {
         console.log(res2, "res2")
         let res = res2.data
 
-        this.btnDisabled = !this.btnDisabled;
+        this.btnDisabled = false
         //this.fdata.btnDisabled = !this.fdata.btnDisabled;
 
         // let { data } = res//data是包含人工code的对象
@@ -251,7 +252,7 @@ export default {
       console.log("文件校验是否合法事件")
       let activeFileType = file.name.split(".").pop();//文件类型
       if (item.num && item.detail.length + this.currentNum >= item.num) {
-        this.btnDisabled = !this.btnDisabled;
+        this.btnDisabled = false
         //this.fdata.btnDisabled = !this.fdata.btnDisabled;
         this.$message.error(`只能上传${item.num}个`);
         return false;
@@ -263,13 +264,13 @@ export default {
         // !item.type.some((p) => p.toLowerCase() == activeFileType.toLowerCase())
       ) {
         this.$message.error(`请上传正确的文件类型${item.type}`);
-        this.btnDisabled = !this.btnDisabled;
+        this.btnDisabled = false
         //this.fdata.btnDisabled = !this.fdata.btnDisabled;
         return false;
       }
       else if (item.size && ((file.size / 1024 / 1024) > item.size)) {
         this.$message.error(`文件最大为${item.size}M`)
-        this.btnDisabled = !this.btnDisabled;
+        this.btnDisabled = false
         //this.fdata.btnDisabled = !this.fdata.btnDisabled;
         return false;
       }
