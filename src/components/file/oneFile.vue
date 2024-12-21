@@ -232,12 +232,8 @@ export default {
         onUploadProgress: (progressEvent) => { this.progress(progressEvent) }
       }).then((res2) => {
         console.log(res2, "res2")
-        let res = res2.data
-
         this.btnDisabled = false
-        //this.fdata.btnDisabled = !this.fdata.btnDisabled;
-
-        // let { data } = res//data是包含人工code的对象
+        let res = res2.data//res是包含人工code的对象
         if (res.code == 200) {//上传成功
           this.upLoadSuccess(res.data, file.file)
         } else { //上传失败
