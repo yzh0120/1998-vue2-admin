@@ -12,7 +12,7 @@ fileId 文件id需要传给后台
 
 可以获取多个
 如果加了fileId只能获取一个
- <oneFile  mode="noFolderId" :projectId="formInfoAlert.data.id" :fileId="formInfoAlert.data.fileId" 
+ <oneFile  mode="threeT" :projectId="formInfoAlert.data.id" :fileId="formInfoAlert.data.fileId" 
 :uploadObj="uploadObj" ></oneFile>
    -->
   <span>
@@ -120,7 +120,7 @@ export default {
     else if (this.mode == "getFileById") {
       this.getById()
     }
-    else {//包含 noFolderId 模式
+    else {//包含 threeT 模式
       this.getFiles(); //获取历史文件///////////////////切换
     }
 
@@ -137,7 +137,7 @@ export default {
   methods: {
     //通过文件id获取单个文件
     getById(fileId) {
-      if (fileId) {
+      if (fileId || this.fileId ) {
         eleFileApi.getById({ id: fileId ? fileId : this.fileId }).then((res) => {
           if (res.code == 200) {
             this.uploadObj.detail = [res.data]
@@ -163,7 +163,7 @@ export default {
             this.$emit("getFile", { data: res.data })
             this.uploadObj.detail = res.data;
             ////////////////////////////////////////////////
-            if (this.mode == "noFolderId") {
+            if (this.mode == "threeT") {
               if (!this.fileId) {
                 this.uploadObj.detail = []
                 return this.$message.error("文件id是空！")
@@ -309,8 +309,8 @@ export default {
       else if (this.mode == "getFileById") {
         this.getById(data.id)
       }
-      //如果 mode == "noFolderId"
-      else if (this.mode == "noFolderId") {
+      //如果 mode == "threeT"
+      else if (this.mode == "threeT") {
         this.uploadObj.detail = [data];//data是单个文件
       }
 
