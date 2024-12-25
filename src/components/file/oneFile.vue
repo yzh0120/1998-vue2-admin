@@ -136,9 +136,9 @@ export default {
   },
   methods: {
     //通过文件id获取单个文件
-    getById(fileId) {
-      if (fileId || this.fileId ) {
-        eleFileApi.getById({ id: fileId ? fileId : this.fileId }).then((res) => {
+    getById() {
+      if (this.fileId ) {
+        eleFileApi.getById({ id: this.fileId }).then((res) => {
           if (res.code == 200) {
             this.uploadObj.detail = [res.data]
           } else {
@@ -303,7 +303,7 @@ export default {
       }
       //如果 mode == "getFileById"
       else if (this.mode == "getFileById") {
-        this.getById(data.id)
+        this.uploadObj.detail = [data];//data是单个文件// this.getById(data.id)
       }
       //如果 mode == "threeT"
       else if (this.mode == "threeT") {
