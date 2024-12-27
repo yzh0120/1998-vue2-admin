@@ -7,7 +7,7 @@ import request from "@/utils/request";
  */
 export function getAppSession(data) {
   return request({
-    url: "/user/getUserInfo",
+    url: "/user/getUserInfo?b=1",
     method: "get",
     params: {a:2}
   })
