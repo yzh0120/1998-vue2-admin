@@ -21,6 +21,20 @@ const service = axios.create({
 service.interceptors.response.use(
   //code == 200
   response => {
+    console.log(response,"相应信息")
+        //////////////////////////////////////////////////////////////
+        const {url,method,params,data} = response.config
+        let key = [url, method, JSON.stringify(data), JSON.stringify(params)].join('&')
+        for (let key of pendingRequest.keys()) {
+          console.log(key,"遍历");
+        }
+        if (pendingRequest.has(key)) {
+          console.log("相应信息有key",key)
+          pendingRequest.delete(key) // 请求对象中删除requestKey
+        }else{
+          console.log("相应信息没有key",key)
+        }
+        //////////////////////////////////////////////////////////////
     // console.log(response.config.url,"response.config")
       // if (response.config.method == "post") {
       //     response.data.data = JSON.parse(aes.decrypt(response.data.data))
@@ -131,13 +145,14 @@ service.interceptors.request.use(
     const source = CancelToken.source();
     config.cancelToken = source.token
     const {url,method,params,data} = config
+    // console.log([url, method, JSON.stringify(data), JSON.stringify(params)],"123")
     let key = [url, method, JSON.stringify(data), JSON.stringify(params)].join('&')
     if (pendingRequest.has(key)) {
-      console.log("有key")
+      console.log("有key",key)
       source.cancel(`当前接口还未返回数据 请返回数据再操作`)
-      pendingRequest.delete(key) // 请求对象中删除requestKey
+      // pendingRequest.delete(key) // 请求对象中删除requestKey
     }else{
-      console.log("没有key")
+      console.log("没有key",key)
       pendingRequest.set(key, "1")
     }
     //////////////////////////////////////////////////////////////
