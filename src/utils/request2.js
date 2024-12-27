@@ -21,10 +21,10 @@ const service = axios.create({
 service.interceptors.response.use(
   //code == 200
   response => {
-    // console.log(response,"相应信息")
+    console.log(response.config.data,response.config.params,"相应信息")
         //////////////////////////////////////////////////////////////
         const {url,method,params,data} = response.config
-        let key = [url, method, JSON.stringify(data), JSON.stringify(params)].join('&')
+        let key = [url, method, JSON.stringify(JSON.parse(data ? data : "{}")), JSON.stringify(params)].join('&')
         for (let key of pendingRequest.keys()) {
           console.log(key,"遍历");
         }
@@ -182,7 +182,7 @@ service.interceptors.request.use(
     // }
     // console.log(Object.assign(Pdata, config.data),"Object.assign(Pdata, config.data)")
     // config.data = Object.assign(Pdata, config.data)
-    // console.log(config,"config")
+    console.log(config.data,config.params,"config")
     return config;
   },
   error => {

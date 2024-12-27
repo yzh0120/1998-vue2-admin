@@ -9,7 +9,7 @@ export function getAppSession(data) {
   return request({
     url: "/user/getUserInfo",
     method: "get",
-    params: data
+    params: {a:2}
   })
 }
 
