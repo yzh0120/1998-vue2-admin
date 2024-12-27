@@ -11,7 +11,7 @@ import store from '@/store/index' //vuex
 
 import md5 from "js-md5"
 import aes from "@/utils/aes"
-
+window.pendingRequest = new Map()
 const service = axios.create({
   baseURL: process.env.VUE_APP_API,//ip
   timeout: 600000,//超时
@@ -55,6 +55,7 @@ service.interceptors.response.use(
   },
   //code != 200
   err => {
+    console.log(err,"错误信息")
     if (err && err.response) {
       switch (err.response.status) {
         case 400:
@@ -115,6 +116,7 @@ service.interceptors.response.use(
       }else{
         err.message = "连接到服务器失败"
       }
+      
     }
     Notification.error({ title:`${err.message}` })
     return Promise.reject(err.response);
@@ -124,6 +126,22 @@ service.interceptors.response.use(
 //请求拦截器
 service.interceptors.request.use(
   config => {
+    //////////////////////////////////////////////////////////////
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+    config.cancelToken = source.token
+    const {url,method,params,data} = config
+    let key = [url, method, JSON.stringify(data), JSON.stringify(params)].join('&')
+    if (pendingRequest.has(key)) {
+      console.log("有key")
+      source.cancel(`当前接口还未返回数据 请返回数据再操作`)
+      pendingRequest.delete(key) // 请求对象中删除requestKey
+    }else{
+      console.log("没有key")
+      pendingRequest.set(key, "1")
+    }
+    //////////////////////////////////////////////////////////////
+
     config.headers = { //配置请求token
       "Authorization": cookieFn.getCookie(process.env.VUE_APP_TOKEN) || ""
     }
@@ -149,7 +167,7 @@ service.interceptors.request.use(
     // }
     // console.log(Object.assign(Pdata, config.data),"Object.assign(Pdata, config.data)")
     // config.data = Object.assign(Pdata, config.data)
-
+    console.log(config,"config")
     return config;
   },
   error => {
