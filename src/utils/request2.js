@@ -21,7 +21,7 @@ const service = axios.create({
 service.interceptors.response.use(
   //code == 200
   response => {
-    console.log(response,"相应信息")
+    // console.log(response,"相应信息")
         //////////////////////////////////////////////////////////////
         const {url,method,params,data} = response.config
         let key = [url, method, JSON.stringify(data), JSON.stringify(params)].join('&')
@@ -182,7 +182,7 @@ service.interceptors.request.use(
     // }
     // console.log(Object.assign(Pdata, config.data),"Object.assign(Pdata, config.data)")
     // config.data = Object.assign(Pdata, config.data)
-    console.log(config,"config")
+    // console.log(config,"config")
     return config;
   },
   error => {
