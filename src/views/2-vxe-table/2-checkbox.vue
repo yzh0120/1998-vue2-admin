@@ -40,6 +40,9 @@ export default {
       },
       //表格
       gridOptions: {
+                checkboxConfig: {
+          // checkMethod: this.checkboxkMethod
+        },
         loading: false,
         // border: true,
         // showOverflow: true,
@@ -102,6 +105,13 @@ export default {
     this.getData();
   },
   methods: {
+    checkboxkMethod({ row }) {
+      if (!row.sumPaidAmountRpa || !row.tradingTimeRpa || !row.bankTransactionNum) {
+        return false
+      } else {
+        return true
+      }
+    },
     checkboxChange({ records }) {
       console.log(records)
       //records.map((e)->{ return e.id}).join(",")

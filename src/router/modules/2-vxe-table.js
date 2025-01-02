@@ -116,6 +116,15 @@ export default {
       }
     },
     {
+      path: 'rowCalss',
+      name: 'vxeTable-rowCalss',
+      component: () => import( /* webpackChunkName: "vxeTable-radio" */ "@/views/2-vxe-table/12-rowCalss.vue"),
+      meta: {
+        title: '行颜色',
+        icon: "shezhi1",
+      }
+    },
+    {
       path: 'table',
       name: 'vxeTable-table',
       component: () => import( /* webpackChunkName: "vxeTable-table" */ "@/views/2-vxe-table/999-table.vue"),
