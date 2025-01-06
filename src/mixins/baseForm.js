@@ -1,11 +1,11 @@
 export default {
 	data() {
 		return {
-			pagerData: {
-				pageNo: 1, //第一页
-				pageSize: 20, //每页显示20张
-				total: 0, //总数
-			},
+			// pagerData: {
+			// 	pageNo: 1, //第一页
+			// 	pageSize: 20, //每页显示20张
+			// 	total: 0, //总数
+			// },
 		}
 	},
 	methods: {
@@ -23,14 +23,14 @@ export default {
 				placeholder = str + row.title
 			}
 			return placeholder
-			if (row.type === 'input' || row.type === 'textarea') { //输入框
-				placeholder = '请输入' + (row.label ? row.label : row.title)
-			} else if (row.type === 'select' || row.type === 'time' || row.type === 'date' || row.type === 'dateTime') { //选择框
-				placeholder = '请选择' + (row.label ? row.label : row.title)
-			} else { //其他
-				placeholder = (row.label ? row.label : row.title)
-			}
-			return placeholder
+			// if (row.type === 'input' || row.type === 'textarea') { //输入框
+			// 	placeholder = '请输入' + (row.label ? row.label : row.title)
+			// } else if (row.type === 'select' || row.type === 'time' || row.type === 'date' || row.type === 'dateTime') { //选择框
+			// 	placeholder = '请选择' + (row.label ? row.label : row.title)
+			// } else { //其他
+			// 	placeholder = (row.label ? row.label : row.title)
+			// }
+			// return placeholder
 		},
 		//list变化带动data字段变化       只在组件内部使用
 		_updatedata(formInfo) { // 根据 this.formInfo.list 给data添加属性,会清空 data的值
