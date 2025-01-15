@@ -18,7 +18,10 @@ data：{
 <template>
   <vxe-modal :ref="modal" v-model="flag" :mask="false" :lockView="false" show-minimize show-maximize :width="w"
     :height="h" show-footer :title="title" @close="cancel"  resize>
-    <slot></slot>
+    <div v-if="flag || data.nowShow">
+      <slot></slot>
+    </div>
+    
 
     <template #footer>
       <el-button @click="cancel" v-if="!msg" plain>取消</el-button>
