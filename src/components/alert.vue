@@ -18,7 +18,7 @@ data：{
 <template>
   <vxe-modal :ref="modal" v-model="flag" :mask="false" :lockView="false" show-minimize show-maximize :width="w"
     :height="h" show-footer :title="title" @close="cancel"  resize>
-    <div v-if="flag || data.nowShow">
+    <div v-if="flag || data.nowShow || data.nowShow2">
       <slot></slot>
     </div>
     
