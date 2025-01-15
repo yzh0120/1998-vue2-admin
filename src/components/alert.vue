@@ -16,7 +16,7 @@ data：{
       },
  -->
 <template>
-  <vxe-modal ref="modal" v-model="flag" :mask="false" :lockView="false" show-minimize show-maximize :width="w"
+  <vxe-modal :ref="modal" v-model="flag" :mask="false" :lockView="false" show-minimize show-maximize :width="w"
     :height="h" show-footer :title="title" @close="cancel"  resize>
     <slot></slot>
 
@@ -44,19 +44,20 @@ export default {
   },
   data() {
     return {
+      modal:new Date().getTime() + ""
     }
   },
   mounted() {
-          if (this.data.nowShow) { 
-            this.flag = true;
-            this.$refs[this.modal].$el.style.display = "none";
-            this.$nextTick(() => {
-            this.flag = false;
-            setTimeout(() => {
-                this.$refs[this.modal].$el.style.display = "";
-            }, 1000);
-            });
-          }
+    if (this.data.nowShow) { 
+      this.flag = true;
+      this.$refs[this.modal].$el.style.display = "none";
+      this.$nextTick(() => {
+      this.flag = false;
+      setTimeout(() => {
+          this.$refs[this.modal].$el.style.display = "";
+      }, 1000);
+      });
+    }
   },
   methods: {
     cancel() {
