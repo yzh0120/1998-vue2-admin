@@ -20,7 +20,7 @@ data：{
     :height="h" show-footer :title="title" @close="cancel"  resize>
       <slot></slot>
     <template #footer>
-      <el-button @click="cancel" v-if="!msg" plain>取消</el-button>
+      <el-button @click="cancel"  plain>取消</el-button>
       <el-button type="primary" @click="confirm" :loading="data.loading">确认</el-button>
     </template>
   </vxe-modal>
@@ -86,9 +86,6 @@ export default {
     },
     title() {
       return this.data.title ? this.data.title : "标题";
-    },
-    msg() {
-      return this.data.msg;
     },
   },
 };
