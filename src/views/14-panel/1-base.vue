@@ -42,10 +42,17 @@
       </div>
     </panel>
 
-    <panel type="mxh">
+    <panel type="default">
       <div slot="header">
-        default
+        <abc shu>123</abc>
       </div>
+    </panel>
+
+    <panel type="default">
+      <div slot="header">
+        <abc>123</abc>
+      </div>
+      
     </panel>
 
     <el-divider>分割线</el-divider>

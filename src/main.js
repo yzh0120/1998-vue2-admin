@@ -53,6 +53,9 @@ Vue.component("pager", basePager)
 import panel from '@/components/panel'
 Vue.component("panel", panel)
 
+import abc from '@/components/abc'
+Vue.component("abc", abc)
+
 import panel2 from '@/components/panel2'
 Vue.component("panel2", panel2)
 

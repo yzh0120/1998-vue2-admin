@@ -4,7 +4,7 @@
 			<!-- 头部 -->
 			<div :class="[`panel-heading`]" @click="bodyHandle" :style="{ fontSize: sizeComputed }">
 
-				<div :class="type == `mxh` ? `shu` : ``">
+				<div>
 					<div v-if="head">{{ head }}{{ header }}</div>
 					<slot name="head"></slot>
 					<slot name="header"></slot>
@@ -234,21 +234,5 @@ $fanwei: 5px;
 	}
 }
 
-.shu {
-	padding-left: 10px;
-	position: relative;
 
-	// width:10px;
-	// height:10px;
-	// background-color: #F6384C;
-	&::before {
-		content: "";
-		display: inline-block;
-		position: absolute;
-		width: 4px;
-		height: 100%;
-		left: -4px;
-		background-color: #F6384C;
-	}
-}
 </style>
