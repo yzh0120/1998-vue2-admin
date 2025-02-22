@@ -31,10 +31,42 @@ export default {
     },
     go_up() {
       if (document.getElementById("go_up")) {
-        document.getElementById("go_up").scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+        // document.getElementById("go_up").scrollIntoView({
+        //   behavior: "smooth",
+        //   block: "start",
+        // });
+
+        /*
+                  // 假设我们有一个目标元素
+          const targetElement = document.getElementById("go_up");
+          // 获取目标元素的边界矩形
+          const rect = targetElement.getBoundingClientRect();
+          // 计算目标元素顶部相对于视口顶部的距离
+          const targetTop = rect.top + window.pageYOffset;
+          // 定义一个偏移量（例如，我们希望目标元素滚动到视口顶部下方50像素的位置）
+          const offset = 100;
+          // 计算滚动到的目标位置
+          const scrollToPosition = targetTop - offset;
+          // 使用 window.scrollTo 进行滚动，并设置平滑滚动
+          window.scrollTo({
+            top: scrollToPosition,
+            behavior: 'smooth'
+          });
+        */
+                  // 假设我们有一个目标元素
+                  const elmain = document.getElementById("elmain");
+          const targetElement = document.getElementById("go_up");
+          const rect = targetElement.getBoundingClientRect();
+          const targetTop = rect.top  + elmain.scrollTop
+          const offset = 212.9326171875;
+          const scrollToPosition = targetTop - offset;
+          console.log( rect.top,elmain.scrollTop,scrollToPosition,"elmain.scrollTop")
+          // elmain.scrollTop =  0;
+          elmain.scrollTo({
+            top: scrollToPosition,
+            behavior: 'smooth'
+          })
+        
       }
     },
   },
