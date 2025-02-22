@@ -1,6 +1,8 @@
 <template>
   <page>
     <el-button type="primary" @click="go">主要按钮</el-button>
+    <el-button type="primary" @click="setRulesRequired">false</el-button>
+    <el-button type="primary" @click="setRulesRequired2">true</el-button>
     <base-form :data="form" ref="form" @event="formEvent">
       <template #mySlot>
         <el-input placeholder="请输入内容" v-model="form.data.xxx">
@@ -290,6 +292,12 @@ export default {
     this._set(this.form, "__treeselectCreate", { opt: arr });
   },
   methods: {
+    setRulesRequired(){
+      this._setRulesRequired(this.form,"_input",false)
+    },
+    setRulesRequired2(){
+      this._setRulesRequired(this.form,"_input",true)
+    },
     ggg() { 
       setTimeout(() => { 
         console.log(this.form.data._timeliness,"_timeliness_timeliness")

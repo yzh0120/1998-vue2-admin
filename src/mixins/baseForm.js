@@ -89,7 +89,7 @@ export default {
 					}
 				})
 			} else {
-				this.$message.error("_set 值错误")
+				this.$message.error("_setList的值错误")
 			}
 
 		},
@@ -100,6 +100,26 @@ export default {
 				this._set(formInfo, item_fieldValue, valueStr)
 			})
 
+		},
+		_setRulesRequired(formInfo, fieldValue, Boolean){
+			formInfo.list.forEach((item) => {
+				if (item.slot == fieldValue || item.field == fieldValue) {
+					if(this.$fn.type(item.rules) == "arr"){
+						let index = item.rules.findIndex((e)=>{
+							if(e.required === true || e.required === false){
+								return true
+							}else{
+								return false
+							}
+						})
+						item.rules[index].required = Boolean//!item.rules[index].required
+						let arr = this.$fn.deepClone(item.rules)
+						item.rules = arr
+					}else{
+						this.$message.error("rules不是数组")
+					}
+				}
+			})
 		},
 	}
 }
