@@ -100,9 +100,17 @@ export default {
             return this.data[this.item.field];
           }
           else {
-            let str = this.data[this.item.field] + ""
-            let str1 = this.$fn.formatMoney(str,this.pointNum)
-            return str1
+            // let str = this.data[this.item.field] + ""
+            // let str1 = this.$fn.formatMoney(str,this.pointNum)
+            // return str1
+            var reg = /^(\-|\+)?\d+(\.\d+)?$/;
+            if (reg.test(this.data[this.item.field]) == false) {
+              return  this.data[this.item.field];
+            } else { 
+              let str = this.data[this.item.field] + ""
+              let str1 = this.$fn.formatMoney(str,this.pointNum)
+              return str1
+            }
           }
 
           // return this.data[this.item.field]?.replace(
