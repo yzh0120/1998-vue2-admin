@@ -21,6 +21,14 @@ formatter({ cellValue }) {
 */
 //https://vxetable.cn/xe-utils/#/
 /************************************************************************************************************/
+//将undfind替换成空传3=
+export function undefinedReplace(val) {
+  if (val === null || val === undefined) {
+    return val
+  } else {
+    return val.replaceAll("undefined")
+  }
+}
 /**
  * 深度克隆
  * @param {*} target 
@@ -87,15 +95,7 @@ export function starReplace(str, s, e) {
   return str.replace(_k, _v);
 }
 
-//是否是数字
-export function isNumber(data) { 
-  let str = data.replaceAll(",", "")
-  if (isNaN(Number(str))) {
-    return false
-  } else { 
-    return true
-  }
-}
+
 
 
 /**
@@ -130,6 +130,10 @@ export function type(data) {
   }
 }
 
+export function type2(data) {
+  let res = Object.prototype.toString.call(data).slice(8, -1)
+  return res
+}
 //获取html内的文字
 export function getSimpleText(str) {
   if (str) {
@@ -140,8 +144,25 @@ export function getSimpleText(str) {
   }
 }
 
+/**
+ * 字符串每隔4位用空格分隔
+ * @param {string} val 
+ * @param {number} spaceNumber 分割位数
+ * @param {string} separator 分隔符
+ * @returns XEUtils.commafy('6660000000000001', {spaceNumber: 4, separator: ' '}) // '6660 0000 0000 0001'
+ */
+export function formatSpace(val, spaceNumber = 4, separator = " ") {
+  if (val !== "" && val !== undefined && val !== null) {
+    // return XEUtils.commafy(val, {
+    //   spaceNumber: spaceNumber,
+    //   separator: separator
+    // })
 
-/* num* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+    return val.replace(/(.{4})(?=.)/g, '$1 ');
+  }
+  return ""
+}
+/* num*头部 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 /**
  * 格式化金额
  * @param {string | number} val 需要格式化的值
@@ -201,25 +222,17 @@ export function divide(num1, num2) {
   }
 }
 
-/**
- * 字符串每隔4位用空格分隔
- * @param {string} val 
- * @param {number} spaceNumber 分割位数
- * @param {string} separator 分隔符
- * @returns XEUtils.commafy('6660000000000001', {spaceNumber: 4, separator: ' '}) // '6660 0000 0000 0001'
- */
-export function formatSpace(val, spaceNumber = 4, separator = " ") {
-  if (val !== "" && val !== undefined && val !== null) {
-    // return XEUtils.commafy(val, {
-    //   spaceNumber: spaceNumber,
-    //   separator: separator
-    // })
 
-    return val.replace(/(.{4})(?=.)/g, '$1 ');
+
+//是否是数字
+export function isNumber(data) { 
+  let str = data.replaceAll(",", "")
+  if (isNaN(Number(str))) {
+    return false
+  } else { 
+    return true
   }
-  return ""
 }
-
 
 /**
  * Number formatting对文件大小进行转换为K,M,G,T,P,E
@@ -357,6 +370,7 @@ export function convertCurrency(money) {
   return chineseStr;
 }
 
+//自定义的数字转化
 export function selfNumber(val) {
   if (val === null || val === undefined || val === "") {
     return 0
@@ -365,6 +379,7 @@ export function selfNumber(val) {
   }
 }
 
+//是否是null
 export function isNull(val) {
   if (val === null || val === undefined || val === "" || val === 0 || val === "0") {
     return true
@@ -373,7 +388,8 @@ export function isNull(val) {
   }
 }
 
-/* date* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+/* date* * *头部 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
 /**
