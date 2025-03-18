@@ -84,6 +84,8 @@ export default {
     };
   },
   created() {
+    this.getTree();
+    //通过城市获取城市
     this.$watch(
       function () {
         return this.item[this.city];
@@ -97,6 +99,7 @@ export default {
         immediate: true,
       }
     );
+    //通过省获取城市
     this.$watch(
       function () {
         return this.item[this.province];
@@ -110,7 +113,7 @@ export default {
         immediate: true,
       }
     );
-    //
+    //通过区获取区
     this.$watch(
       function () {
         return this.item[this.areas];
@@ -124,6 +127,7 @@ export default {
         immediate: true,
       }
     );
+    //通过城市获取区
     this.$watch(
       function () {
         return this.item[this.city];
@@ -139,7 +143,7 @@ export default {
     );
   },
   mounted() {
-    this.getTree();
+    
   },
   methods: {
     areaChange() {

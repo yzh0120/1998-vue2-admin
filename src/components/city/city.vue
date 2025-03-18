@@ -116,7 +116,9 @@ export default {
     };
   },
   created() {
-    //获取城市
+        //获取省
+        this.getTree();
+    //通过城市获取城市
     this.$watch(
       function () {
         return this.item[this.city];
@@ -130,7 +132,7 @@ export default {
         immediate: true,
       }
     );
-    //如果有省也需要获取市的下拉框
+    //通过省获取城市
     this.$watch(
       function () {
         return this.item[this.province];
@@ -144,7 +146,7 @@ export default {
         immediate: true,
       }
     );
-     //获取区域
+      //通过区获取区
     this.$watch(
       function () {
         return this.item[this.areas];
@@ -204,8 +206,7 @@ export default {
     }
   },
   mounted() {
-    //获取省
-    this.getTree();
+
 
     // if (this.item[this.city]) {
     //   this.getCitys(this.item[this.province]);
