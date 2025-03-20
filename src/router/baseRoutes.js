@@ -20,6 +20,7 @@ import aes from "./modules/18-aes.js"
 import swiper from "./modules/19-swiper.js"
 import animejs from "./modules/20-animejs.js"
 import baiduMap from "./modules/21-baiduMap.js"
+import promise from "./modules/22-promise.js"
 const routes = [
   {
     path: "/",
@@ -91,7 +92,8 @@ const routes = [
   aes,
   swiper,
   animejs,
-  baiduMap
+  baiduMap,
+  promise
 ]
 
 export default routes

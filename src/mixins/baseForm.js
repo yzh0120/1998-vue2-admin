@@ -47,7 +47,7 @@ export default {
 				}
 
 			})
-			formInfo.data = this.$fn.deepClone(formInfo.data)
+			// formInfo.data = this.$fn.deepClone(formInfo.data)
 		},
 		//给list每个对象添加disabled属性       只在组件内部使用
 		_addDis(formInfo) {
