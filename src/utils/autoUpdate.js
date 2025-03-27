@@ -23,21 +23,26 @@ const checkUpdate = async () => {
   //取出最后一次记录的指纹跟最新的做比较，如果不相同，则视为有更新 
   console.info(lastFingerprint, "旧的1", scriptListStr, "新的1")
   if (lastFingerprint && lastFingerprint !== scriptListStr) {
-    const message = `
-                              <div>尊敬的用户，检测到系统功能有更新!</div>
-                              <div>为了您的高效体验，请<span style="color:#e6a23c;font-weight: 700">确认页面数据已保存</span>后刷新页面，</div>
-                              <div>防止数据丢失！</div>
-                              `
-    MessageBox.confirm(message, "更新提示", {
-      confirmButtonText: '立即刷新',
-      cancelButtonText: '已知晓，稍后手动刷新',
-      type: 'success',
-      dangerouslyUseHTMLString: true,
-    }).then(() => {
-      //使用本地存储记录最后一次更新指纹
+    if(lastFingerprint){
+      const message = `
+      <div>尊敬的用户，检测到系统功能有更新!</div>
+      <div>为了您的高效体验，请<span style="color:#e6a23c;font-weight: 700">确认页面数据已保存</span>后刷新页面，</div>
+      <div>防止数据丢失！</div>
+      `
+MessageBox.confirm(message, "更新提示", {
+confirmButtonText: '立即刷新',
+cancelButtonText: '已知晓，稍后手动刷新',
+type: 'success',
+dangerouslyUseHTMLString: true,
+}).then(() => {
+//使用本地存储记录最后一次更新指纹
+localStorage.setItem("lastFingerprint", scriptListStr)
+window.location.reload()
+})
+    }else{
       localStorage.setItem("lastFingerprint", scriptListStr)
-      window.location.reload()
-    })
+    }
+
   }
 }
 const listenerUpdate = () => {
