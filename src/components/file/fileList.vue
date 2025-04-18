@@ -22,8 +22,8 @@
               <file-list-show :arr="item.detail" :del="candelete" />
             </td>
             <!-- 操作 -->
-            <td class="text-center">
-              <oneFile :projectId="projectId" :uploadObj="item" :selfClass="selfClass" noGetApi
+            <td class="text-center" v-show="showUploadBtn && item.showUploadBtn !== false">
+              <oneFile :projectId="tempId ? tempId : projectId" :uploadObj="item" :selfClass="selfClass" noGetApi
                 @getAllFile="getAllFile"></oneFile>
             </td>
           </tr>
@@ -59,6 +59,10 @@ export default {
       type: [String, Number],
       default: "",
     },
+    tempId:{
+      type: [String, Number],
+      default: "",
+    },
     //文件列表
     fileList: {
       type: Array,
@@ -79,7 +83,7 @@ export default {
       //获取所有的文件
       eleFileApi.queryList(
         {
-          folderId: this.projectId,
+          folderId: this.tempId ? this.tempId : this.projectId,
           companyName:this.selfClass
         }
       ).then((res) => {

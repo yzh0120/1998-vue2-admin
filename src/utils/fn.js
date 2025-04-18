@@ -381,7 +381,7 @@ export function selfNumber(val) {
 
 //是否是null
 export function isNull(val) {
-  if (val === null || val === undefined || val === "" || val === 0 || val === "0") {
+  if (val === null || val === undefined || val === "") {
     return true
   } else {
     return false
