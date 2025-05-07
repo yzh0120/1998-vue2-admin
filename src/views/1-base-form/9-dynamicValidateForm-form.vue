@@ -1,24 +1,8 @@
 <template>
   <page>
-    <el-form
-      :model="dynamicValidateForm"
-      ref="dynamicValidateForm"
-      label-width="100px"
-      class="demo-dynamic"
-    >
+    <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="demo-dynamic" >
       <!-- 邮箱 -->
-      <el-form-item
-        prop="email"
-        label="邮箱"
-        :rules="[
-          { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-          {
-            type: 'email',
-            message: '请输入正确的邮箱地址',
-            trigger: ['blur', 'change'],
-          },
-        ]"
-      >
+      <el-form-item prop="email" label="邮箱" :rules="[{ required: true, message: '请输入邮箱地址', trigger: 'blur' } ]">
         <el-input v-model="dynamicValidateForm.email"></el-input>
       </el-form-item>
       <!-- 域名 -->
