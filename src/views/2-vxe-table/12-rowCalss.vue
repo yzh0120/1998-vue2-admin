@@ -98,8 +98,11 @@
       this.getData();
     },
     methods: {
-        rowClassName(){
+        rowClassName({row,rowIndex}){
+          if(rowIndex == 0){
             return "row_C"
+          }
+          
         },
       //获取数据
       getData() {
@@ -175,6 +178,7 @@
 ::v-deep{
     .vxe-body--row.row_C{
     background-color: red !important;
+    color: white;
   }
 }
   </style>
