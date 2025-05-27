@@ -47,13 +47,15 @@ export default {
     }
   },
   mounted() {
+    let com = null
     if (this.data.nowShow) { 
       this.flag = true;
       this.$refs[this.modal].$el.style.display = "none";
+      com = this.$refs[this.modal]
       this.$nextTick(() => {
       this.flag = false;
       setTimeout(() => {
-          this.$refs[this.modal].$el.style.display = "";
+        com.$el.style.display = "";
       }, 1000);
       });
     }
