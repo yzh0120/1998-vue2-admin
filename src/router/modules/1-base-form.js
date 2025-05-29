@@ -99,6 +99,15 @@ export default {
                 icon: "shezhi1",
             }
         },
+        {
+            path: 'changeList',
+            name: 'baseForm-changeList',
+            component: () => import( /* webpackChunkName: "10-formToTable-form" */ "@/views/1-base-form/12-changeList.vue"),
+            meta: {
+                title: '切换list',
+                icon: "shezhi1",
+            }
+        },
         // {
         //     path: 'checkIf',
         //     name: 'baseForm-checkIf',
