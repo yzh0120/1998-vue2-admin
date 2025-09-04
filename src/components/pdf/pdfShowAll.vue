@@ -11,6 +11,7 @@ if (data.fieldType === "Sig") {
 
    -->
   <div class="pdfBox">
+    <!-- <pdf ref="morePDF" :src="pdfSrc" ></pdf> -->
     <pdf ref="morePDF" :src="pdfSrc" :page="i" v-for="i in numPages" :key="i"></pdf>
   </div>
 </template>
@@ -46,6 +47,8 @@ export default {
   },
   methods: {
     download() {
+      // this.pdfSrc = this.preUrl
+      // return 
       const x = new window.XMLHttpRequest();
       x.open('GET', this.preUrl, true);
       x.responseType = 'blob';
