@@ -1,5 +1,6 @@
 <template>
   <page>
+    {{ $store.state.setup.mobile }}--
     <base-form :data="form" ref="form" @event="formEvent">
       <template #mySlot>
         <el-input placeholder="请输入内容" v-model="form.data.xxx">

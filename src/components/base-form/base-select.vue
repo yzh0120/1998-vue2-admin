@@ -27,7 +27,7 @@
     :multiple="mult || item.create"
     :allow-create="item.create"
     filterable
-   
+    :popper-append-to-body="false"
     :remote="remote"
     :remote-method="item.remote"
   >
@@ -124,4 +124,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+@media screen and (max-width: 1000px) {
+  ::v-deep{
+    .el-popper {  top: auto !important;  left: auto !important;}
+  }
+}
 </style>

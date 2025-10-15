@@ -63,6 +63,8 @@ export default {
     this.favicon(); //其实是将侧边栏的logo变成ico
   },
   mounted(){
+    this.$store.commit("setup/windowResize");
+    window.addEventListener("resize", this.clientXY);
         ///////////////
         const _this = this;
     this.bodyScale();
@@ -71,7 +73,13 @@ export default {
     }.bind(this);
     //////////////
   },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.clientXY);
+  },
   methods: {
+    clientXY() {
+      this.$store.commit("setup/windowResize");
+    },
         //https://www.cnblogs.com/le-cheng/p/17939895
         bodyScale() {
       let devicewidth = document.documentElement.clientWidth //获取当前分辨率下的可是区域宽度
