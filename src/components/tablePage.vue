@@ -65,6 +65,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 992px) {
+  // .el-date-picker {
+  //   width: 100%; /* 或者其他适合移动设备的宽度 */
+  // }
+  .box_table {
+    height: 100% !important;
+  }
+}
 .box_table {
   // background-color: green;
   height: calc(100vh - 130px);
