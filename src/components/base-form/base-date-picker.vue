@@ -11,10 +11,22 @@
  -->
 
 <template>
-  <el-date-picker style="width: 100%" v-model="xxx" :type="item.type" :value-format="valueFormat" clearable
-    :disabled="item.disabled" :placeholder="_getPlaceholder(item)" @change="change" @input="$forceUpdate()"
-    start-placeholder="开始日期" range-separator="至" end-placeholder="结束日期" :picker-options="item.pickerOpt"
-    :append-to-body="$store.state.setup.mobile  ? false : true"  :align="item.align?item.align : `right`"/>
+  <el-date-picker 
+  style="width: 100%" 
+  v-model="xxx" 
+  :type="item.type" 
+  :value-format="valueFormat" 
+  clearable
+    :disabled="item.disabled" 
+    :placeholder="_getPlaceholder(item)" 
+    @change="change" @input="$forceUpdate()"
+    start-placeholder="开始日期" 
+    range-separator="至" 
+    end-placeholder="结束日期" 
+    :picker-options="item.pickerOpt"
+    :append-to-body="$store.state.setup.mobile  ? false : true"  
+    :align="item.align?item.align : `right`"
+    :popper-class="item.right ? `custom-popper` : ``" />
   <!-- <div>
 		<template v-if="item.type!='daterange'">
 			<el-date-picker style="width: 100%;" v-model="data[item.field]" :type="item.type" :value-format="valueFormat"
@@ -129,6 +141,9 @@ export default {
   @media screen and (max-width: 1000px) {
   ::v-deep{
     .el-popper {  top: auto !important;  left: auto !important;}
+    .custom-popper{
+      right: 0px
+    }
   }
 }
 </style>
