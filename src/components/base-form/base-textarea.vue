@@ -18,6 +18,7 @@
     @blur="blur(data[item.field])"
     @focus="focus(data[item.field])"
     clearable
+    :autosize="item.autosize ? true : false"
     :rows="item.row"
     :maxlength="item.max"
   />

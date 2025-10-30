@@ -251,8 +251,9 @@ export default {
           {
             type: "textarea",
             field: "_textarea",
-            title: "文本输入框",
-            row: 1,
+            title: "文本域输入框",
+            row: 2,
+            autosize:true,
           },
 
           { slot: "mySlot", field: "xxx", title: "自定义插槽" },
