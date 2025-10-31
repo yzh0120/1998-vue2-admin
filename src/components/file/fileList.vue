@@ -23,7 +23,7 @@
             </td>
             <!-- 操作 -->
             <td class="text-center" v-show="showUploadBtn && item.showUploadBtn !== false">
-              <oneFile :projectId="tempId ? tempId : projectId" :uploadObj="item" :selfClass="selfClass" noGetApi
+              <oneFile :projectId="tempId ? tempId : projectId" :showUploadBtn="showUploadBtn" :uploadObj="item" :selfClass="selfClass" noGetApi
                 @getAllFile="getAllFile"></oneFile>
             </td>
           </tr>
