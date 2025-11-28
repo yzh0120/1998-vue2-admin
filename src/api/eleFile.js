@@ -19,27 +19,23 @@ import {
 
 
 //下載文件流 默认get 导出
-export function download(params = {}, downloadUrl, method = "get") {
+export function download({ params = {} , url =  "/admin-api/perfor/file/download", method, data = {} , params = {} }) { 
   let msg = Message({
     message: "正在下载文件，请稍等",
     type: 'warning',
     duration: 0
   })
   let headers = {
-    'Authorization': "Bearer " + cookieFn.getCookie(process.env.VUE_APP_TOKEN),
+    'Authorization': 'Bearer ' + getAccessToken()
   }
-  let finallyUrl  = "/system/file_annexes/download"
-  if (downloadUrl) {
-    finallyUrl = downloadUrl//type
-  }
-
+  
   return new Promise((resolve, reject) => {
     axios({
       method: method,
-      url: finallyUrl,
-      baseURL: process.env.VUE_APP_API,
+      url: url,
+      baseURL: process.env.VUE_APP_BASE_API,//process.env.VUE_APP_API,
       params: params,
-      data: params,
+      data: data,
       responseType: 'blob',
       headers: headers
     }).then(response => {
@@ -67,29 +63,16 @@ export function download(params = {}, downloadUrl, method = "get") {
       link.style.display = "none";
       link.href = objectUrl;
       ////////////////////////////////////
-      if (response.headers.filename) {
-        link.setAttribute("download", decodeURIComponent(response.headers.filename));
-      } else {
-        link.setAttribute("download", decodeURIComponent(response.headers["content-disposition"].split("filename=")[1]));
-      }
-      // link.setAttribute("download", decodeURIComponent(response.headers["content-disposition"].split("filename=")[1]));
+      link.setAttribute("download", decodeURIComponent(response.headers["content-disposition"].split("filename=")[1]));
       document.body.appendChild(link);
       link.click();
-
       resolve("成功")
     }).catch(err => {
-      // Message({
-      //   message: err,
-      //   type: 'warning',
-      //   duration: 2000
-      // })
       console.log(err, "err")
       msg.close();
       reject(err)
     })
   })
-
-
 }
 
 
