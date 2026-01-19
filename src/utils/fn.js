@@ -224,15 +224,7 @@ export function divide(num1, num2) {
 
 
 
-//是否是数字
-export function isNumber(data) { 
-  let str = data.replaceAll(",", "")
-  if (isNaN(Number(str))) {
-    return false
-  } else { 
-    return true
-  }
-}
+
 
 /**
  * Number formatting对文件大小进行转换为K,M,G,T,P,E
@@ -379,14 +371,7 @@ export function selfNumber(val) {
   }
 }
 
-//是否是null
-export function isNull(val) {
-  if (val === null || val === undefined || val === "") {
-    return true
-  } else {
-    return false
-  }
-}
+
 
 
 /* date* * *头部 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -585,5 +570,40 @@ export function user_text(value) {
     }
   } else {
     return '没有此用户'
+  }
+}
+
+// 通过网络文件链接获取文件名
+export function getFileNameFromUrl(url) {
+  if (!url || typeof url !== 'string') return '';
+
+  // 步骤1：去掉URL中的锚点（#及后面的内容）
+  const urlWithoutHash = url.split('#')[0];
+  // 步骤2：去掉URL中的参数（?及后面的内容）
+  const urlWithoutQuery = urlWithoutHash.split('?')[0];
+  // 步骤3：找到最后一个斜杠的位置
+  const lastSlashIndex = urlWithoutQuery.lastIndexOf('/');
+  // 步骤4：截取最后一个斜杠后的内容（即文件名）
+  const fileName = urlWithoutQuery.slice(lastSlashIndex + 1);
+
+  return fileName;
+}
+
+//是否是null
+export function isNull(val) {
+  if (val === null || val === undefined || val === "") {
+    return true
+  } else {
+    return false
+  }
+}
+
+//是否是数字
+export function isNumber(data) { 
+  let str = data.replaceAll(",", "")
+  if (isNaN(Number(str))) {
+    return false
+  } else { 
+    return true
   }
 }
