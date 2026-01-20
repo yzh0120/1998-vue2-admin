@@ -362,14 +362,7 @@ export function convertCurrency(money) {
   return chineseStr;
 }
 
-//自定义的数字转化
-export function selfNumber(val) {
-  if (val === null || val === undefined || val === "") {
-    return 0
-  } else {
-    return Number(val)
-  }
-}
+
 
 
 
@@ -605,5 +598,14 @@ export function isNumber(data) {
     return false
   } else { 
     return true
+  }
+}
+
+//自定义的数字转化
+export function selfNumber(val) {
+  if (val === null || val === undefined || val === "") {
+    return 0
+  } else {
+    return Number(val)
   }
 }
