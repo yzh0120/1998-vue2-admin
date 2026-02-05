@@ -567,7 +567,7 @@ export function user_text(value) {
 }
 
 // 通过网络文件链接获取文件名
-export function getFileNameFromUrl(url) {
+export function getFileNameFromUrl(url) {//url.split("/").pop().split(".").shift()
   if (!url || typeof url !== 'string') return '';
 
   // 步骤1：去掉URL中的锚点（#及后面的内容）
