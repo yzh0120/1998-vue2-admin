@@ -29,7 +29,7 @@ export default {
     },
     preUrl: {
       type: String,
-      default: "http://139.199.68.31:9099/Files/MXHPAP2023090633/20230925/d15e94760a544015b9598fbf77fff7dc.pdf"
+      default: "https://testfile.mxhsz.com/202603/0266da299802ac1a1fccda8b60c00001/服务协议_1772699121212.pdf"
     },
   },
   data() {
