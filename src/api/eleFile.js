@@ -19,7 +19,7 @@ import {
 
 
 //下載文件流 默认get 导出
-export function download({ params = {} , url =  "/admin-api/perfor/file/download", method, data = {} , params = {} }) { 
+export function download({ params = {} , url =  "/admin-api/perfor/file/download", method, data = {}  }) { 
   let msg = Message({
     message: "正在下载文件，请稍等",
     type: 'warning',
