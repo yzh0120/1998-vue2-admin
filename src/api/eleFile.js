@@ -83,6 +83,10 @@ export function download({ params = {} , url =  "/admin-api/perfor/file/download
  * @param {*} filename
  */
 export const download_url = (url, filename) => {
+
+  if(!filename){
+    filename = getFileNameFromUrl(url)
+  }
   function getBlob(url) {
     return new Promise(resolve => {
       const XML = new XMLHttpRequest();
@@ -96,6 +100,8 @@ export const download_url = (url, filename) => {
       XML.send();
     });
   }
+
+
 
   //下载文件
   function saveAs(blob, filename) {
@@ -181,3 +187,19 @@ export function queryList(data) {
 //   x.send()
 
 // }
+
+
+function getFileNameFromUrl(url) {
+  if (!url || typeof url !== 'string') return '';
+
+  // 步骤1：去掉URL中的锚点（#及后面的内容）
+  const urlWithoutHash = url.split('#')[0];
+  // 步骤2：去掉URL中的参数（?及后面的内容）
+  const urlWithoutQuery = urlWithoutHash.split('?')[0];
+  // 步骤3：找到最后一个斜杠的位置
+  const lastSlashIndex = urlWithoutQuery.lastIndexOf('/');
+  // 步骤4：截取最后一个斜杠后的内容（即文件名）
+  const fileName = urlWithoutQuery.slice(lastSlashIndex + 1);
+
+  return fileName;
+}
