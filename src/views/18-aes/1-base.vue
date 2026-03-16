@@ -25,7 +25,7 @@ export default {
     methods:{
       ggg() {
         // this.a1 = aes.encrypt(JSON.stringify(this.obj)) 
-        this.a1 = aes.encrypt(JSON.stringify(this.input))
+        this.a1 = aes.encrypt(this.input)
       },
       ggg2() { 
         // this.a2 = JSON.parse(aes.decrypt(this.a1))
