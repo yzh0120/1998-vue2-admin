@@ -5,7 +5,7 @@
      {
                         title: "渠道名称",
                         field: "channel_id",
-                        labelField:["channel_name"], //重点需要这个有值
+                        labelField:["channel_name"], //重点需要这个有值  但是如果field和labelField一样  禁止填写labelField
                         type: "selectf",
                         opt: [],
                         text: "name",
