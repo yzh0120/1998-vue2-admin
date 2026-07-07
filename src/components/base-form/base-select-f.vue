@@ -51,7 +51,7 @@
     :remote="remote" 
     :remote-method="item.remote">
     <el-option v-for="(childItem, childIndex) in item.opt" :key="childIndex" :label="childItem[text]"
-      :value="childItem[value]" />
+      :value="childItem[value]" @mousedown.native="handleClick(childItem[value])"/>
   </el-select>
 </template>
 
@@ -74,6 +74,35 @@ export default {
     };
   },
   methods: {
+    getSelectInputText() {
+      const sel = this.$refs.mySelect;
+    if (!sel) return "";
+    // 直接从select根DOM找input
+    const inputDom = sel.$el.querySelector("input");
+    return inputDom ? inputDom.value : "";
+  },
+    handleClick(nowValue) {
+      let activeOptObj = {}
+      this.item.opt.forEach((e) => {
+        if (e[this.value] === nowValue) {
+          activeOptObj = e
+        }
+      })
+      
+      setTimeout(() => { 
+        // console.log(this.getSelectInputText() , nowValue,this.getSelectInputText() == nowValue,"阿斯顿发斯蒂芬")
+        if (this.getSelectInputText() == nowValue) { 
+        this.$emit("baseFormEvent", {
+          name: "optselect",
+          activeOptObj: activeOptObj,
+          value: nowValue,
+        });
+        this.data[this.item.labelField] = ""
+        this.data[this.item.field] = ""
+      }
+      },0)
+
+    },
     change(nowValue) {
       let activeOptObj = {}
       this.item.opt.forEach((e) => { 
@@ -105,7 +134,7 @@ export default {
     mvalue: {
       get() {
         // console.log(!this.item.opt.length , !this.item.remote)
-        if (!this.item.opt.length && this.item.remote) {
+        if (!this.item.opt.length && this.item.remote && this.item.labelField?.length) {
           return this.data[this.item.labelField]
         } else {
           return this.data[this.item.field]
