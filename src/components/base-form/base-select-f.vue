@@ -88,8 +88,8 @@ export default {
           activeOptObj = e
         }
       })
-      
-      setTimeout(() => { 
+      this.$nextTick(() => { 
+        setTimeout(() => { 
         // console.log(this.getSelectInputText() , nowValue,this.getSelectInputText() == nowValue,"阿斯顿发斯蒂芬")
         if (this.getSelectInputText() == nowValue) { 
         this.$emit("baseFormEvent", {
@@ -100,7 +100,9 @@ export default {
         this.data[this.item.labelField] = ""
         this.data[this.item.field] = ""
       }
-      },0)
+      },10)
+      })
+
 
     },
     change(nowValue) {
