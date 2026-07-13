@@ -51,7 +51,11 @@
     :remote="remote" 
     :remote-method="item.remote">
     <el-option v-for="(childItem, childIndex) in item.opt" :key="childIndex" :label="childItem[text]"
-      :value="childItem[value]" @mousedown.native="handleClick(childItem[value])"/>
+      :value="childItem[value]" @mousedown.native="handleClick(childItem[value])">
+      <div v-if="item.slotss">
+      {{ childItem[item.slotss] }}
+      </div>
+    </el-option>
   </el-select>
 </template>
 
