@@ -30,6 +30,7 @@
     :popper-append-to-body="false"
     :remote="remote"
     :remote-method="item.remote"
+    popper-class="fix-select-bottom"
   >
     <el-option
       v-for="(childItem, childIndex) in item.opt"
@@ -128,6 +129,20 @@ export default {
 @media screen and (max-width: 1000px) {
   ::v-deep{
     .el-popper {  top: auto !important;  left: auto !important;}
+  }
+}
+</style>
+
+
+<style scoped lang="scss" >
+
+::v-deep {
+  .fix-select-bottom .el-scrollbar__wrap {
+    margin-bottom: 0 !important;
+  }
+
+  .fix-select-bottom .el-select-dropdown__list {
+    padding-bottom: 6px !important;
   }
 }
 </style>
