@@ -82,25 +82,27 @@ export default {
     return inputDom ? inputDom.value : "";
   },
     handleClick(nowValue) {
-      let activeOptObj = {}
-      this.item.opt.forEach((e) => {
-        if (e[this.value] === nowValue) {
-          activeOptObj = e
-        }
-      })
+      this.data[this.item.labelField] = ""
+      this.data[this.item.field] = ""
+
       this.$nextTick(() => { 
         setTimeout(() => { 
-        // console.log(this.getSelectInputText() , nowValue,this.getSelectInputText() == nowValue,"阿斯顿发斯蒂芬")
-        if (this.getSelectInputText() == nowValue) { 
-        this.$emit("baseFormEvent", {
-          name: "optselect",
-          activeOptObj: activeOptObj,
-          value: nowValue,
-        });
-        this.data[this.item.labelField] = ""
-        this.data[this.item.field] = ""
-      }
-      },10)
+            let activeOptObj = {}
+            this.item.opt.forEach((e) => {
+              if (e[this.value] === nowValue) {
+                activeOptObj = e
+              }
+            })
+            // console.log(this.getSelectInputText() , nowValue,this.getSelectInputText() == nowValue,"阿斯顿发斯蒂芬")
+            if (this.getSelectInputText() == nowValue) { 
+            this.$emit("baseFormEvent", {
+              name: "optselect",
+              activeOptObj: activeOptObj,
+              value: nowValue,
+            });
+
+        }
+        },10)
       })
 
 
